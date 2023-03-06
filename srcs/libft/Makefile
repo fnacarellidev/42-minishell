@@ -10,15 +10,12 @@ CFILES = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c \
 		 ft_strmapi.c ft_itoa.c ft_putnbr_fd.c  ft_strtrim.c ft_split.c \
 		 ft_putstr.c ft_putchar.c ft_putnbr_base.c \
 		 ft_printf.c ft_printf_utils.c ft_count_matrix.c ft_free_matrix.c \
-		 ft_free_spatial_matrix.c ft_free_matrix_size_n.c ft_swap.c ft_power.c
+		 ft_free_spatial_matrix.c ft_free_matrix_size_n.c ft_swap.c ft_power.c \
+		 ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
+		 ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_free_list.c
 
 OBJS = $(CFILES:%.c=%.o)
 	   
-BONUS_FILES = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
-			  ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c ft_free_list.c
-
-BONUS_OBJ = $(BONUS_FILES:%.c=%.o)
-
 all : $(NAME)
 
 $(NAME) : $(OBJS)
@@ -27,16 +24,10 @@ $(NAME) : $(OBJS)
 %.o:%.c
 	cc $(FLAGS) -I ./includes -c $< -o $@
 
-$(BONUS_OBJ) :
-	cc $(CFLAGS) -I ./ -c $(BONUS_FILES)
-	ar rcs $(NAME) $(BONUS_OBJ)
-
-bonus : $(BONUS_OBJ)
-
 fclean : clean
 	rm -f $(NAME)
 
 clean :
-	rm -f $(OBJS) $(BONUS_OBJ)
+	rm -f $(OBJS)
 
 re : fclean all

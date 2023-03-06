@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/06 16:07:53 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/06 17:32:21 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -26,6 +26,8 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/ioctl.h>
+# include <readline/history.h>
+# include <readline/readline.h>
 # include "../srcs/libft/libft.h"
 
 #endif

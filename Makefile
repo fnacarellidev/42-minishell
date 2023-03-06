@@ -16,7 +16,7 @@ CFLAGS 	= -Wall -Wextra -Werror -g3
 all: $(NAME)
 
 $(NAME): $(OBJS_PATH) $(OBJS) $(LIBFT_PATH)/libft.a
-	cc $(CLAGS) -o $(NAME) $(OBJS) $(LIBFT_FLAGS) -lreadline
+	cc $(CFLAGS) -lreadline -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
 
 $(OBJS_PATH):
 	mkdir -p $(OBJS_PATH)

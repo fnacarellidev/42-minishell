@@ -4,7 +4,7 @@ SRCS_PATH = ./srcs
 OBJS_PATH = ./objs
 INCS_PATH = ./includes
 
-FILES	= main
+FILES	= minishell
 
 SRCS	= $(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))
 OBJS	= $(addprefix $(OBJS_PATH)/, $(addsuffix .o, $(FILES)))

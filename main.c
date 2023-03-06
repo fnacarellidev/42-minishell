@@ -6,13 +6,13 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/06 10:12:25 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/06 10:14:38 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
 
 int main()
 {
-	printf("Hello World!\n");
+	printf("World! Hello\n");
 	return (0);
 }

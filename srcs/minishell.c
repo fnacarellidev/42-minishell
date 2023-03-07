@@ -53,7 +53,7 @@ int main(int argc, char **argv, char **envp)
 		if (ft_strlen(line) > 0 && ft_strncmp(line, "exit\n", ft_strlen(line)) == 0)
 		{
 			free(line);
-			exit(0);
+			break ;
 		}
 		free(line);
 	}

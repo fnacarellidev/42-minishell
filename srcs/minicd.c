@@ -83,3 +83,17 @@ static int	is_valid_instruction(t_node **envp_list, char *cmd)
 	ft_free_matrix((void **)cmd_tokens);
 	return (ret);
 }
+
+void	change_directory(t_node **envp_list, char *str)
+{
+	char	*oldpwd;
+	char	buf[16384];
+
+	if (!is_valid_instruction(envp_list, str))
+		return ;
+	oldpwd = get_key_value(*envp_list, "PWD=");
+	change_value_from_key(envp_list, "OLDPWD=", oldpwd);
+	chdir(&str[3]);
+	getcwd(buf, 16384);
+	change_value_from_key(envp_list, "PWD=", buf);
+}

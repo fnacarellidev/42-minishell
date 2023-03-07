@@ -38,3 +38,26 @@ static t_node	*get_prev_node_with_position(t_node *node, int position)
 	}
 	return (node);
 }
+
+void	unset(t_node **envp_list, char *key)
+{
+	int		key_pos;
+	t_node	*tmp;
+	t_node	*node_to_del;
+
+	key_pos = get_key_position(*envp_list, key);
+	if (key_pos == -1)
+		return ;
+	if (key_pos == 0)
+	{
+		node_to_del = *envp_list;
+		(*envp_list)->next = (*envp_list)->next;
+	}
+	else
+	{
+		tmp = get_prev_node_with_position(*envp_list, key_pos);
+		node_to_del = tmp->next;
+		tmp->next = tmp->next->next;
+	}
+	ft_lstdelone(node_to_del, free);
+}

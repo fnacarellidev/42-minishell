@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/06 17:32:21 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:57:39 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -30,4 +30,5 @@
 # include <readline/readline.h>
 # include "../srcs/libft/libft.h"
 
+void	change_directory(t_node **envp_list, char *str);
 #endif

@@ -31,4 +31,6 @@
 # include "../srcs/libft/libft.h"
 
 void	change_directory(t_node **envp_list, char *str);
+void	unset(t_node **envp_list, char *key);
+
 #endif

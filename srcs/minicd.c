@@ -44,3 +44,15 @@ static char	*get_key_value(t_node *envp_list, char *key)
 		envp_list = envp_list->next;
 	return (envp_list->value);
 }
+
+static void	change_value_from_key(t_node **envp_list, char *key, char *new_data)
+{
+	t_node	*tmp;
+
+	tmp = *envp_list;
+	while (ft_strcmp(tmp->key, key) != 0)
+		tmp = tmp->next;
+	if (tmp->value)
+		free(tmp->value);
+	tmp->value = ft_strdup(new_data);
+}

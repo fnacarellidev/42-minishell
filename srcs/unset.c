@@ -25,3 +25,16 @@ static int	get_key_position(t_node *envp_list, char *key)
 		return (-1);
 	return (i);
 }
+
+static t_node	*get_prev_node_with_position(t_node *node, int position)
+{
+	int	i;
+
+	i = 0;
+	while (i < position - 1)
+	{
+		node = node->next;
+		i++;
+	}
+	return (node);
+}

@@ -21,3 +21,19 @@ static int	is_valid_dir(char *str)
 	else
 		return (0);
 }
+
+static int	key_exists(t_node *envp_list, char *key)
+{
+	char	*curr_key;
+	int		comparison;
+
+	while (envp_list != NULL)
+	{
+		curr_key = envp_list->key;
+		comparison = ft_strcmp(curr_key, key);
+		if (comparison == 0)
+			return (1);
+		envp_list = envp_list->next;
+	}
+	return (0);
+}

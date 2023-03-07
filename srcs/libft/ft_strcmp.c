@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_list.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/06 15:41:42 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/07 14:57:49 by fnacarel         ###   ########.fr       */
+/*   Created: 2023/03/07 12:47:36 by fnacarel          #+#    #+#             */
+/*   Updated: 2023/03/07 12:48:10 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-
-void	ft_free_list(t_node **head)
+int    ft_strcmp(const char *s1, const char *s2)
 {
-	t_node	*current;
-	t_node	*next;
-
-	if (!head)
-		return ;
-	current = *head;
-	while (current)
+	while (*s1 && *s2 && *s1 == *s2)
 	{
-		next = current->next;
-		free(current->key);
-		free(current->value);
-		free(current);
-		current = next;
+		s1++;
+		s2++;
 	}
-	*head = NULL;
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }

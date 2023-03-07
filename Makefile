@@ -32,6 +32,9 @@ clean:
 	rm -rf $(OBJS_PATH)
 	make -C $(LIBFT_PATH) clean --no-print-directory
 
+valg:
+	valgrind --suppressions=ignorelibs.txt --leak-check=full ./$(NAME)
+
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_PATH) fclean --no-print-directory

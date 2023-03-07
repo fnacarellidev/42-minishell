@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:02:44 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/06 16:10:00 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:55:49 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -36,7 +36,8 @@ size_t	ft_strlen_printf(char *str);
 
 typedef struct s_node
 {
-	char			*data;
+	char			*key;
+	char			*value;
 	struct s_node	*next;
 }				t_node;
 void	ft_free_list(t_node **head);
@@ -90,8 +91,9 @@ void	ft_swap(int *a, int *b);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
-t_node	*ft_lstnew(char *content);
+t_node	*ft_lstnew(char *key, char *value);
 t_node	*ft_lstlast(t_node *lst);
 t_node	*ft_lstmap(t_node *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

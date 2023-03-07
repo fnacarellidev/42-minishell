@@ -37,3 +37,10 @@ static int	key_exists(t_node *envp_list, char *key)
 	}
 	return (0);
 }
+
+static char	*get_key_value(t_node *envp_list, char *key)
+{
+	while (ft_strcmp(envp_list->key, key) != 0)
+		envp_list = envp_list->next;
+	return (envp_list->value);
+}

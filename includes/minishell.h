@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/07 17:57:39 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:10:25 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
 # include <term.h>
 # include <errno.h>
 # include <stdio.h>
@@ -30,7 +31,8 @@
 # include <readline/readline.h>
 # include "../srcs/libft/libft.h"
 
-void	change_directory(t_node **envp_list, char *str);
-void	unset(t_node **envp_list, char *key);
+char	*get_key_value(t_node *envp_list, char *key);
+void	change_value_from_key(t_node **envp_list, char *key, char *new_data);
+int		key_exists(t_node *envp_list, char *key);
 
 #endif

@@ -6,10 +6,10 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 12:47:36 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/07 12:48:10 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:15:24 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int    ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	while (*s1 && *s2 && *s1 == *s2)
 	{

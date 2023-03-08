@@ -34,6 +34,8 @@ void	change_directory(t_node **envp_list, char *str);
 
 void	unset(t_node **envp_list, char *key);
 
+void	ft_export(t_node **envp_list, char *key, char *value);
+
 char	*get_key_value(t_node *envp_list, char *key);
 void	change_value_from_key(t_node **envp_list, char *key, char *new_data);
 int		key_exists(t_node *envp_list, char *key);

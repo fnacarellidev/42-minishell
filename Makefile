@@ -5,10 +5,7 @@ OBJS_PATH = ./objs
 INCS_PATH = ./includes
 LIBFT_PATH = ./srcs/libft
 
-FILES =	minishell \
-		minicd \
-		unset \
-		ft_export
+FILES =	minishell
 
 SRCS	= $(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))
 OBJS	= $(addprefix $(OBJS_PATH)/, $(addsuffix .o, $(FILES)))

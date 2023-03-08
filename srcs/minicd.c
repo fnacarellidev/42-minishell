@@ -22,7 +22,7 @@ static int	is_valid_dir(char *path)
 		return (0);
 }
 
-static int	is_valid_instruction(t_node **envp_list, char *cmd)
+static int	is_valid_instruction(char *cmd)
 {
 	int		ret;
 	char	**cmd_tokens;
@@ -36,10 +36,6 @@ static int	is_valid_instruction(t_node **envp_list, char *cmd)
 		printf("bash: cd: too many arguments");
 		ret = 0;
 	}
-	else if (!key_exists(*envp_list, "PWD="))
-		export(envp_list, "PWD=", NULL);
-	else if (!key_exists(*envp_list, "OLDPWD="))
-		export(envp_list, "OLDPWD=", NULL);
 	else if (!is_valid_dir(cmd_tokens[1]))
 	{
 		printf("bash: cd: %s: No such file or directory\n", cmd_tokens[1]);

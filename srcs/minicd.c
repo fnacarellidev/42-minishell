@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 19:16:11 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/08 15:18:01 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:30:09 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -45,16 +45,53 @@ static int	is_valid_instruction(char *cmd)
 	return (ret);
 }
 
+static int	number_of_params(char *cmd)
+{
+	char	**tokens;
+	int		amount_of_tokens;
+
+	tokens = ft_split(cmd, ' ');
+	amount_of_tokens = ft_count_matrix((void **)tokens);
+	ft_free_matrix((void **)tokens);
+	return (amount_of_tokens - 1);
+}
+
+void	cd_home(t_node **envp_list)
+{
+	char	new_pwd[16384];
+	char	*oldpwd;
+
+	if (!key_exists(*envp_list, "HOME="))
+	{
+		printf("bash: cd: HOME not set\n");
+		return ;
+	}
+	if (!key_exists(*envp_list, "PWD="))
+		ft_export(envp_list, "PWD=", "");
+	if (!key_exists(*envp_list, "OLDPWD="))
+		ft_export(envp_list, "OLDPWD=", "");
+	oldpwd = get_key_value(*envp_list, "PWD=");
+	change_value_from_key(envp_list, "OLDPWD=", oldpwd);
+	chdir(get_key_value(*envp_list, "HOME="));
+	getcwd(new_pwd, 16384);
+	change_value_from_key(envp_list, "PWD=", new_pwd);
+}
+
 void	change_directory(t_node **envp_list, char *str)
 {
 	char	*oldpwd;
 	char	buf[16384];
 
-	if (!is_valid_instruction(envp_list, str))
-		return ;
-	oldpwd = get_key_value(*envp_list, "PWD=");
-	change_value_from_key(envp_list, "OLDPWD=", oldpwd);
-	chdir(&str[3]);
-	getcwd(buf, 16384);
-	change_value_from_key(envp_list, "PWD=", buf);
+	if (number_of_params(str) == 0)
+		cd_home(envp_list);
+	else
+	{
+		if (!is_valid_instruction(str))
+			return ;
+		oldpwd = get_key_value(*envp_list, "PWD=");
+		change_value_from_key(envp_list, "OLDPWD=", oldpwd);
+		chdir(&str[3]);
+		getcwd(buf, 16384);
+		change_value_from_key(envp_list, "PWD=", buf);
+	}
 }

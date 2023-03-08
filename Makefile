@@ -7,7 +7,8 @@ LIBFT_PATH = ./srcs/libft
 
 FILES =	minishell \
 		minicd \
-		unset
+		unset \
+		ft_export
 
 SRCS	= $(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))
 OBJS	= $(addprefix $(OBJS_PATH)/, $(addsuffix .o, $(FILES)))

@@ -93,3 +93,9 @@ char	*format_cmd(char *cmd)
 	free(fixed_str);
 	return (NULL);
 }
+
+char    **lexer(char *cmd)
+{
+	format_cmd(cmd);
+    return (NULL);
+}

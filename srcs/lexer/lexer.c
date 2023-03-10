@@ -25,3 +25,17 @@ static int	is_meta_char(char c)
 	}
 	return (0);
 }
+
+static int	count_metachars(char *cmd)
+{
+	int		amount_of_metachars;
+
+	amount_of_metachars = 0;
+	while (*cmd)
+	{
+		if (is_meta_char(*cmd))
+			amount_of_metachars++;
+		cmd++;
+	}
+	return (amount_of_metachars);
+}

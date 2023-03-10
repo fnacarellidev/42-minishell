@@ -6,10 +6,11 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/08 17:15:53 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/10 20:24:00 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 # include "../includes/minishell.h"
+#include "libft/libft.h"
 
 t_node	*get_envp_list(char **envp)
 {
@@ -50,26 +51,11 @@ void    ft_print_stack(t_node *stack)
 int main(int argc, char **argv, char **envp)
 {
 	t_node	*envp_list;
-	char	*line;
 
 	if (argc && argv)
 	{}
 	envp_list = get_envp_list(envp);
-	/* ft_print_stack(envp_list); */
-	ft_free_list(&envp_list);
-	exit(0);
-	while (1)
-	{
-		line = readline("$ ");
-		if (ft_strlen(line) != 0)
-			add_history(line);
-		if (ft_strlen(line) > 0 && ft_strncmp(line, "exit\n", ft_strlen(line)) == 0)
-		{
-			free(line);
-			break ;
-		}
-		free(line);
-	}
+	lexer(argv[1]);
 	ft_free_list(&envp_list);
 	return (0);
 }

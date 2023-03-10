@@ -68,3 +68,28 @@ int	put_spaces(char *str, int position_of_whole_string)
 	}
 	return (i);
 }
+
+char	*format_cmd(char *cmd)
+{
+	int		i;
+	int		mem_to_alloc;
+	char	*fixed_str;
+	int		max_spaces_to_insert;
+
+	i = 0;
+	max_spaces_to_insert = count_metachars(cmd) * 2;
+	mem_to_alloc = max_spaces_to_insert + ft_strlen(cmd) + 2;
+	fixed_str = malloc(sizeof(char) * mem_to_alloc);
+	ft_bzero(fixed_str, mem_to_alloc);
+	ft_strlcpy(fixed_str, cmd, mem_to_alloc);
+	while (fixed_str[i])
+	{
+		if (is_meta_char(fixed_str[i]))
+			i += put_spaces(&fixed_str[i], i) + 1;
+		else
+			i++;
+	}
+	printf("%s\n", fixed_str);
+	free(fixed_str);
+	return (NULL);
+}

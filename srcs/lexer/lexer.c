@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 18:57:20 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/10 20:19:46 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/10 22:21:22 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -94,8 +94,8 @@ char	*format_cmd(char *cmd)
 	return (NULL);
 }
 
-char    **lexer(char *cmd)
+char	**lexer(char *cmd)
 {
 	format_cmd(cmd);
-    return (NULL);
+	return (NULL);
 }

@@ -1,17 +1,16 @@
-NAME = minishell
+NAME = 			minishell
 
-SRCS_PATH = ./srcs
-OBJS_PATH = ./objs
-INCS_PATH = ./includes
-LIBFT_PATH = ./srcs/libft
+SRCS_PATH =		./srcs
+LIBFT_PATH =	./srcs/libft
 
-FILES =	minishell
+FILES =			minishell \
+				lexer/lexer
 
-SRCS	= $(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))
-OBJS	= $(addprefix $(OBJS_PATH)/, $(addsuffix .o, $(FILES)))
+SRCS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))
+OBJS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .o, $(FILES)))
 
-LIBFT_FLAGS = -L $(LIBFT_PATH) -lft
-CFLAGS 	= -Wall -Wextra -Werror -g3
+LIBFT_FLAGS =	-L $(LIBFT_PATH) -lft
+CFLAGS = 		-Wall -Wextra -Werror -g3
 
 all: $(NAME)
 

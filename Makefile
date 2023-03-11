@@ -14,21 +14,17 @@ CFLAGS = 		-Wall -Wextra -Werror -g3
 
 all: $(NAME)
 
-$(NAME): $(OBJS_PATH) $(OBJS) $(LIBFT_PATH)/libft.a
+$(NAME): $(OBJS) $(LIBFT_PATH)/libft.a
 	cc $(CFLAGS) -lreadline -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
 
-$(OBJS_PATH):
-	mkdir -p $(OBJS_PATH)
-
-$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c
-	cc $(CFLAGS) $(INCLUDES) -c $< -o $@
+%.o: %.c
+	cc $(CFLAGS) ./includes -c $< -o $@
 
 $(LIBFT_PATH)/libft.a:
 	make -C $(LIBFT_PATH) --no-print-directory
 
 clean:
 	rm -f $(OBJS)
-	rm -rf $(OBJS_PATH)
 	make -C $(LIBFT_PATH) clean --no-print-directory
 
 valg:

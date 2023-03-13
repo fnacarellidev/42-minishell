@@ -18,7 +18,7 @@ $(NAME): $(OBJS) $(LIBFT_PATH)/libft.a
 	cc $(CFLAGS) -lreadline -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
 
 %.o: %.c
-	cc $(CFLAGS) ./includes -c $< -o $@
+	cc $(CFLAGS) -I ./includes -c $< -o $@
 
 $(LIBFT_PATH)/libft.a:
 	make -C $(LIBFT_PATH) --no-print-directory

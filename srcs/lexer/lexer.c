@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 18:57:20 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/10 22:21:22 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:59:37 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -28,14 +28,21 @@ static int	is_meta_char(char c)
 
 static int	count_metachars(char *cmd)
 {
+	int		i;
 	int		amount_of_metachars;
 
+	i = 0;
 	amount_of_metachars = 0;
-	while (*cmd)
+	while (cmd[i])
 	{
-		if (is_meta_char(*cmd))
+		if (is_meta_char(cmd[i]) && cmd[i] == cmd[i + 1])
+		{
 			amount_of_metachars++;
-		cmd++;
+			i++;
+		}
+		else if (is_meta_char(cmd[i]))
+			amount_of_metachars++;
+		i++;
 	}
 	return (amount_of_metachars);
 }
@@ -69,6 +76,32 @@ int	put_spaces(char *str, int position_of_whole_string)
 	return (i);
 }
 
+int	put_spaces_between_duplicate_metachars(char *str, int position_of_whole_string)
+{
+	int	i;
+
+	i = 0;
+	if (position_of_whole_string != 0 && *(str - 1) != ' ')
+	{
+		ft_memmove(str + 1, str, ft_strlen(str));
+		str[0] = ' ';
+		i++;
+		if (str[3] != ' ')
+		{
+			ft_memmove(str + 4, str + 3, ft_strlen(str));
+			str[3] = ' ';
+			i++;
+		}
+	}
+	else if (str[2] != ' ')
+	{
+		ft_memmove(str + 3, str + 2, ft_strlen(str));
+		str[2] = ' ';
+		i++;
+	}
+	return (i);
+}
+
 char	*format_cmd(char *cmd)
 {
 	int		i;
@@ -84,7 +117,9 @@ char	*format_cmd(char *cmd)
 	ft_strlcpy(fixed_str, cmd, mem_to_alloc);
 	while (fixed_str[i])
 	{
-		if (is_meta_char(fixed_str[i]))
+		if (is_meta_char(fixed_str[i]) && fixed_str[i] == fixed_str[i + 1])
+			i += put_spaces_between_duplicate_metachars(&fixed_str[i], i) + 2;
+		else if (is_meta_char(fixed_str[i]))
 			i += put_spaces(&fixed_str[i], i) + 1;
 		else
 			i++;

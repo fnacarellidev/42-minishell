@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:43:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/22 18:46:27 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:11:33 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -41,29 +41,35 @@ static int	count_metachars(char *cmd)
 	return (amount_of_metachars);
 }
 
+char	*init_human_readable_cmd(char *cmd)
+{
+	char	*new_cmd;
+	int		mem_to_alloc;
+	int		max_spaces_to_insert;
+
+	max_spaces_to_insert = count_metachars(cmd) * 2;
+	mem_to_alloc = max_spaces_to_insert + ft_strlen(cmd) + 2;
+	new_cmd = malloc(sizeof(char) * mem_to_alloc);
+	ft_bzero(new_cmd, mem_to_alloc);
+	ft_strlcpy(new_cmd, cmd, mem_to_alloc);
+	return (new_cmd);
+}
+
 char	*human_readable_cmd(char *cmd)
 {
 	int		i;
-	int		mem_to_alloc;
-	char	*fixed_str;
-	int		max_spaces_to_insert;
+	char	*new_cmd;
 
 	i = 0;
-	max_spaces_to_insert = count_metachars(cmd) * 2;
-	mem_to_alloc = max_spaces_to_insert + ft_strlen(cmd) + 2;
-	fixed_str = malloc(sizeof(char) * mem_to_alloc);
-	ft_bzero(fixed_str, mem_to_alloc);
-	ft_strlcpy(fixed_str, cmd, mem_to_alloc);
-	while (fixed_str[i])
+	new_cmd = init_human_readable_cmd(cmd);
+	while (new_cmd[i])
 	{
-		if (is_duplicate_meta_char(&fixed_str[i]))
-			i += put_spaces_between_duplicate_metachars(&fixed_str[i], i) + 2;
-		else if (is_meta_char(fixed_str[i]))
-			i += put_spaces(&fixed_str[i], i) + 1;
+		if (is_duplicate_meta_char(&new_cmd[i]))
+			i += put_spaces_between_duplicate_metachars(&new_cmd[i], i) + 2;
+		else if (is_meta_char(new_cmd[i]))
+			i += put_spaces(&new_cmd[i], i) + 1;
 		else
 			i++;
 	}
-	printf("%s\n", fixed_str);
-	free(fixed_str);
-	return (NULL);
+	return (new_cmd);
 }

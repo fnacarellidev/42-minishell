@@ -6,6 +6,7 @@ LIBFT_PATH =	./srcs/libft
 FILES =			minishell \
 				lexer/lexer \
 				lexer/space_cmd \
+				lexer/human_readable_cmd \
 				get_envp_list
 
 SRCS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))

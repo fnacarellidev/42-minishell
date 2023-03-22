@@ -40,5 +40,6 @@ t_node	*get_envp_list(char **envp);
 
 // Lexer
 int		put_spaces(char *str, int position_of_whole_string);
+int		put_spaces_between_duplicate_metachars(char *str, int position_of_whole_string);
 
 #endif

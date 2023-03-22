@@ -4,7 +4,8 @@ SRCS_PATH =		./srcs
 LIBFT_PATH =	./srcs/libft
 
 FILES =			minishell \
-				lexer/lexer
+				lexer/lexer \
+				get_envp_list
 
 SRCS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))
 OBJS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .o, $(FILES)))

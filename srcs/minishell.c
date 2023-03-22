@@ -9,8 +9,7 @@
 /*   Updated: 2023/03/22 16:51:20 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-# include "../includes/minishell.h"
-#include "libft/libft.h"
+#include "../includes/minishell.h"
 
 void    ft_print_stack(t_node *stack)
 {

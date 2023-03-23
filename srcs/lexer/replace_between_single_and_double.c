@@ -27,3 +27,9 @@ static void	replace_between(char *str, char c1, char c2, char c3)
 		i++;
 	}
 }
+
+void	replace_between_single_and_double(char *str, char c1, char c3)
+{
+	replace_between(str, c1, SINGLE_QUOTE, c3);
+	replace_between(str, c1, DOUBLE_QUOTE, c3);
+}

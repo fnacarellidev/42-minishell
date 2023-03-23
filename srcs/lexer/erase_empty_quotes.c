@@ -21,3 +21,17 @@ static char	*find_subsequent_quotes(char *str)
 	}
 	return (NULL);
 }
+
+static void	erase_subsequent_quote(char *str)
+{
+	int	len_str;
+
+	len_str = ft_strlen(str);
+	if (str[2] == '\0')
+	{
+		str[0] = '\0';
+		return ;
+	}
+	ft_memmove(str, str + 2, len_str - 2);
+	str[len_str - 2] = '\0';
+}

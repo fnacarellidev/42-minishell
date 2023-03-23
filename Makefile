@@ -17,7 +17,10 @@ OBJS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .o, $(FILES)))
 LIBFT_FLAGS =	-L $(LIBFT_PATH) -lft
 CFLAGS = 		-Wall -Wextra -Werror -g3
 
-all: $(NAME)
+all: libft $(NAME)
+
+libft:
+	@make -C $(LIBFT_PATH) --no-print-directory
 
 $(NAME): $(OBJS) $(LIBFT_PATH)/libft.a
 	cc $(CFLAGS) -lreadline -o $(NAME) $(OBJS) $(LIBFT_FLAGS)

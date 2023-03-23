@@ -22,6 +22,20 @@ char	*get_empty_surrounder(char *str, char c1)
 	return (NULL);
 }
 
+void	erase_surrounder(char *str)
+{
+	int	len_str;
+
+	len_str = ft_strlen(str);
+	if (str[2] == '\0')
+	{
+		str[0] = '\0';
+		return ;
+	}
+	ft_memmove(str, str + 2, len_str - 2);
+	str[len_str - 2] = '\0';
+}
+
 char	**lexer(char *cmd)
 {
 	char	*str;

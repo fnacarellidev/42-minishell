@@ -34,6 +34,5 @@ char	**lexer(char *cmd)
 	tokens = ft_split(str, ' ');
 	fix_tokens(tokens);
 	free(str);
-	ft_free_matrix((void**)tokens);
-	return (NULL);
+	return (tokens);
 }

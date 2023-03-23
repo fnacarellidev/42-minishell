@@ -35,3 +35,15 @@ static void	erase_subsequent_quote(char *str)
 	ft_memmove(str, str + 2, len_str - 2);
 	str[len_str - 2] = '\0';
 }
+
+void	erase_empty_quotes(char *str)
+{
+	char	*empty_quotes;
+
+	empty_quotes = find_subsequent_quotes(str);
+	while (empty_quotes)
+	{
+		erase_subsequent_quote(empty_quotes);
+		empty_quotes = find_subsequent_quotes(str);
+	}
+}

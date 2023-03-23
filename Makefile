@@ -7,6 +7,7 @@ FILES =			minishell \
 				lexer/lexer \
 				lexer/space_cmd \
 				lexer/human_readable_cmd \
+				lexer/erase_empty_quotes \
 				get_envp_list
 
 SRCS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))

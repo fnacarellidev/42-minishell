@@ -6,10 +6,21 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 18:57:20 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/22 20:13:29 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:56:24 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
+
+char	*get_empty_surrounder(char *str, char c1)
+{
+	while (*str)
+	{
+		if (*str == c1 && *(str + 1) == c1)
+			return (str);
+		str++;
+	}
+	return (NULL);
+}
 
 char	**lexer(char *cmd)
 {

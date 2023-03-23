@@ -33,6 +33,7 @@ char	**lexer(char *cmd)
 	char	*str;
 
 	str = human_readable_cmd(cmd);
+	erase_empty_quotes(str);
 	printf("%s\n", str);
 	free(str);
 	return (NULL);

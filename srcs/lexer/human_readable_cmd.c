@@ -6,14 +6,14 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:43:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/22 20:11:33 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:49:30 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
 static int	is_meta_char(char c)
 {
-	if (ft_strchr("><|", c))
+	if (ft_strchr(">|<", c))
 		return (1);
 	return (0);
 }

@@ -23,7 +23,7 @@ libft:
 	@make -C $(LIBFT_PATH) --no-print-directory
 
 $(NAME): $(OBJS) $(LIBFT_PATH)/libft.a
-	cc $(CFLAGS) -lreadline -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
+	cc $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_FLAGS) -lreadline
 
 %.o: %.c
 	cc $(CFLAGS) -I ./includes -c $< -o $@

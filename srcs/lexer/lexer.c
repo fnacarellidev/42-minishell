@@ -29,7 +29,6 @@ char	**lexer(char *cmd)
 	char	**tokens;
 
 	str = human_readable_cmd(cmd);
-	erase_empty_quotes(str);
 	replace_between(str, ' ', DEL_ASCII);
 	tokens = ft_split(str, ' ');
 	fix_tokens(tokens);

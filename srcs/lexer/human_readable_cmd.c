@@ -58,18 +58,23 @@ char	*init_human_readable_cmd(char *cmd)
 char	*human_readable_cmd(char *cmd)
 {
 	int		i;
+	char	quoted;
 	char	*new_cmd;
 
 	i = 0;
+	quoted = '\0';
 	new_cmd = init_human_readable_cmd(cmd);
 	while (new_cmd[i])
 	{
-		if (is_duplicate_meta_char(&new_cmd[i]))
+		if ((new_cmd[i] == '\'' || new_cmd[i] == '\"') && quoted == '\0')
+			quoted = new_cmd[i];
+		else if (quoted == '\0' && is_duplicate_meta_char(&new_cmd[i]))
 			i += put_spaces_between_duplicate_metachars(&new_cmd[i], i) + 2;
-		else if (is_meta_char(new_cmd[i]))
+		else if (quoted == '\0' && is_meta_char(new_cmd[i]))
 			i += put_spaces(&new_cmd[i], i) + 1;
-		else
-			i++;
+		else if (quoted == new_cmd[i])
+			quoted = '\0';
+		i++;
 	}
 	return (new_cmd);
 }

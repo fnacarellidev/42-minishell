@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/23 15:49:15 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:24:13 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -46,6 +46,6 @@ int		put_spaces(char *str, int position_of_whole_string);
 int		put_spaces_between_duplicate_metachars(char *str, int position_of_whole_string);
 char	*human_readable_cmd(char *cmd);
 void	erase_empty_quotes(char *str);
-void	replace_between_single_and_double(char *str, char c1, char c3);
+void	replace_between(char *str, char c1, char c2);
 
 #endif

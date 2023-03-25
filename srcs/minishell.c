@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/25 17:25:12 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:24:36 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -53,9 +53,9 @@ int main(int argc, char **argv, char **envp)
 	if (argc && argv)
 	{}
 	envp_list = get_envp_list(envp);
+	init_minishell();
 	while (1)
 	{
-		init_minishell();
 		cmd = readline("$ ");
 		if (ft_strcmp(cmd, "exit") == 0)
 		{

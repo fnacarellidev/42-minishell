@@ -17,3 +17,24 @@ static int	is_preceeded_or_followed_by_metachar(char **tokens, int pos)
 		return (1);
 	return (0);
 }
+
+static void	validate_redirects(char **tokens)
+{
+	int		i;
+
+	i = 0;
+	while (tokens[i])
+	{
+		if (!is_meta_char(*tokens[i]))
+		{
+			i++;
+			continue ;
+		}
+		if (is_meta_char(*tokens[i]) && *tokens[i] != '|' && (tokens[i + 1] == NULL || is_meta_char(*tokens[i + 1])))
+		{
+			minishell.status_code = 2;
+			break ;
+		}
+		i++;
+	}
+}

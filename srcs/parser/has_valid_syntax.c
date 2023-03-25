@@ -38,3 +38,27 @@ static void	validate_redirects(char **tokens)
 		i++;
 	}
 }
+
+static void	validate_pipes(char **tokens)
+{
+	int		i;
+	char	pipe;
+
+	i = 0;
+	pipe = '|';
+	while (tokens[i])
+	{
+		if (*tokens[i] != pipe)
+		{
+			i++;
+			continue ;
+		}
+		if (i == 0 || tokens[i + 1] == NULL
+			|| is_preceeded_or_followed_by_metachar(tokens, i))
+		{
+			minishell.status_code = 2;
+			break ;
+		}
+		i++;
+	}
+}

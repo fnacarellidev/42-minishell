@@ -39,6 +39,8 @@ typedef struct s_minishell
 	int	status_code;
 }	t_minishell;
 
+extern t_minishell minishell;
+
 char	*get_key_value(t_node *envp_list, char *key);
 void	change_value_from_key(t_node **envp_list, char *key, char *new_data);
 int		key_exists(t_node *envp_list, char *key);

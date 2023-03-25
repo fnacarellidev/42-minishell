@@ -56,6 +56,7 @@ void	erase_empty_quotes(char *str);
 void	replace_between(char *str, char c1, char c2);
 
 // Parser
+int		parser(char **tokens);
 void	has_valid_syntax(char **tokens);
 
 // Utils

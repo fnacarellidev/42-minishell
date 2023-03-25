@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/24 20:25:10 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:45:08 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -50,5 +50,6 @@ void	replace_between(char *str, char c1, char c2);
 
 // Utils
 int		is_quote(char c);
+int		is_meta_char(char c);
 
 #endif

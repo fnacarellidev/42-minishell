@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:38:10 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/24 19:23:56 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:01:19 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -20,7 +20,7 @@ void	replace_between(char *str, char c1, char c2)
 	quote = '\0';
 	while (str[i])
 	{
-		if ((str[i] == '\'' || str[i] == '\"') && quote == '\0')
+		if (is_quote(str[i]) && quote == '\0')
 			quote = str[i];
 		else if (quote != '\0' && str[i] == c1)
 			str[i] = c2;

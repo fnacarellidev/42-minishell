@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:43:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/24 19:49:30 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:00:36 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -66,7 +66,7 @@ char	*human_readable_cmd(char *cmd)
 	new_cmd = init_human_readable_cmd(cmd);
 	while (new_cmd[i])
 	{
-		if ((new_cmd[i] == '\'' || new_cmd[i] == '\"') && quoted == '\0')
+		if (is_quote(new_cmd[i]) && quoted == '\0')
 			quoted = new_cmd[i];
 		else if (quoted == '\0' && is_duplicate_meta_char(&new_cmd[i]))
 			i += put_spaces_between_duplicate_metachars(&new_cmd[i], i) + 2;

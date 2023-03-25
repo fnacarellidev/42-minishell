@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/25 16:45:08 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:27:22 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -33,6 +33,11 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include "../srcs/libft/libft.h"
+
+typedef struct s_minishell
+{
+	int	status_code;
+}	t_minishell;
 
 char	*get_key_value(t_node *envp_list, char *key);
 void	change_value_from_key(t_node **envp_list, char *key, char *new_data);

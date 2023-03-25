@@ -63,6 +63,7 @@ int main(int argc, char **argv, char **envp)
 			break ;
 		}
 		tokens = lexer(cmd);
+		parser(tokens);
 		free(cmd);
 		ft_print_matrix(tokens);
 		ft_free_matrix((void**)tokens);

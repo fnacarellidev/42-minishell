@@ -62,3 +62,9 @@ static void	validate_pipes(char **tokens)
 		i++;
 	}
 }
+
+void	has_valid_syntax(char **tokens)
+{
+	validate_pipes(tokens);
+	validate_redirects(tokens);
+}

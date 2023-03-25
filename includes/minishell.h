@@ -55,6 +55,9 @@ char	*human_readable_cmd(char *cmd);
 void	erase_empty_quotes(char *str);
 void	replace_between(char *str, char c1, char c2);
 
+// Parser
+void	has_valid_syntax(char **tokens);
+
 // Utils
 int		is_quote(char c);
 int		is_meta_char(char c);

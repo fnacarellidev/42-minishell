@@ -8,6 +8,7 @@ FILES =			minishell \
 				lexer/space_cmd \
 				lexer/human_readable_cmd \
 				lexer/replace_between_single_and_double \
+				parser/has_valid_syntax \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				get_envp_list

@@ -25,6 +25,18 @@ void    ft_print_stack(t_node *stack)
     }
 }
 
+void	ft_print_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		printf("%s\n", matrix[i]);
+		i++;
+	}
+}
+
 int main(int argc, char **argv, char **envp)
 {
 	char	*cmd;

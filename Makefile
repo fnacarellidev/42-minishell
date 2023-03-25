@@ -9,6 +9,7 @@ FILES =			minishell \
 				lexer/human_readable_cmd \
 				lexer/erase_empty_quotes \
 				lexer/replace_between_single_and_double \
+				is_quote \
 				get_envp_list
 
 SRCS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))

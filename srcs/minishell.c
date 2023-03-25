@@ -6,11 +6,13 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/24 20:18:59 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/25 17:25:12 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 #include "libft/libft.h"
+
+t_minishell	minishell;
 
 void    ft_print_stack(t_node *stack)
 {

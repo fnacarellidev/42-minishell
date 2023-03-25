@@ -73,8 +73,12 @@ char	*human_readable_cmd(char *cmd)
 		else if (quoted == '\0' && is_meta_char(new_cmd[i]))
 			i += put_spaces(&new_cmd[i], i) + 1;
 		else if (quoted == new_cmd[i])
+		{
 			quoted = '\0';
-		i++;
+			i++;
+		}
+		else
+			i++;
 	}
 	return (new_cmd);
 }

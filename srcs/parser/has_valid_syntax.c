@@ -80,8 +80,26 @@ static int	has_unclosed_quote(char *token)
 	}
 	return (quote);
 }
+
+static void	validate_unclosed_quotes(char **tokens)
+{
+	int		i;
+
+	i = 0;
+	while (tokens[i])
+	{
+		if (has_unclosed_quote(tokens[i]) != 0)
+		{
+			minishell.status_code = 2;
+			break ;
+		}
+		i++;
+	}
+}
+
 void	has_valid_syntax(char **tokens)
 {
 	validate_pipes(tokens);
 	validate_redirects(tokens);
+	validate_unclosed_quotes(tokens);
 }

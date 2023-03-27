@@ -28,28 +28,17 @@ static int	syntax_error_on_redirect(char *next_token)
 	return (0);
 }
 
-static void	validate_pipes(char **tokens)
+static int	syntax_error_on_pipe(char **tokens, int pos)
 {
-	int		i;
-	char	pipe;
-
-	i = 0;
-	pipe = '|';
-	while (tokens[i])
+	if (pos == 0)
+		return (-2);
+	if (tokens[pos + 1] == NULL
+			|| is_preceeded_or_followed_by_metachar(tokens, pos))
 	{
-		if (*tokens[i] != pipe)
-		{
-			i++;
-			continue ;
-		}
-		if (i == 0 || tokens[i + 1] == NULL
-			|| is_preceeded_or_followed_by_metachar(tokens, i))
-		{
-			minishell.status_code = 2;
-			break ;
-		}
-		i++;
+		minishell.status_code = 2;
+		return (1);
 	}
+	return (0);
 }
 
 static int	has_unclosed_quote(char *token)

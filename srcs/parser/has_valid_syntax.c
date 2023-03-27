@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:07:54 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/27 18:39:02 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:42:21 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -57,22 +57,6 @@ static int	has_unclosed_quote(char *token)
 		i++;
 	}
 	return (quote);
-}
-
-static void	validate_unclosed_quotes(char **tokens)
-{
-	int		i;
-
-	i = 0;
-	while (tokens[i])
-	{
-		if (has_unclosed_quote(tokens[i]) != 0)
-		{
-			minishell.status_code = 2;
-			break ;
-		}
-		i++;
-	}
 }
 
 int	get_syntax_error_idx(char **tokens)

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:07:54 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/25 18:05:33 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:02:39 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -63,6 +63,23 @@ static void	validate_pipes(char **tokens)
 	}
 }
 
+static int	has_unclosed_quote(char *token)
+{
+	int		i;
+	char	quote;
+
+	i = 0;
+	quote = 0;
+	while (token[i])
+	{
+		if (is_quote(token[i]) && quote == 0)
+			quote = token[i];
+		else if (is_quote(token[i]) && token[i] == quote)
+			quote = 0;
+		i++;
+	}
+	return (quote);
+}
 void	has_valid_syntax(char **tokens)
 {
 	validate_pipes(tokens);

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:07:54 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/27 18:22:24 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:39:02 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -75,9 +75,26 @@ static void	validate_unclosed_quotes(char **tokens)
 	}
 }
 
-void	has_valid_syntax(char **tokens)
+int	get_syntax_error_idx(char **tokens)
 {
-	validate_pipes(tokens);
-	validate_redirects(tokens);
-	validate_unclosed_quotes(tokens);
+	int	i;
+	int	before_pipe;
+
+	i = 0;
+	while (tokens[i] != NULL)
+	{
+		if (*tokens[i] == '|' && syntax_error_on_pipe(tokens, i))
+		{
+			before_pipe = syntax_error_on_pipe(tokens, i);
+			if (before_pipe == -2)
+				return (-1);
+			return (i);
+		}
+		else if (is_meta_char(*tokens[i]) && syntax_error_on_redirect(tokens[i + 1]))
+			return (i);
+		else if (has_unclosed_quote(tokens[i]))
+			return (i);
+		i++;
+	}
+	return (-2);
 }

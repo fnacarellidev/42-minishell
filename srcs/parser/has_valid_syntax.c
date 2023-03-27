@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:07:54 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/27 15:02:39 by revieira         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:22:24 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -18,25 +18,14 @@ static int	is_preceeded_or_followed_by_metachar(char **tokens, int pos)
 	return (0);
 }
 
-static void	validate_redirects(char **tokens)
+static int	syntax_error_on_redirect(char *next_token)
 {
-	int		i;
-
-	i = 0;
-	while (tokens[i])
+	if ((next_token == NULL || is_meta_char(*next_token)))
 	{
-		if (!is_meta_char(*tokens[i]))
-		{
-			i++;
-			continue ;
-		}
-		if (is_meta_char(*tokens[i]) && *tokens[i] != '|' && (tokens[i + 1] == NULL || is_meta_char(*tokens[i + 1])))
-		{
-			minishell.status_code = 2;
-			break ;
-		}
-		i++;
+		minishell.status_code = 2;
+		return (1);
 	}
+	return (0);
 }
 
 static void	validate_pipes(char **tokens)

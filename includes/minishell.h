@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/28 13:21:38 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:01:57 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -36,7 +36,8 @@
 
 typedef struct s_minishell
 {
-	int	status_code;
+	int		status_code;
+	t_node	*envp;
 }	t_minishell;
 
 extern t_minishell	g_minishell;

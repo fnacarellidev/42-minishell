@@ -49,8 +49,8 @@ char	**lexer(char *cmd);
 t_node	*get_envp_list(char **envp);
 
 // Lexer
-int		put_spaces(char *str, int position_of_whole_string);
-int		put_spaces_between_duplicate_metachars(char *str, int position_of_whole_string);
+int		put_spaces(char *str, int pos);
+int		space_duplicate_metachars(char *str, int pos);
 char	*human_readable_cmd(char *cmd);
 void	erase_empty_quotes(char *str);
 void	replace_between(char *str, char c1, char c2);

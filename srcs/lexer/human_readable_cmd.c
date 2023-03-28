@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:43:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/27 15:27:31 by revieira         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:15:42 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -51,7 +51,7 @@ char	*init_human_readable_cmd(char *cmd)
 static void	put_space_if_needed(char *cmd, int *i)
 {
 	if (is_duplicate_meta_char(&cmd[*i]))
-		*i += put_spaces_between_duplicate_metachars(&cmd[*i], *i) + 2;
+		*i += space_duplicate_metachars(&cmd[*i], *i) + 2;
 	else if (is_meta_char(cmd[*i]))
 		*i += put_spaces(&cmd[*i], *i) + 1;
 }

@@ -6,17 +6,17 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 18:48:25 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/22 18:51:45 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:15:01 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
-int	put_spaces(char *str, int position_of_whole_string)
+int	put_spaces(char *str, int pos)
 {
 	int	i;
 
 	i = 0;
-	if (position_of_whole_string != 0 && *(str - 1) != ' ')
+	if (pos != 0 && *(str - 1) != ' ')
 	{
 		ft_memmove(str + 1, str, ft_strlen(str));
 		str[0] = ' ';
@@ -37,12 +37,12 @@ int	put_spaces(char *str, int position_of_whole_string)
 	return (i);
 }
 
-int	put_spaces_between_duplicate_metachars(char *str, int position_of_whole_string)
+int	space_duplicate_metachars(char *str, int pos)
 {
 	int	i;
 
 	i = 0;
-	if (position_of_whole_string != 0 && *(str - 1) != ' ')
+	if (pos != 0 && *(str - 1) != ' ')
 	{
 		ft_memmove(str + 1, str, ft_strlen(str));
 		str[0] = ' ';

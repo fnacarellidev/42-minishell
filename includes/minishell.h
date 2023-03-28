@@ -64,5 +64,6 @@ int		get_syntax_error_idx(char **tokens);
 int		is_quote(char c);
 int		is_meta_char(char c);
 int		is_bash_word(char *str);
+int		is_bash_char(char c);
 
 #endif

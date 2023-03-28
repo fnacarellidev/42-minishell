@@ -9,7 +9,7 @@ FILES =			minishell \
 				lexer/human_readable_cmd \
 				lexer/replace_between_single_and_double \
 				parser/parser \
-				parser/has_valid_syntax \
+				parser/get_syntax_error_idx \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				get_envp_list

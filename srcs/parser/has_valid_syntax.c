@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:07:54 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/28 13:10:47 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:19:50 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -22,7 +22,7 @@ static int	syntax_error_on_redirect(char *next_token)
 {
 	if ((next_token == NULL || is_meta_char(*next_token)))
 	{
-		minishell.status_code = 2;
+		g_minishell.status_code = 2;
 		return (1);
 	}
 	return (0);
@@ -35,7 +35,7 @@ static int	syntax_error_on_pipe(char **tokens, int pos)
 	if (tokens[pos + 1] == NULL
 		|| is_preceeded_or_followed_by_metachar(tokens, pos))
 	{
-		minishell.status_code = 2;
+		g_minishell.status_code = 2;
 		return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/27 18:30:48 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/28 13:21:38 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -39,12 +39,12 @@ typedef struct s_minishell
 	int	status_code;
 }	t_minishell;
 
-extern t_minishell minishell;
+extern t_minishell	g_minishell;
 
 char	*get_key_value(t_node *envp_list, char *key);
 void	change_value_from_key(t_node **envp_list, char *key, char *new_data);
 int		key_exists(t_node *envp_list, char *key);
-char    **lexer(char *cmd);
+char	**lexer(char *cmd);
 
 t_node	*get_envp_list(char **envp);
 

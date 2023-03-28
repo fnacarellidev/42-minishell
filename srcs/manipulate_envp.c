@@ -6,13 +6,15 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:16:32 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/08 15:17:19 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/28 15:24:24 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
 char	*get_key_value(t_node *envp_list, char *key)
 {
+	if (!key_exists(envp_list, key))
+		return ("");
 	while (ft_strcmp(envp_list->key, key) != 0)
 		envp_list = envp_list->next;
 	return (envp_list->value);

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/28 13:31:05 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/28 14:15:32 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -48,11 +48,10 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
 	char	**tokens;
-	t_node	*envp_list;
 
 	if (argc && argv)
 	{}
-	envp_list = get_envp_list(envp);
+	g_minishell.envp = get_envp_list(envp);
 	init_minishell();
 	while (1)
 	{
@@ -68,6 +67,6 @@ int	main(int argc, char **argv, char **envp)
 		ft_print_matrix(tokens);
 		ft_free_matrix((void **)tokens);
 	}
-	ft_free_list(&envp_list);
+	ft_free_list(&g_minishell.envp);
 	return (0);
 }

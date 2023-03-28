@@ -12,6 +12,7 @@ FILES =			minishell \
 				parser/get_syntax_error_idx \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
+				aux_funcs/is_bash_word \
 				get_envp_list
 
 SRCS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))

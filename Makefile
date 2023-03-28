@@ -14,6 +14,7 @@ FILES =			minishell \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \
 				aux_funcs/is_bash_char \
+				manipulate_envp \
 				get_envp_list
 
 SRCS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))

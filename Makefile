@@ -1,6 +1,7 @@
 NAME = 			minishell
 
 SRCS_PATH =		./srcs
+OBJS_PATH =		./objs
 LIBFT_PATH =	./srcs/libft
 
 FILES =			minishell \
@@ -18,7 +19,7 @@ FILES =			minishell \
 				get_envp_list
 
 SRCS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .c, $(FILES)))
-OBJS =			$(addprefix $(SRCS_PATH)/, $(addsuffix .o, $(FILES)))
+OBJS =			$(addprefix $(OBJS_PATH)/, $(addsuffix .o, $(FILES)))
 
 LIBFT_FLAGS =	-L $(LIBFT_PATH) -lft
 CFLAGS = 		-Wall -Wextra -Werror -g3
@@ -31,14 +32,18 @@ libft:
 $(NAME): $(OBJS) $(LIBFT_PATH)/libft.a
 	cc $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_FLAGS) -lreadline
 
-%.o: %.c
+$(OBJS_PATH)/%.o: $(SRCS_PATH)/%.c | $(OBJS_PATH)
+	@mkdir -p $(@D)
 	cc $(CFLAGS) -I ./includes -c $< -o $@
+
+$(OBJS_PATH):
+	mkdir -p $(OBJS_PATH)
 
 $(LIBFT_PATH)/libft.a:
 	make -C $(LIBFT_PATH) --no-print-directory
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJS_PATH)
 	make -C $(LIBFT_PATH) clean --no-print-directory
 
 valg: $(NAME)

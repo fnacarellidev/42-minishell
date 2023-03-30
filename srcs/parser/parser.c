@@ -21,6 +21,19 @@ int	has_var_to_expands(char *token)
 	return (0);
 }
 
+void	check_need_expand(char **tokens)
+{
+	int	i;
+
+	i = 0;
+	while (tokens[i])
+	{
+		if (has_var_to_expands(tokens[i]))
+			expand_vars(&tokens[i]);
+		i++;
+	}
+}
+
 int	parser(char **tokens)
 {
 	int		idx_err;
@@ -36,5 +49,6 @@ int	parser(char **tokens)
 		printf("bash: syntax error near unexpected token `%s'\n", err_token);
 		free(err_token);
 	}
+	check_need_expand(tokens);
 	return (0);
 }

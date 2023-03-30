@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:50:30 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/22 16:50:57 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:14:30 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -20,9 +20,8 @@ static char	**get_matrix_with_key_value(char *env_variable)
 	equal_occurence = ft_strchr(env_variable, '=');
 	adresses_diff = ft_labs(env_variable - equal_occurence);
 	key_and_value = ft_calloc(sizeof(char *), 3);
-	key_and_value[0] = ft_calloc(sizeof(char), adresses_diff + 2);
-	ft_strlcpy(key_and_value[0], env_variable, adresses_diff + 2);
-	key_and_value[0][adresses_diff] = '=';
+	key_and_value[0] = ft_calloc(sizeof(char), adresses_diff + 1);
+	ft_strlcpy(key_and_value[0], env_variable, adresses_diff + 1);
 	key_and_value[1] = ft_strdup(++equal_occurence);
 	return (key_and_value);
 }

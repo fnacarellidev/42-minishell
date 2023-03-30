@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/28 14:15:32 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:14:15 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -61,6 +61,8 @@ int	main(int argc, char **argv, char **envp)
 			free(cmd);
 			break ;
 		}
+		if (ft_strcmp(cmd, "env") == 0)
+			ft_print_stack(g_minishell.envp);
 		tokens = lexer(cmd);
 		parser(tokens);
 		free(cmd);

@@ -79,7 +79,7 @@ void	expand_vars(char **token)
 			free(key);
 		}
 		else
-			new_token[j++] = (*token)[i++];
+			append(&new_token, ft_strndup(&(*token)[i++], 1));
 	}
 	free(*token);
 	*token = new_token;

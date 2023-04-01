@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:48:52 by revieira          #+#    #+#             */
-/*   Updated: 2023/03/29 22:16:32 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/01 16:47:48 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -31,6 +31,13 @@ static void	append(char **s1, char *s2)
 	free(*s1);
 	free(s2);
 	*s1 = new_str;
+}
+
+int	is_valid_var(char c)
+{
+	if (!ft_isalpha(c) && c != '_')
+		return (0);
+	return (1);
 }
 
 void	expand_vars(char **token)

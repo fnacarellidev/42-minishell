@@ -69,7 +69,7 @@ void	expand_vars(char **token)
 	new_token = ft_calloc(sizeof(char), ft_strlen(*token) + 1);
 	while ((*token)[i])
 	{
-		if ((*token)[i] == '$')
+		if ((*token)[i] == '$' && is_valid_var((*token)[i + 1]))
 		{
 			key = extract_key(&(*token)[i + 1]);
 			value = get_key_value(g_minishell.envp, key);

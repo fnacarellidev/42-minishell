@@ -40,6 +40,22 @@ int	is_valid_var(char c)
 	return (1);
 }
 
+char	*ft_strndup(char *s, size_t n)
+{
+	size_t	i;
+	char	*dup;
+
+	i = 0;
+	dup = (char *) malloc(sizeof(char) * n + 1);
+	while (*(s + i) && i < n)
+	{
+		*(dup + i) = *(s + i);
+		i++;
+	}
+	*(dup + i) = '\0';
+	return (dup);
+}
+
 void	expand_vars(char **token)
 {
 	int		i;

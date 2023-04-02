@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:48:52 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/01 16:47:48 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:06:41 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -33,11 +33,11 @@ static void	append(char **s1, char *s2)
 	*s1 = new_str;
 }
 
-int	is_valid_var(char c)
+int	is_valid_var(char *str)
 {
-	if (!ft_isalpha(c) && c != '_')
-		return (0);
-	return (1);
+	if (*str == '$' && (ft_isalpha(*(str + 1)) || *(str + 1) == '_'))
+		return (1);
+	return (0);
 }
 
 char	*ft_strndup(char *s, size_t n)

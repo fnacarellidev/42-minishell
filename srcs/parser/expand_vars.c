@@ -40,46 +40,44 @@ int	is_valid_var(char *str)
 	return (0);
 }
 
-char	*ft_strndup(char *s, size_t n)
+int	check_quoted(char c)
 {
-	size_t	i;
-	char	*dup;
+	static int status_quote;
 
-	i = 0;
-	dup = (char *) malloc(sizeof(char) * n + 1);
-	while (*(s + i) && i < n)
+	if (status_quote == c)
 	{
-		*(dup + i) = *(s + i);
-		i++;
+		status_quote = 0;
+		return (0);
 	}
-	*(dup + i) = '\0';
-	return (dup);
+	if (!status_quote)
+		status_quote = c;
+	if (status_quote == SINGLE_QUOTE)
+		return (1);
+	else
+		return (-1);
 }
 
 void	expand_vars(char **token)
 {
 	int		i;
-	int		j;
 	char	*key;
 	char	*value;
 	char	*new_token;
 
 	i = 0;
-	j = 0;
-	new_token = ft_calloc(sizeof(char), ft_strlen(*token) + 1);
+	new_token = ft_strdup("");
 	while ((*token)[i])
 	{
-		if ((*token)[i] == '$' && is_valid_var((*token)[i + 1]))
+		if (check_quoted((*token)[i]) == 1 || !is_valid_var(&(*token)[i]))
+			append(&new_token, ft_strndup(&(*token)[i++], 1));
+		else
 		{
 			key = extract_key(&(*token)[i + 1]);
 			value = get_key_value(g_minishell.envp, key);
 			append(&new_token, ft_strdup(value));
 			i += ft_strlen(key) + 1;
-			j += ft_strlen(value);
 			free(key);
 		}
-		else
-			append(&new_token, ft_strndup(&(*token)[i++], 1));
 	}
 	free(*token);
 	*token = new_token;

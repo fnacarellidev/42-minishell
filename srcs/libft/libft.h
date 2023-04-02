@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:02:44 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/22 16:30:58 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/02 01:01:58 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -57,6 +57,7 @@ int			ft_count_matrix(void **matrix);
 int			ft_power(int base, int exponent);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strdup(const char *s);
+char		*ft_strndup(const char *s, size_t n);
 char		*ft_strrchr(const char *s, int c);
 char		*ft_strnstr(const char *big, const char *little, size_t len);
 char		*ft_substr(char const *s, unsigned int start, size_t len);

@@ -93,7 +93,7 @@ void		ft_swap(int *a, int *b);
 size_t		ft_strlen(const char *s);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
-t_node		*ft_lstnew(char *key, char *value);
+t_node		*ft_lstnew(char *key, char *value, char *var);
 t_node		*ft_lstlast(t_node *lst);
 t_node		*ft_lstmap(t_node *lst, void *(*f)(void *), void (*del)(void *));
 int			ft_strcmp(const char *s1, const char *s2);

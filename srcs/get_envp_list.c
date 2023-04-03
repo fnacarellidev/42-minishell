@@ -38,7 +38,7 @@ t_node	*get_envp_list(char **envp)
 	while (envp[i] != NULL)
 	{
 		key_and_value = get_matrix_with_key_value(envp[i]);
-		new_node = ft_lstnew(key_and_value[0], key_and_value[1]);
+		new_node = ft_lstnew(key_and_value[0], key_and_value[1], envp[i]);
 		ft_free_matrix((void **)key_and_value);
 		ft_lstadd_back(&envp_list, new_node);
 		i++;

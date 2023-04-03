@@ -6,12 +6,12 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 12:37:02 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/07 14:55:35 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:47:07 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-t_node	*ft_lstnew(char *key, char *value)
+t_node	*ft_lstnew(char *key, char *value, char *var)
 {
 	t_node	*new_node;
 
@@ -20,6 +20,7 @@ t_node	*ft_lstnew(char *key, char *value)
 		return (0);
 	new_node->key = ft_strdup(key);
 	new_node->value = ft_strdup(value);
+	new_node->env_line = ft_strdup(var);
 	new_node->next = NULL;
 	return (new_node);
 }

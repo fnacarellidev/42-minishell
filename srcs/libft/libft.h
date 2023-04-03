@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:02:44 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/02 01:01:58 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:47:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -38,6 +38,7 @@ typedef struct s_node
 {
 	char			*key;
 	char			*value;
+	char			*env_line;
 	struct s_node	*next;
 }				t_node;
 void		ft_free_list(t_node **head);

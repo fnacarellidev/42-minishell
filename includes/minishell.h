@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/04 16:45:54 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/04 17:29:15 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -61,6 +61,7 @@ void	replace_between(char *str, char *set1, char *set2);
 int		parser(char **tokens);
 int		get_syntax_error_idx(char **tokens);
 void	expand_vars(char **tokens);
+char	**subtokens(char *token);
 
 // Utils
 int		is_quote(char c);

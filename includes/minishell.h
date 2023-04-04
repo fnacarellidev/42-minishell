@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/29 19:56:57 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:45:54 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -14,6 +14,7 @@
 # define SINGLE_QUOTE 39
 # define DOUBLE_QUOTE 34
 # define DEL_ASCII 127
+# define SET1 " \t\v\n\f\r"
 
 # include <term.h>
 # include <errno.h>
@@ -54,7 +55,7 @@ int		put_spaces(char *str, int pos);
 int		space_duplicate_metachars(char *str, int pos);
 char	*human_readable_cmd(char *cmd);
 void	erase_empty_quotes(char *str);
-void	replace_between(char *str, char c1, char c2);
+void	replace_between(char *str, char *set1, char *set2);
 
 // Parser
 int		parser(char **tokens);

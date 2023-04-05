@@ -13,9 +13,11 @@
 
 int	parser(char **tokens)
 {
+	int		i;
 	int		idx_err;
 	char	*err_token;
 
+	i = 0;
 	idx_err = get_syntax_error_idx(tokens);
 	if (idx_err != -2)
 	{
@@ -27,6 +29,10 @@ int	parser(char **tokens)
 		free(err_token);
 		return (1);
 	}
-	check_need_expand(tokens);
+	while (tokens[i])
+	{
+		expand_token(tokens + i);
+		i++;
+	}
 	return (0);
 }

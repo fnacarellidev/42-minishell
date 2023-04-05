@@ -76,7 +76,10 @@ static void	expand_vars(char **token)
 		{
 			key = extract_key(&(*token)[i + 1]);
 			value = get_key_value(g_minishell.envp, key);
-			append(&new_token, ft_strdup(value));
+			if ((*token)[i + 1] == '?')
+				append(&new_token, value);
+			else
+				append(&new_token, ft_strdup(value));
 			i += ft_strlen(key) + 1;
 			free(key);
 		}

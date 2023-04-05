@@ -6,30 +6,10 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:54:18 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/03 13:28:53 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:38:54 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
-
-int	has_var_to_expands(char *token)
-{
-	if (ft_strchr(token, '$'))
-		return (1);
-	return (0);
-}
-
-void	check_need_expand(char **tokens)
-{
-	int	i;
-
-	i = 0;
-	while (tokens[i])
-	{
-		if (has_var_to_expands(tokens[i]))
-			expand_vars(&tokens[i]);
-		i++;
-	}
-}
 
 int	parser(char **tokens)
 {

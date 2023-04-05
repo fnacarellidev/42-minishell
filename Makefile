@@ -11,7 +11,7 @@ FILES =			minishell \
 				lexer/replace_between_single_and_double \
 				parser/parser \
 				parser/get_syntax_error_idx \
-				parser/subtokens \
+				parser/expand_vars \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \

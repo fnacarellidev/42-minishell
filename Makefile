@@ -16,6 +16,7 @@ FILES =			minishell \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \
 				aux_funcs/is_bash_char \
+				aux_funcs/ft_append \
 				manipulate_envp \
 				get_envp_list
 

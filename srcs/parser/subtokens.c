@@ -6,12 +6,12 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:12 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/04 18:48:17 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/05 14:56:34 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
-char	**get_subtokens(char *token, int idx)
+static char	**get_subtokens(char *token, int idx)
 {
 	int		i;
 	char	**subtokens;
@@ -32,11 +32,73 @@ char	**get_subtokens(char *token, int idx)
 	return (subtokens);
 }
 
-char	**subtokens(char *token)
+static char	*concat_subtokens(char **subtokens)
 {
+	int		i;
+	char	*expanded_token;
+
+	i = 0;
+	expanded_token = ft_strdup("");
+	while (subtokens[i])
+	{
+		append(&expanded_token, subtokens[i]);
+		i++;
+	}
+	return (expanded_token);
+}
+
+static char	*extract_key(char *var)
+{
+	char	*end_var;
+	char	*key;
+
+	end_var = var;
+	while (is_bash_char(*end_var))
+		end_var++;
+	key = ft_substr(var, 0, end_var - var);
+	return (key);
+}
+
+static void	expand_vars(char **token)
+{
+	int		i;
+	char	*key;
+	char	*value;
+	char	*new_token;
+
+	i = 0;
+	new_token = ft_strdup("");
+	while ((*token)[i])
+	{
+		if (!is_valid_var(&(*token)[i]))
+			append(&new_token, ft_strndup(&(*token)[i++], 1));
+		else
+		{
+			key = extract_key(&(*token)[i + 1]);
+			value = get_key_value(g_minishell.envp, key);
+			append(&new_token, ft_strdup(value));
+			i += ft_strlen(key) + 1;
+			free(key);
+		}
+	}
+	free(*token);
+	*token = new_token;
+}
+
+void	expand_token(char **token)
+{
+	int		i;
 	char	**subtokens;
 
-	subtokens = get_subtokens(token, 0);
-	ft_free_matrix((void **)subtokens);
-	return (NULL);
+	i = 0;
+	subtokens = get_subtokens(*token, 0);
+	while (subtokens[i])
+	{
+		if (subtokens[i][0] != SINGLE_QUOTE && ft_strchr(subtokens[i], '$'))
+			expand_vars(subtokens + i);
+		i++;
+	}
+	free(*token);
+	*token = concat_subtokens(subtokens);
+	free(subtokens);
 }

@@ -6,14 +6,14 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 14:42:11 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/05 14:42:23 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:54:00 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
 int	is_valid_var(char *str)
 {
-	if (*str == '$' && (ft_isalpha(*(str + 1)) || *(str + 1) == '_'))
+	if (str[0] == '$' && (ft_isalpha(str[1]) || str[1] == '_' || str[1] == '?'))
 		return (1);
 	return (0);
 }

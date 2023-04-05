@@ -68,5 +68,6 @@ int		is_meta_char(char c);
 int		is_bash_word(char *str);
 int		is_bash_char(char c);
 void	append(char **s1, char *s2);
+int		is_valid_var(char *str);
 
 #endif

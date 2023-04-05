@@ -35,5 +35,6 @@ int	parser(char **tokens)
 		expand_token(tokens + i);
 		i++;
 	}
+	g_minishell.status_code = 0;
 	return (0);
 }

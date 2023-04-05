@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:12 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/05 14:56:34 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/05 16:22:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -53,6 +53,8 @@ static char	*extract_key(char *var)
 	char	*key;
 
 	end_var = var;
+	if (var[0] == '?')
+		return (ft_strdup("?"));
 	while (is_bash_char(*end_var))
 		end_var++;
 	key = ft_substr(var, 0, end_var - var);

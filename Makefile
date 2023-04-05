@@ -49,7 +49,7 @@ clean:
 	make -C $(LIBFT_PATH) clean --no-print-directory
 
 valg: $(NAME)
-	valgrind --suppressions=ignorelibs.txt --leak-check=full ./$(NAME)
+	valgrind --suppressions=ignorelibs.txt --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 fclean: clean
 	rm -f $(NAME)

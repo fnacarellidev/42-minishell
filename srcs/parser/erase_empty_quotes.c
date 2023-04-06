@@ -43,3 +43,22 @@ void	clear_subtokens(char **subtokens)
 		i++;
 	}
 }
+
+void	erase_empty_quotes(char **tokens)
+{
+	int		i;
+	char	quoted;
+	char	**subtokens;
+
+	i = 0;
+	quoted = 0;
+	while (tokens[i] != NULL)
+	{
+		subtokens = get_subtokens(tokens[i], 0);
+		clear_subtokens(subtokens);
+		free(tokens[i]);
+		tokens[i] = concat_subtokens(subtokens);
+		free(subtokens);
+		i++;
+	}
+}

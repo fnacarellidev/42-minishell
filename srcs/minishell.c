@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/03/29 22:14:15 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:28:45 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -71,6 +71,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_print_matrix(tokens);
 		ft_free_matrix((void **)tokens);
 	}
+	rl_clear_history();
 	ft_free_list(&g_minishell.envp);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/06 17:24:19 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:06:18 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -54,7 +54,6 @@ t_node	*get_envp_list(char **envp);
 int		put_spaces(char *str, int pos);
 int		space_duplicate_metachars(char *str, int pos);
 char	*human_readable_cmd(char *cmd);
-void	erase_empty_quotes(char **tokens);
 void	replace_between(char *str, char *set1, char *set2);
 
 // Parser
@@ -63,6 +62,7 @@ int		get_syntax_error_idx(char **tokens);
 void	expand_token(char **token);
 char	**get_subtokens(char *token, int idx);
 char	*concat_subtokens(char **subtokens);
+void	erase_empty_quotes_and_ext_quotes(char **tokens);
 
 // Utils
 int		is_quote(char c);

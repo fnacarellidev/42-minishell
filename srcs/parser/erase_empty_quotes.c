@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:10:06 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/06 18:57:38 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/06 19:05:57 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -44,7 +44,7 @@ void	clear_subtokens(char **subtokens)
 	}
 }
 
-void	erase_empty_quotes(char **tokens)
+void	erase_empty_quotes_and_ext_quotes(char **tokens)
 {
 	int		i;
 	char	quoted;

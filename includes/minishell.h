@@ -61,6 +61,8 @@ void	replace_between(char *str, char *set1, char *set2);
 int		parser(char **tokens);
 int		get_syntax_error_idx(char **tokens);
 void	expand_token(char **token);
+char	**get_subtokens(char *token, int idx);
+char	*concat_subtokens(char **subtokens);
 
 // Utils
 int		is_quote(char c);

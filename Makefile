@@ -12,6 +12,7 @@ FILES =			minishell \
 				parser/parser \
 				parser/get_syntax_error_idx \
 				parser/expand_vars \
+				parser/erase_empty_quotes \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \

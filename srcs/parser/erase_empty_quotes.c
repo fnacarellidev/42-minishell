@@ -28,3 +28,18 @@ void	erase_external_quotes(char *str)
 	last_pos = str_len - 2;
 	ft_memset(str + last_pos, 0, 1);
 }
+
+void	clear_subtokens(char **subtokens)
+{
+	int	i;
+
+	i = 0;
+	while (subtokens[i])
+	{
+		if (is_quote(*subtokens[i]) && is_empty_quote(subtokens[i]))
+			ft_memset(subtokens[i], 0, 2);
+		else if (is_quote(*subtokens[i]))
+			erase_external_quotes(subtokens[i]);
+		i++;
+	}
+}

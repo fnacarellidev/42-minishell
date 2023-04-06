@@ -56,6 +56,8 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		cmd = readline("$ ");
+		if (!(cmd[0] == '\0'))
+			add_history(cmd);
 		if (ft_strcmp(cmd, "exit") == 0)
 		{
 			free(cmd);

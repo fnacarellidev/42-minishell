@@ -6,12 +6,12 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:12 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/05 16:51:55 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:23:41 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
-static char	**get_subtokens(char *token, int idx)
+char	**get_subtokens(char *token, int idx)
 {
 	int		i;
 	char	**subtokens;
@@ -32,7 +32,7 @@ static char	**get_subtokens(char *token, int idx)
 	return (subtokens);
 }
 
-static char	*concat_subtokens(char **subtokens)
+char	*concat_subtokens(char **subtokens)
 {
 	int		i;
 	char	*expanded_token;

@@ -55,7 +55,7 @@ void	init_minishell(void)
 	g_minishell.status_code = 0;
 }
 
-void	die()
+void	die(void)
 {
 	rl_clear_history();
 	ft_free_list(&g_minishell.envp);

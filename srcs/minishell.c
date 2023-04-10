@@ -41,7 +41,7 @@ void	ft_print_matrix(char **matrix)
 
 void	handler(int signal)
 {
-	if (signal == 2)
+	if (signal == SIGINT)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();

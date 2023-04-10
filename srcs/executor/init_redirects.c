@@ -24,3 +24,16 @@ static char	*get_filename_of_given_token(char **tokens, char redirect)
 	}
 	return (NULL);
 }
+
+void	init_redirects(char **tokens)
+{
+	char	*input_filename;
+	char	*output_filename;
+
+	input_filename = get_filename_of_given_token(tokens, '<');
+	output_filename = get_filename_of_given_token(tokens, '>');
+	if (input_filename)
+		g_minishell.pipeline.input_fd = open(input_filename, O_RDONLY);
+	if (output_filename)
+		g_minishell.pipeline.output_fd = open(output_filename, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+}

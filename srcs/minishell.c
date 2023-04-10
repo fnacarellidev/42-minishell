@@ -72,6 +72,7 @@ int	main(int argc, char **argv, char **envp)
 	{}
 	g_minishell.envp = get_envp_list(envp);
 	signal(SIGINT, handler);
+	signal(SIGQUIT, SIG_IGN);
 	init_minishell();
 	while (1)
 	{

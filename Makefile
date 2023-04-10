@@ -14,6 +14,7 @@ FILES =			minishell \
 				parser/expand_vars \
 				parser/erase_empty_quotes \
 				executor/validate_redirects \
+				executor/executor \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \

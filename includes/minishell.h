@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/06 19:06:18 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:40:16 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -34,6 +34,12 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include "../srcs/libft/libft.h"
+
+typedef struct s_pipeline
+{
+	int		input_fd;
+	int		output_fd;
+}	t_pipeline;
 
 typedef struct s_minishell
 {

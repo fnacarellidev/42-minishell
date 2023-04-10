@@ -32,6 +32,7 @@
 # include <sys/ioctl.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include "errors.h"
 # include "../srcs/libft/libft.h"
 
 typedef struct s_pipeline

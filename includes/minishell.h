@@ -17,7 +17,6 @@
 # define SET1 " \t\v\n\f\r"
 
 # include <term.h>
-# include <errno.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>

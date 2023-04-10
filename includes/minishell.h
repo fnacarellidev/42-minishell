@@ -42,8 +42,9 @@ typedef struct s_pipeline
 
 typedef struct s_minishell
 {
-	int		status_code;
-	t_node	*envp;
+	int			status_code;
+	t_node		*envp;
+	t_pipeline	pipeline;
 }	t_minishell;
 
 extern t_minishell	g_minishell;

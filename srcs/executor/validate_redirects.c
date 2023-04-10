@@ -30,3 +30,22 @@ static int	validate_input_redirects(char *filename)
 	close(fd);
 	return (0);
 }
+
+static int	validate_output_redirects(char *filename)
+{
+	int	fd;
+	int	error;
+
+	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (fd == -1)
+	{
+		if (ft_strlen(filename) > 255)
+			error = ENAMETOOLONG;
+		else
+			error = EACCES;
+		printf("bash: %s: %s\n", filename, strerror(error));
+		return (1);
+	}
+	close(fd);
+	return (0);
+}

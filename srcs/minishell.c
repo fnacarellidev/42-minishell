@@ -75,8 +75,6 @@ int	main(int argc, char **argv, char **envp)
 			free(cmd);
 			break ;
 		}
-		if (ft_strcmp(cmd, "env") == 0)
-			ft_print_stack(g_minishell.envp);
 		tokens = lexer(cmd);
 		parser(tokens);
 		free(cmd);

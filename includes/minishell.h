@@ -71,6 +71,9 @@ char	**get_subtokens(char *token, int idx);
 char	*concat_subtokens(char **subtokens);
 void	erase_empty_quotes_and_ext_quotes(char **tokens);
 
+// Executor
+void	executor(char **tokens);
+
 // Utils
 int		is_quote(char c);
 int		is_meta_char(char c);

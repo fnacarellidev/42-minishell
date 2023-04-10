@@ -65,6 +65,24 @@ void	die(void)
 	exit(0);
 }
 
+char	**pipeline_validation(char *cmd)
+{
+	char	**tokens;
+
+	if (cmd == NULL)
+		die();
+	if (!(cmd[0] == '\0') && cmd)
+		add_history(cmd);
+	tokens = lexer(cmd);
+	free(cmd);
+	if (parser(tokens) == 1)
+	{
+		ft_free_matrix((void **)tokens);
+		return (NULL);
+	}
+	return(tokens);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -79,20 +97,13 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		cmd = readline("$ ");
-		if (cmd == NULL)
-			die();
-		if (!(cmd[0] == '\0') && cmd)
-			add_history(cmd);
-		if (ft_strcmp(cmd, "exit") == 0)
+		tokens = pipeline_validation(cmd);
+		if (tokens)
 		{
-			free(cmd);
-			die();
+			executor(tokens);
+			ft_print_matrix(tokens);
+			ft_free_matrix((void **)tokens);
 		}
-		tokens = lexer(cmd);
-		parser(tokens);
-		free(cmd);
-		ft_print_matrix(tokens);
-		ft_free_matrix((void **)tokens);
 	}
 	return (0);
 }

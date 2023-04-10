@@ -49,3 +49,21 @@ static int	validate_output_redirects(char *filename)
 	close(fd);
 	return (0);
 }
+
+int	validate_redirects(char **tokens)
+{
+	int	i;
+	int	ret;
+
+	i = 0;
+	ret = 0;
+	while (tokens[i] && ret == 0)
+	{
+		if (tokens[i][0] == '<')
+			ret = validate_input_redirects(tokens[i + 1]);
+		else if (tokens[i][0] == '>')
+			ret = validate_output_redirects(tokens[i + 1]);
+		i++;
+	}
+	return (ret);
+}

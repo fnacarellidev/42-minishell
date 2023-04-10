@@ -55,6 +55,14 @@ void	init_minishell(void)
 	g_minishell.status_code = 0;
 }
 
+void	die()
+{
+	rl_clear_history();
+	ft_free_list(&g_minishell.envp);
+	write(1, "exit\n", 5);
+	exit(0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -68,12 +76,14 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		cmd = readline("$ ");
-		if (!(cmd[0] == '\0'))
+		if (cmd == NULL)
+			die();
+		if (!(cmd[0] == '\0') && cmd)
 			add_history(cmd);
 		if (ft_strcmp(cmd, "exit") == 0)
 		{
 			free(cmd);
-			break ;
+			die();
 		}
 		tokens = lexer(cmd);
 		parser(tokens);
@@ -81,7 +91,5 @@ int	main(int argc, char **argv, char **envp)
 		ft_print_matrix(tokens);
 		ft_free_matrix((void **)tokens);
 	}
-	rl_clear_history();
-	ft_free_list(&g_minishell.envp);
 	return (0);
 }

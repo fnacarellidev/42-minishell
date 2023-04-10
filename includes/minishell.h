@@ -73,6 +73,7 @@ void	erase_empty_quotes_and_ext_quotes(char **tokens);
 
 // Executor
 void	executor(char **tokens);
+int		validate_redirects(char **tokens);
 
 // Utils
 int		is_quote(char c);

@@ -39,6 +39,17 @@ void	ft_print_matrix(char **matrix)
 	}
 }
 
+void	handler(int signal)
+{
+	if (signal == 2)
+	{
+		write(1, "\n", 1);
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
+
 void	init_minishell(void)
 {
 	g_minishell.status_code = 0;
@@ -52,6 +63,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc && argv)
 	{}
 	g_minishell.envp = get_envp_list(envp);
+	signal(SIGINT, handler);
 	init_minishell();
 	while (1)
 	{

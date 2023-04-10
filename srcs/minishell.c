@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/06 20:28:45 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:40:53 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -53,6 +53,8 @@ void	handler(int signal)
 void	init_minishell(void)
 {
 	g_minishell.status_code = 0;
+	g_minishell.pipeline.input_fd = 0;
+	g_minishell.pipeline.output_fd = 1;
 }
 
 void	die(void)

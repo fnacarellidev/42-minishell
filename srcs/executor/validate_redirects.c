@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:18:06 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/11 11:51:41 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:35:29 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -50,6 +50,25 @@ static int	validate_output_redirects(char *filename)
 	return (0);
 }
 
+static int	validate_append_redirects(char *filename)
+{
+	int	fd;
+	int	error;
+
+	fd = open(filename, O_CREAT | O_WRONLY | O_APPEND, 0644);
+	if (fd == -1)
+	{
+		if (ft_strlen(filename) > 255)
+			error = ENAMETOOLONG;
+		else
+			error = EACCES;
+		printf("bash: %s: %s\n", filename, strerror(error));
+		return (1);
+	}
+	close(fd);
+	return (0);
+}
+
 int	validate_redirects(char **tokens)
 {
 	int	i;
@@ -63,6 +82,8 @@ int	validate_redirects(char **tokens)
 			ret = validate_input_redirects(tokens[i + 1]);
 		else if (ft_strcmp(tokens[i], ">") == 0)
 			ret = validate_output_redirects(tokens[i + 1]);
+		else if (ft_strcmp(tokens[i], ">>") == 0)
+			ret = validate_append_redirects(tokens[i + 1]);
 		i++;
 	}
 	return (ret);

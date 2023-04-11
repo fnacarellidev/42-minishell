@@ -92,6 +92,7 @@ int		is_quote(char c);
 int		is_meta_char(char c);
 int		is_bash_word(char *str);
 int		is_bash_char(char c);
+int		is_redirect(char *str);
 void	append(char **s1, char *s2);
 int		is_valid_var(char *str);
 void	swap_stream_fd(char *stream, int new_fd);

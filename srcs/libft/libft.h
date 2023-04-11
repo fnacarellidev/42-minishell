@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:02:44 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/03 16:20:35 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:23:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -24,6 +24,10 @@
 # define HEX_LWCASE "0123456789abcdef"
 # define HEX_UPCASE "0123456789ABCDEF"
 # define DEC_DIGITS "0123456789"
+
+// ft_get_next_line stuff
+char		*get_next_line(int fd);
+char		*ft_strjoin_gnl(char *s1, char *s2);
 
 // ft_printf stuff
 int			ft_printf(const char *str, ...);

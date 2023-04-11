@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/11 16:39:27 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/11 17:32:53 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -15,6 +15,7 @@
 # define DOUBLE_QUOTE 34
 # define DEL_ASCII 127
 # define SET1 " \t\v\n\f\r"
+# define TMPFILE ".tmpheredoc"
 
 # include <term.h>
 # include <stdio.h>

@@ -6,11 +6,10 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/10 16:40:53 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/11 17:33:24 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
-#include "libft/libft.h"
 
 t_minishell	g_minishell;
 
@@ -61,6 +60,7 @@ void	die(void)
 {
 	rl_clear_history();
 	ft_free_list(&g_minishell.envp);
+	unlink(TMPFILE);
 	write(1, "exit\n", 5);
 	exit(0);
 }

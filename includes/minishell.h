@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/10 18:11:50 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:21:40 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -75,6 +75,7 @@ void	erase_empty_quotes_and_ext_quotes(char **tokens);
 void	executor(char **tokens);
 int		validate_redirects(char **tokens);
 void	init_redirects(char **tokens);
+int		heredoc(char *arg);
 
 // Utils
 int		is_quote(char c);

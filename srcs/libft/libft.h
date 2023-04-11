@@ -21,6 +21,8 @@
 #  define NULLABLE "0x0"
 # endif
 
+# define BUFFER_SIZE 10000
+
 # define HEX_LWCASE "0123456789abcdef"
 # define HEX_UPCASE "0123456789ABCDEF"
 # define DEC_DIGITS "0123456789"

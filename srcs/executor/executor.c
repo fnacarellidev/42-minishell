@@ -44,5 +44,6 @@ void	executor(char **tokens)
 		return ;
 	}
 	init_redirects(tokens);
+	new_tokens = get_tokens_without_redirects(tokens);
 	init_pipeline(new_tokens);
 }

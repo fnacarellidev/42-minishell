@@ -15,6 +15,7 @@ FILES =			minishell \
 				parser/erase_empty_quotes \
 				executor/validate_redirects \
 				executor/executor \
+				executor/heredoc \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \

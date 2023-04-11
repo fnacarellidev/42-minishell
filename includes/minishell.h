@@ -84,7 +84,7 @@ void	erase_empty_quotes_and_ext_quotes(char **tokens);
 void	executor(char **tokens);
 int		validate_redirects(char **tokens);
 void	init_redirects(char **tokens);
-int		heredoc(char *arg);
+int		get_heredoc_fd(char *arg);
 
 // Utils
 int		is_quote(char c);

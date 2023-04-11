@@ -11,6 +11,13 @@
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
+static void	here_doc_err(char *arg)
+{
+	printf("bash: warning: here-document delimited by end of file" \
+			" (wanted `%s`)\n", arg);
+}
+
+int	get_heredoc_fd(char *arg)
 {
 	int		fd;
 	char	*delimiter;

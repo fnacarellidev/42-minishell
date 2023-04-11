@@ -14,6 +14,7 @@ FILES =			minishell \
 				parser/expand_vars \
 				parser/erase_empty_quotes \
 				executor/validate_redirects \
+				executor/init_redirects \
 				executor/executor \
 				executor/heredoc \
 				aux_funcs/is_quote \

@@ -45,3 +45,14 @@ static void	copy_tokens(char **new, char **copy)
 		i++;
 	}
 }
+
+char	**get_tokens_without_redirects(char **tokens)
+{
+	int		tokens_amount;
+	char	**new_tokens;
+
+	tokens_amount = exclude_redirects(tokens);
+	new_tokens = ft_calloc(sizeof(char *), tokens_amount + 1);
+	copy_tokens(new_tokens, tokens);
+	return (new_tokens);
+}

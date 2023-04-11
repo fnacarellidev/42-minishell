@@ -24,12 +24,25 @@ static int	number_of_commands(char **tokens_without_redirects)
 	}
 	return (j + 1);
 }
+
+static void	init_pipeline(char **tokens)
+{
+	int	mem;
+
+	g_minishell.pipeline.number_of_cmds = number_of_commands(tokens);
+	mem = g_minishell.pipeline.number_of_cmds;
+	g_minishell.pipeline.commands = ft_calloc(sizeof(t_command), mem + 1);
+}
+
 void	executor(char **tokens)
 {
+	char	**new_tokens;
+
 	if (validate_redirects(tokens) == 1)
 	{
 		g_minishell.status_code = 1;
 		return ;
 	}
 	init_redirects(tokens);
+	init_pipeline(new_tokens);
 }

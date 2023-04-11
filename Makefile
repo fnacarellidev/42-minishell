@@ -26,6 +26,7 @@ FILES =			minishell \
 				aux_funcs/is_valid_var \
 				aux_funcs/swap_fd \
 				aux_funcs/close_fds \
+				aux_funcs/is_redirect \
 				manipulate_envp \
 				get_envp_list
 

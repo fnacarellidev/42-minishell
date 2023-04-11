@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:54:18 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/10 14:40:53 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/11 19:11:06 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -36,6 +36,5 @@ int	parser(char **tokens)
 		i++;
 	}
 	g_minishell.status_code = 0;
-	/* erase_empty_quotes_and_ext_quotes(tokens); */
 	return (0);
 }

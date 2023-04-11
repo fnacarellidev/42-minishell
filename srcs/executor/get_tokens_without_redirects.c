@@ -28,3 +28,20 @@ static int	exclude_redirects(char **tokens)
 	}
 	return (mem_to_alloc);
 }
+
+static void	copy_tokens(char **new, char **copy)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (copy[i])
+	{
+		if (is_redirect(copy[i]))
+			i++;
+		else
+			new[j++] = ft_strdup(copy[i]);
+		i++;
+	}
+}

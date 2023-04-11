@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/11 15:21:40 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:39:27 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -35,10 +35,18 @@
 # include "errors.h"
 # include "../srcs/libft/libft.h"
 
+typedef struct s_command
+{
+	char	*bin_path;
+	char	**args;
+}	t_command;
+
 typedef struct s_pipeline
 {
-	int		input_fd;
-	int		output_fd;
+	int			input_fd;
+	int			output_fd;
+	int			number_of_cmds;
+	t_command	*commands;
 }	t_pipeline;
 
 typedef struct s_minishell

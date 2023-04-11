@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/11 19:01:06 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/11 19:10:24 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -16,6 +16,8 @@ static int	number_of_commands(char **tokens_without_redirects)
 	int	i;
 	int	j;
 
+	i = 0;
+	j = 0;
 	while (tokens_without_redirects[i])
 	{
 		if (ft_strcmp("|", tokens_without_redirects[i]) == 0)

@@ -24,6 +24,7 @@ FILES =			minishell \
 				aux_funcs/ft_append \
 				aux_funcs/is_valid_var \
 				aux_funcs/swap_fd \
+				aux_funcs/close_fds \
 				manipulate_envp \
 				get_envp_list
 

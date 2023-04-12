@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_tokens_without_redirects.c                     :+:      :+:    :+:   */
+/*   remove_redirects.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 18:36:32 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/11 18:52:37 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:16:47 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -46,13 +46,28 @@ static void	copy_tokens(char **new, char **copy)
 	}
 }
 
-char	**get_tokens_without_redirects(char **tokens)
+static void	remove_redirect(char ***command_args)
 {
 	int		tokens_amount;
 	char	**new_tokens;
 
-	tokens_amount = exclude_redirects(tokens);
+	tokens_amount = exclude_redirects(*command_args);
 	new_tokens = ft_calloc(sizeof(char *), tokens_amount + 1);
-	copy_tokens(new_tokens, tokens);
-	return (new_tokens);
+	copy_tokens(new_tokens, *command_args);
+	ft_free_matrix((void **)*command_args);
+	*command_args = new_tokens;
+}
+
+void	remove_redirects(void)
+{
+	int	i;
+	int	args;
+
+	i = 0;
+	args = g_minishell.number_of_cmds;
+	while (i < args)
+	{
+		remove_redirect(&g_minishell.commands[i].args);
+		i++;
+	}
 }

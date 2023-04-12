@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/11 18:42:17 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:36:48 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -38,23 +38,19 @@
 
 typedef struct s_command
 {
+	int		number_of_args;
+	int		input_fd;
+	int		output_fd;
 	char	*bin_path;
 	char	**args;
 }	t_command;
 
-typedef struct s_pipeline
-{
-	int			input_fd;
-	int			output_fd;
-	int			number_of_cmds;
-	t_command	*commands;
-}	t_pipeline;
-
 typedef struct s_minishell
 {
 	int			status_code;
+	int			number_of_cmds;
 	t_node		*envp;
-	t_pipeline	pipeline;
+	t_command	*commands;
 }	t_minishell;
 
 extern t_minishell	g_minishell;

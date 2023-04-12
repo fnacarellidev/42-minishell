@@ -52,8 +52,6 @@ void	handler(int signal)
 void	init_minishell(void)
 {
 	g_minishell.status_code = 0;
-	g_minishell.pipeline.input_fd = 0;
-	g_minishell.pipeline.output_fd = 1;
 }
 
 void	die(void)

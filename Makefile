@@ -17,7 +17,7 @@ FILES =			minishell \
 				executor/init_redirects \
 				executor/executor \
 				executor/heredoc \
-				executor/get_tokens_without_redirects \
+				executor/remove_redirects \
 				executor/init_pipeline \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 17:15:12 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/12 15:06:02 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:29:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -18,6 +18,8 @@ void	close_fds(void)
 
 	i = 0;
 	commands_size = g_minishell.number_of_cmds;
+	if (g_minishell.commands == NULL)
+		return ;
 	while (i < commands_size)
 	{
 		if (g_minishell.commands[i].input_fd != 0)

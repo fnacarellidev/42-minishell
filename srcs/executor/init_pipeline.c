@@ -52,3 +52,22 @@ static void	fill_args(char **tokens, int idx)
 		i++;
 	}
 }
+
+static void	init_commands(char **tokens, int idx)
+{
+	int		i;
+	int		args;
+
+	i = 0;
+	if (tokens[i] == NULL)
+		return ;
+	while (tokens[i] && ft_strcmp("|", tokens[i]) != 0)
+		i++;
+	if (tokens[i] && ft_strcmp("|", tokens[i]) == 0)
+		i++;
+	init_commands(tokens + i, idx + 1);
+	args = count_args(tokens);
+	g_minishell.commands[idx].number_of_args = args;
+	g_minishell.commands[idx].args = ft_calloc(sizeof(char *), args + 1);
+	fill_args(tokens, idx);
+}

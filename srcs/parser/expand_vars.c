@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:12 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/06 17:23:41 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:43:41 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -61,7 +61,7 @@ static char	*extract_key(char *var)
 	return (key);
 }
 
-static void	expand_vars(char **token)
+void	expand_vars(char **token)
 {
 	int		i;
 	char	*key;

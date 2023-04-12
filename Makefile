@@ -28,6 +28,9 @@ FILES =			minishell \
 				aux_funcs/swap_fd \
 				aux_funcs/close_fds \
 				aux_funcs/is_redirect \
+				aux_funcs/free_commands \
+				aux_funcs/handler \
+				aux_funcs/print \
 				manipulate_envp \
 				get_envp_list
 

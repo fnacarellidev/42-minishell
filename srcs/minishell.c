@@ -6,48 +6,12 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/12 16:31:03 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:03:24 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
 t_minishell	g_minishell;
-
-void	ft_print_stack(t_node *stack)
-{
-	int	i;
-
-	i = 0;
-	while (stack)
-	{
-		printf("Node %d: %s%s\n", i, stack->key, stack->value);
-		stack = stack->next;
-		i++;
-	}
-}
-
-void	ft_print_matrix(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i])
-	{
-		printf("%s\n", matrix[i]);
-		i++;
-	}
-}
-
-void	handler(int signal)
-{
-	if (signal == SIGINT)
-	{
-		write(1, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
 
 void	init_minishell(void)
 {
@@ -62,23 +26,6 @@ void	die(void)
 	unlink(TMPFILE);
 	write(1, "exit\n", 5);
 	exit(0);
-}
-
-void	ft_free_commands(void)
-{
-	int	i;
-	int	args;
-
-	i = 0;
-	args = g_minishell.number_of_cmds;
-	close_fds();
-	while (i < args)
-	{
-		ft_free_matrix((void **)g_minishell.commands[i].args);
-		i++;
-	}
-	free(g_minishell.commands);
-	g_minishell.commands = NULL;
 }
 
 char	**pipeline_validation(char *cmd)

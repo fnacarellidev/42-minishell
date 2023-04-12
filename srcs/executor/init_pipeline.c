@@ -26,3 +26,13 @@ static int	count_commands(char **tokens)
 	}
 	return (j + 1);
 }
+
+static int	count_args(char **tokens)
+{
+	int	i;
+
+	i = 0;
+	while (tokens[i] && ft_strcmp("|", tokens[i]) != 0)
+		i++;
+	return (i);
+}

@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/12 16:17:42 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:04:23 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -20,4 +20,5 @@ void	executor(char **tokens)
 	}
 	init_pipeline(tokens);
 	init_redirects();
+	remove_redirects();
 }

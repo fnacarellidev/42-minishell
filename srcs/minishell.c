@@ -13,9 +13,10 @@
 
 t_minishell	g_minishell;
 
-void	init_minishell(void)
+void	init_minishell(char **envp)
 {
 	g_minishell.status_code = 0;
+	g_minishell.envp = get_envp_list(envp);
 }
 
 void	die(void)
@@ -53,10 +54,9 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc && argv)
 	{}
-	g_minishell.envp = get_envp_list(envp);
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
-	init_minishell();
+	init_minishell(envp);
 	while (1)
 	{
 		cmd = readline("$ ");

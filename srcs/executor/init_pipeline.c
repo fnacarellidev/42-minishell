@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:14:37 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/12 15:11:18 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:08:28 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -43,8 +43,6 @@ static void	fill_args(char **tokens, int idx)
 	int	args;
 
 	i = 0;
-	g_minishell.commands[idx].input_fd = 0;
-	g_minishell.commands[idx].output_fd = 1;
 	args = g_minishell.commands[idx].number_of_args;
 	while (i < args)
 	{

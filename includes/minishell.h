@@ -82,6 +82,7 @@ int		validate_redirects(char **tokens);
 void	init_redirects(char **tokens);
 int		get_heredoc_fd(char *arg);
 char	**get_tokens_without_redirects(char **tokens);
+void	init_pipeline(char **tokens);
 
 // Utils
 int		is_quote(char c);

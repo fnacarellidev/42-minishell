@@ -18,6 +18,7 @@ FILES =			minishell \
 				executor/executor \
 				executor/heredoc \
 				executor/get_tokens_without_redirects \
+				executor/init_pipeline \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \

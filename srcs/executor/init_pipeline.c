@@ -71,3 +71,13 @@ static void	init_commands(char **tokens, int idx)
 	g_minishell.commands[idx].args = ft_calloc(sizeof(char *), args + 1);
 	fill_args(tokens, idx);
 }
+
+void	init_pipeline(char **tokens)
+{
+	int	number_of_cmds;
+
+	g_minishell.number_of_cmds = count_commands(tokens);
+	number_of_cmds = g_minishell.number_of_cmds;
+	g_minishell.commands = ft_calloc(sizeof(t_command), number_of_cmds + 1);
+	init_commands(tokens, 0);
+}

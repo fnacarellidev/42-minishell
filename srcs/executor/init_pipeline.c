@@ -36,3 +36,19 @@ static int	count_args(char **tokens)
 		i++;
 	return (i);
 }
+
+static void	fill_args(char **tokens, int idx)
+{
+	int	i;
+	int	args;
+
+	i = 0;
+	g_minishell.commands[idx].input_fd = 0;
+	g_minishell.commands[idx].output_fd = 1;
+	args = g_minishell.commands[idx].number_of_args;
+	while (i < args)
+	{
+		g_minishell.commands[idx].args[i] = ft_strdup(tokens[i]);
+		i++;
+	}
+}

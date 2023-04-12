@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/11 17:33:24 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:31:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -66,6 +66,23 @@ void	die(void)
 	exit(0);
 }
 
+void	ft_free_commands(void)
+{
+	int	i;
+	int	args;
+
+	i = 0;
+	args = g_minishell.number_of_cmds;
+	close_fds();
+	while (i < args)
+	{
+		ft_free_matrix((void **)g_minishell.commands[i].args);
+		i++;
+	}
+	free(g_minishell.commands);
+	g_minishell.commands = NULL;
+}
+
 char	**pipeline_validation(char *cmd)
 {
 	char	**tokens;
@@ -103,6 +120,7 @@ int	main(int argc, char **argv, char **envp)
 		{
 			executor(tokens);
 			ft_print_matrix(tokens);
+			ft_free_commands();
 			ft_free_matrix((void **)tokens);
 		}
 	}

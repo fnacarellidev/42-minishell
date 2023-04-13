@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 16:58:29 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/12 16:58:51 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:27:03 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -22,6 +22,7 @@ void	ft_free_commands(void)
 	while (i < args)
 	{
 		ft_free_matrix((void **)g_minishell.commands[i].args);
+		ft_free((void *)g_minishell.commands[i].bin_path);
 		i++;
 	}
 	free(g_minishell.commands);

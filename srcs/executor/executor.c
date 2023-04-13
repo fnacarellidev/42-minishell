@@ -21,4 +21,5 @@ void	executor(char **tokens)
 	init_pipeline(tokens);
 	init_redirects();
 	remove_redirects();
+	remove_quotes();
 }

@@ -36,4 +36,5 @@ void	executor(char **tokens)
 	init_redirects();
 	remove_redirects();
 	remove_quotes();
+	init_bin_path();
 }

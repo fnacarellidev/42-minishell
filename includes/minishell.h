@@ -85,6 +85,7 @@ int		get_heredoc_fd(char *arg);
 void	remove_redirects(void);
 void	remove_quotes(void);
 void	init_pipeline(char **tokens);
+void	init_bin_path(void);
 
 // Utils
 int		is_quote(char c);

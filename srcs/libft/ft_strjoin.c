@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 10:00:54 by fnacarel          #+#    #+#             */
-/*   Updated: 2022/09/21 19:45:46 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/13 11:19:52 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -20,6 +20,8 @@ static void	ft_strcpy(char *dest, const char *src)
 
 	i = 0;
 	dest_len = ft_strlen(dest);
+	if (!src)
+		return ;
 	while (*(src + i))
 	{
 		*(dest + dest_len + i) = *(src + i);

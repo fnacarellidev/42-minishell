@@ -31,6 +31,7 @@ FILES =			minishell \
 				aux_funcs/free_commands \
 				aux_funcs/handler \
 				aux_funcs/print \
+				aux_funcs/ft_free \
 				manipulate_envp \
 				get_envp_list
 

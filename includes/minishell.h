@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/12 19:00:19 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/13 11:13:16 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -97,6 +97,7 @@ void	swap_stream_fd(char *stream, t_command *command, int new_fd);
 void	close_fds(void);
 void	handler(int signal);
 void	ft_free_commands(void);
+void	ft_free(void *ptr);
 
 void	ft_print_stack(t_node *stack);
 void	ft_print_matrix(char **matrix);

@@ -57,3 +57,17 @@ static char	*get_bin_path(t_command *command)
 	return (NULL);
 }
 
+static void	set_bin(t_command *command)
+{
+	command->permission_denied = 0;
+	if (access(command->args[0], F_OK | X_OK) == 0)
+		command->bin_path = ft_strdup(command->args[0]);
+	else
+		command->bin_path = get_bin_path(command);
+	if (command->bin_path == NULL && command->permission_denied)
+		printf("%s: Permission denied\n", command->args[0]);
+	else if (command->bin_path == NULL)
+		printf("%s: command not found\n", command->args[0]);
+	else
+		printf("Woooho!\n");
+}

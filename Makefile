@@ -12,12 +12,12 @@ FILES =			minishell \
 				parser/parser \
 				parser/get_syntax_error_idx \
 				parser/expand_vars \
-				parser/erase_empty_quotes \
 				executor/validate_redirects \
 				executor/init_redirects \
 				executor/executor \
 				executor/heredoc \
 				executor/remove_redirects \
+				executor/remove_quotes \
 				executor/init_pipeline \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \

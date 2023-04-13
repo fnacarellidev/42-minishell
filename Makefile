@@ -19,6 +19,7 @@ FILES =			minishell \
 				executor/remove_redirects \
 				executor/remove_quotes \
 				executor/init_pipeline \
+				executor/init_bin_path \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \

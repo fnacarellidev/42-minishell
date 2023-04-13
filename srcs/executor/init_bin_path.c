@@ -71,3 +71,17 @@ static void	set_bin(t_command *command)
 	else
 		printf("Woooho!\n");
 }
+
+void	init_bin_path(void)
+{
+	int	i;
+	int	args;
+
+	i = 0;
+	args = g_minishell.number_of_cmds;
+	while (i < args)
+	{
+		set_bin(&g_minishell.commands[i]);
+		i++;
+	}
+}

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/12 17:03:24 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:39:54 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -44,7 +44,7 @@ char	**pipeline_validation(char *cmd)
 		ft_free_matrix((void **)tokens);
 		return (NULL);
 	}
-	return(tokens);
+	return (tokens);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -52,8 +52,8 @@ int	main(int argc, char **argv, char **envp)
 	char	*cmd;
 	char	**tokens;
 
-	if (argc && argv)
-	{}
+	if (argc != 1 && !argv)
+		return (0);
 	signal(SIGINT, handler);
 	signal(SIGQUIT, SIG_IGN);
 	init_minishell(envp);
@@ -64,7 +64,6 @@ int	main(int argc, char **argv, char **envp)
 		if (tokens)
 		{
 			executor(tokens);
-			ft_print_matrix(tokens);
 			ft_free_commands();
 			ft_free_matrix((void **)tokens);
 		}

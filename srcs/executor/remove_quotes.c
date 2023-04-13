@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:39:44 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/13 14:47:10 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/13 18:37:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -70,7 +70,7 @@ void	remove_quotes(void)
 	args = g_minishell.number_of_cmds;
 	while (i < args)
 	{
-		erase_empty_quotes_and_ext_quotes(g_minishell.commands[i].args);	
+		erase_empty_quotes_and_ext_quotes(g_minishell.commands[i].args);
 		i++;
 	}
 }

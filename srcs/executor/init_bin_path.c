@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:42:12 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/13 18:35:07 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/13 22:21:01 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -36,7 +36,7 @@ static char	*get_bin_path(t_command *command)
 
 	i = 0;
 	path_dirs = get_path_dirs();
-	while (path_dirs[i])
+	while (path_dirs[i] && command->args[0])
 	{
 		bin = ft_strjoin(path_dirs[i], command->args[0]);
 		if (access(bin, F_OK | X_OK) == 0)

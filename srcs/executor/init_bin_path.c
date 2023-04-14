@@ -66,10 +66,10 @@ static void	set_bin(t_command *command)
 		command->bin_path = get_bin_path(command);
 	if (command->bin_path == NULL && command->permission_denied)
 		printf("%s: Permission denied\n", command->args[0]);
-	else if (command->bin_path == NULL)
+	else if (command->bin_path == NULL && command->args[0])
 		printf("%s: command not found\n", command->args[0]);
-	else
-		printf("Woooho!\n");
+	else if (command->args[0])
+		printf("Found %s command, binary: %s!\n", command->args[0], command->bin_path);
 }
 
 void	init_bin_path(void)

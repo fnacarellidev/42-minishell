@@ -66,4 +66,20 @@ void	executor(char **tokens)
 	}
 	init_executor(tokens);
 	pid = fork();
+	if (pid == 0)
+	{
+		if (g_minishell.commands[0].input_fd != 0)
+			dup2(g_minishell.commands[0].input_fd, 0);
+		if (g_minishell.commands[0].output_fd != 1)
+			dup2(g_minishell.commands[0].output_fd, 1);
+		if (g_minishell.commands[0].bin_path != NULL)
+			execve(g_minishell.commands[0].bin_path, g_minishell.commands[0].args, g_minishell.envp);
+		ft_free_commands();
+		ft_free_matrix((void **)tokens);
+		ft_free_matrix((void **)g_minishell.envp);
+		ft_free_list(&g_minishell.envp_list);
+		rl_clear_history();
+		exit(1);
+	}
+	wait(NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:12 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/12 17:43:41 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:32:12 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -75,7 +75,7 @@ void	expand_vars(char **token)
 		if (is_valid_var(&(*token)[i]))
 		{
 			key = extract_key(&(*token)[i + 1]);
-			value = get_key_value(g_minishell.envp, key);
+			value = get_key_value(g_minishell.envp_list, key);
 			if ((*token)[i + 1] == '?')
 				append(&new_token, value);
 			else

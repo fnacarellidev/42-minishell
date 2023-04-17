@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/17 15:05:22 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:10:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -38,6 +38,7 @@
 
 typedef struct s_command
 {
+	int		fd[2];
 	int		number_of_args;
 	int		input_fd;
 	int		output_fd;

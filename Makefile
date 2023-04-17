@@ -71,6 +71,7 @@ valg: $(NAME)
 valg2: $(NAME)
 	valgrind -q --leak-check=full --show-leak-kinds=all --trace-children=yes \
 	--suppressions=ignorelibs.txt --track-fds=yes --track-origins=yes \
+	--trace-children-skip='*/bin/*,*/sbin/*' \
     ./minishell
 
 fclean: clean

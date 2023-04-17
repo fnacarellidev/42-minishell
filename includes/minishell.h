@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/13 17:52:42 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:05:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -81,10 +81,10 @@ void	expand_vars(char **token);
 void	executor(char **tokens);
 int		validate_redirects(char **tokens);
 void	init_redirects(void);
+void	init_commands(char **tokens, int idx);
 int		get_heredoc_fd(char *arg);
 void	remove_redirects(void);
 void	remove_quotes(void);
-void	init_pipeline(char **tokens);
 void	init_bin_path(void);
 
 // Utils

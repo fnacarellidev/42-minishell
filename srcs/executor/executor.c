@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/17 15:23:42 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/17 19:38:23 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -55,9 +55,32 @@ void	init_executor(char **tokens)
 	init_bin_path();
 }
 
-void	executor(char **tokens)
+void	ft_exec(t_command *prev, t_command *curr, t_command *next)
 {
 	int	pid;
+
+	if (next->args != NULL)
+		pipe(curr->fd);
+	pid = fork();
+	if (pid == 0)
+	{
+		if (!prev)
+			dup2(curr->input_fd, 0);
+		else
+			dup2(prev->fd[0], 0);
+		if (!next->args)
+			dup2(curr->output_fd, 1);
+		else
+			dup2(curr->fd[1], 1);
+		execve(curr->bin_path, curr->args, g_minishell.envp);
+		perror("");
+		exit(1);
+	}
+}
+
+void	executor(char **tokens)
+{
+	int	i;
 
 	if (validate_redirects(tokens) == 1)
 	{
@@ -65,21 +88,21 @@ void	executor(char **tokens)
 		return ;
 	}
 	init_executor(tokens);
-	pid = fork();
-	if (pid == 0)
+	i = 0;
+	while (i < g_minishell.number_of_cmds)
 	{
-		if (g_minishell.commands[0].input_fd != 0)
-			dup2(g_minishell.commands[0].input_fd, 0);
-		if (g_minishell.commands[0].output_fd != 1)
-			dup2(g_minishell.commands[0].output_fd, 1);
-		if (g_minishell.commands[0].bin_path != NULL)
-			execve(g_minishell.commands[0].bin_path, g_minishell.commands[0].args, g_minishell.envp);
-		ft_free_commands();
-		ft_free_matrix((void **)tokens);
-		ft_free_matrix((void **)g_minishell.envp);
-		ft_free_list(&g_minishell.envp_list);
-		rl_clear_history();
-		exit(1);
+		if (i == 0)
+			ft_exec(NULL, &g_minishell.commands[i], &g_minishell.commands[i + 1]);
+		else
+			ft_exec(&g_minishell.commands[i - 1], &g_minishell.commands[i], &g_minishell.commands[i + 1]);
+		i++;
 	}
-	wait(NULL);
+	i = 0;
+	while (i < g_minishell.number_of_cmds - 1)
+	{
+		wait(NULL);
+		close(g_minishell.commands[i].fd[0]);
+		close(g_minishell.commands[i].fd[1]);
+		i++;
+	}
 }

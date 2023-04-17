@@ -18,7 +18,7 @@ FILES =			minishell \
 				executor/heredoc \
 				executor/remove_redirects \
 				executor/remove_quotes \
-				executor/init_pipeline \
+				executor/init_commands \
 				executor/init_bin_path \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \

@@ -63,6 +63,7 @@ int		key_exists(t_node *envp_list, char *key);
 char	**lexer(char *cmd);
 
 t_node	*get_envp_list(char **envp);
+char	**get_envp(void);
 
 // Lexer
 int		put_spaces(char *str, int pos);

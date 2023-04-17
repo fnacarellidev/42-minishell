@@ -50,7 +50,8 @@ typedef struct s_minishell
 {
 	int			status_code;
 	int			number_of_cmds;
-	t_node		*envp;
+	char		**envp;
+	t_node		*envp_list;
 	t_command	*commands;
 }	t_minishell;
 

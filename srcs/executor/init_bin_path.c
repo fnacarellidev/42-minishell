@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:42:12 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/17 13:48:19 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/17 14:32:38 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -18,7 +18,7 @@ static char	**get_path_dirs(void)
 	char	**path_dirs;
 
 	i = 0;
-	path = get_key_value(g_minishell.envp, "PATH");
+	path = get_key_value(g_minishell.envp_list, "PATH");
 	path_dirs = ft_split_old(path, ':');
 	while (path_dirs[i])
 	{

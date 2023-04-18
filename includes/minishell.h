@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/17 17:10:22 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/18 15:23:41 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -16,6 +16,8 @@
 # define DEL_ASCII 127
 # define SET1 " \t\v\n\f\r"
 # define TMPFILE ".tmpheredoc"
+# define READ_END 0
+# define WR_END 1
 
 # include <term.h>
 # include <stdio.h>

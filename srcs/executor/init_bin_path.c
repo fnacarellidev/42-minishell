@@ -46,6 +46,7 @@ static char	*get_bin_path(t_command *command)
 		}
 		else if (access(bin, F_OK) == 0 && access(bin, X_OK) == -1)
 		{
+			command->error = EACCES;
 			ft_free(bin);
 			break ;
 		}

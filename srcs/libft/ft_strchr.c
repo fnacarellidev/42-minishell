@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 01:52:48 by fnacarel          #+#    #+#             */
-/*   Updated: 2022/09/07 20:29:04 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:43:11 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -18,6 +18,8 @@ char	*ft_strchr(const char *s, int c)
 
 	i = 0;
 	first_occurence = 0;
+	if (!s)
+		return (NULL);
 	while (*(s + i))
 	{
 		if (*(s + i) == (unsigned char) c)

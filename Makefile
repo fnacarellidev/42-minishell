@@ -28,6 +28,7 @@ FILES =			minishell \
 				aux_funcs/is_valid_var \
 				aux_funcs/swap_fd \
 				aux_funcs/close_fds \
+				aux_funcs/die_child \
 				aux_funcs/is_redirect \
 				aux_funcs/free_commands \
 				aux_funcs/handler \

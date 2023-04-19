@@ -98,11 +98,21 @@ int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 		if (!prev)
 			dup2(curr->input_fd, 0);
 		else
-			dup2(prev->pipe[0], 0);
+		{
+			if (curr->input_fd == 0)
+				dup2(prev->pipe[0], 0);
+			else
+				dup2(curr->input_fd, 0);
+		}
 		if (!next)
 			dup2(curr->output_fd, 1);
 		else
-			dup2(curr->pipe[1], 1);
+		{
+			if (curr->output_fd == 1)
+				dup2(curr->pipe[1], 1);
+			else
+				dup2(curr->output_fd, 1);
+		}
 		close_fds_in_child();
 		execve(curr->bin_path, curr->args, g_minishell.envp);
 	}

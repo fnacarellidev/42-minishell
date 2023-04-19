@@ -116,28 +116,61 @@ int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 void	executor(char **tokens)
 {
 	int	i;
+	int	pid;
+	int	status;
 
+	i = 0;
 	if (validate_redirects(tokens) == 1)
 	{
 		g_minishell.status_code = 1;
 		return ;
 	}
 	init_executor(tokens);
-	i = 0;
-	while (i < g_minishell.number_of_cmds)
+	if (g_minishell.number_of_cmds > 1)
 	{
-		if (i == 0)
-			ft_exec(NULL, &g_minishell.commands[i], &g_minishell.commands[i + 1]);
-		else
-			ft_exec(&g_minishell.commands[i - 1], &g_minishell.commands[i], &g_minishell.commands[i + 1]);
-		i++;
+		while (i < g_minishell.number_of_cmds)
+		{
+			if (i == 0)
+			{
+				ft_exec(NULL, &g_minishell.commands[i], &g_minishell.commands[i + 1]);
+				close(g_minishell.commands[i].pipe[WR_END]);
+			}
+			else if (i == g_minishell.number_of_cmds - 1)
+			{
+				pid = ft_exec(&g_minishell.commands[i - 1], &g_minishell.commands[i], NULL);
+				close(g_minishell.commands[i - 1].pipe[READ_END]);
+			}
+			else
+			{
+				ft_exec(&g_minishell.commands[i - 1], &g_minishell.commands[i], &g_minishell.commands[i + 1]);
+				close_mid_pipes(i);
+			}
+			i++;
+		}
+		i = 0;
+		while (i < g_minishell.number_of_cmds - 1)
+		{
+			wait(NULL);
+			i++;
+		}
 	}
-	i = 0;
-	while (i < g_minishell.number_of_cmds - 1)
+	else
 	{
-		wait(NULL);
-		close(g_minishell.commands[i].fd[0]);
-		close(g_minishell.commands[i].fd[1]);
-		i++;
+		pid = fork();
+		if (pid == 0)
+		{
+			dup2(g_minishell.commands[0].input_fd, 0);
+			dup2(g_minishell.commands[0].output_fd, 1);
+			close_stuff();
+			if (g_minishell.commands[0].bin_path)
+				execve(g_minishell.commands[0].bin_path, g_minishell.commands[0].args, NULL);
+			else
+			{
+				printf("%s: command not found\n", g_minishell.commands[0].args[0]);
+				exit(1);
+			}
+		}
 	}
+	waitpid(pid, &status, 0);
+	printf("cmd returned %d\n", WEXITSTATUS(status));
 }

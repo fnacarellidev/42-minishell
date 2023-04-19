@@ -184,22 +184,7 @@ void	executor(char **tokens)
 		}
 	}
 	else
-	{
-		pid = fork();
-		if (pid == 0)
-		{
-			dup2(g_minishell.commands[0].input_fd, 0);
-			dup2(g_minishell.commands[0].output_fd, 1);
-			close_stuff();
-			if (g_minishell.commands[0].bin_path)
-				execve(g_minishell.commands[0].bin_path, g_minishell.commands[0].args, NULL);
-			else
-			{
-				printf("%s: command not found\n", g_minishell.commands[0].args[0]);
-				exit(1);
-			}
-		}
-	}
+		pid = run_single_cmd(g_minishell.commands[0]);
 	waitpid(pid, &status, 0);
 	printf("cmd returned %d\n", WEXITSTATUS(status));
 }

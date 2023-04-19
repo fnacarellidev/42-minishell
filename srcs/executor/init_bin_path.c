@@ -58,6 +58,7 @@ static char	*get_bin_path(t_command *command)
 
 static void	set_bin(t_command *command)
 {
+	command->error = 0;
 	if (command->args[0] && access(command->args[0], F_OK | X_OK) == 0)
 		command->bin_path = ft_strdup(command->args[0]);
 	else

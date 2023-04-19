@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/19 11:28:45 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/19 16:52:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -98,6 +98,7 @@ int		is_meta_char(char c);
 int		is_bash_word(char *str);
 int		is_bash_char(char c);
 int		is_redirect(char *str);
+int		is_dir(const char *path);
 void	append(char **s1, char *s2);
 int		is_valid_var(char *str);
 void	swap_stream_fd(char *stream, t_command *command, int new_fd);

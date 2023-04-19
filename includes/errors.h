@@ -16,5 +16,6 @@
 # define EACCES 13
 # define ENAMETOOLONG 36
 # define EISDIR 126
+# define ENOCMD 127
 
 #endif

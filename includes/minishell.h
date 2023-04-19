@@ -44,7 +44,7 @@ typedef struct s_command
 	int		number_of_args;
 	int		input_fd;
 	int		output_fd;
-	int		permission_denied;
+	int		error;
 	char	*bin_path;
 	char	**args;
 }	t_command;

@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:42:12 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/19 13:47:48 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/19 16:52:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -46,7 +46,6 @@ static char	*get_bin_path(t_command *command)
 		}
 		else if (access(bin, F_OK) == 0 && access(bin, X_OK) == -1)
 		{
-			command->permission_denied = 1;
 			ft_free(bin);
 			break ;
 		}
@@ -59,7 +58,6 @@ static char	*get_bin_path(t_command *command)
 
 static void	set_bin(t_command *command)
 {
-	command->permission_denied = 0;
 	if (command->args[0] && access(command->args[0], F_OK | X_OK) == 0)
 		command->bin_path = ft_strdup(command->args[0]);
 	else

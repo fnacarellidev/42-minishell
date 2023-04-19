@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:42:12 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/17 14:32:38 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:47:48 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -64,12 +64,6 @@ static void	set_bin(t_command *command)
 		command->bin_path = ft_strdup(command->args[0]);
 	else
 		command->bin_path = get_bin_path(command);
-	if (command->bin_path == NULL && command->permission_denied)
-		printf("%s: Permission denied\n", command->args[0]);
-	else if (command->bin_path == NULL && command->args[0])
-		printf("%s: command not found\n", command->args[0]);
-	else if (command->args[0])
-		printf("Found %s command, binary: %s!\n", command->args[0], command->bin_path);
 }
 
 void	init_bin_path(void)

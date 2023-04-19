@@ -121,6 +121,7 @@ int	run_single_cmd(t_command cmd)
 int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 {
 	int	pid;
+	int	exit_code;
 
 	if (next)
 		pipe(curr->pipe);
@@ -136,8 +137,18 @@ int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 		else
 			dup2(curr->pipe[1], 1);
 		close_stuff();
+		if (curr->error)
+		{
+			exit_code = curr->error;
+			if (exit_code == 2)
+				exit_code = 127;
+			ft_free_commands();
+			ft_free_matrix((void **)g_minishell.envp);
+			ft_free_list(&g_minishell.envp_list);
+			rl_clear_history();
+			exit(exit_code);
+		}
 		execve(curr->bin_path, curr->args, g_minishell.envp);
-		exit(1);
 	}
 	return (pid);
 }

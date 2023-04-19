@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:50:30 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/17 14:29:23 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:49:09 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -59,7 +59,7 @@ char	**get_envp(void)
 	envp = ft_calloc(sizeof(char *), size + 1);
 	while (tmp)
 	{
-		envp[i] = ft_strdup(tmp->env_line);	
+		envp[i] = ft_strdup(tmp->env_line);
 		tmp = tmp->next;
 		i++;
 	}

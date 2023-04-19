@@ -33,6 +33,18 @@ void	close_stuff(void)
 		i++;
 	}
 }
+
+void	close_mid_pipes(int idx)
+{
+	t_command	prev_cmd;
+	t_command	curr_cmd;
+
+	prev_cmd = g_minishell.commands[idx - 1];
+	curr_cmd = g_minishell.commands[idx];
+	close(prev_cmd.pipe[READ_END]);
+	close(curr_cmd.pipe[WR_END]);
+}
+
 void	print_struct(void)
 {
 	int	i;

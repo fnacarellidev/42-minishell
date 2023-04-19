@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:42:12 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/19 16:52:08 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/19 19:41:13 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -64,7 +64,9 @@ static void	set_bin(t_command *command)
 		command->bin_path = ft_strdup(command->args[0]);
 	else
 		command->bin_path = get_bin_path(command);
-	if (is_dir(command->args[0]) && access(command->args[0], F_OK | X_OK) == 0)
+	if (command->bin_path && command->args[0] == NULL)
+		command->error = 1;
+	else if (is_dir(command->args[0]) && access(command->args[0], F_OK | X_OK) == 0)
 		command->error = EISDIR;
 	else if (ft_strchr(command->args[0], 47) && command->bin_path == NULL)
 		command->error = ENOENT;

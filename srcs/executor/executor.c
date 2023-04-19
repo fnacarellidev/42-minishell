@@ -93,6 +93,8 @@ int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 	pid = fork();
 	if (pid == 0)
 	{
+		if (curr->error)
+			die_child(*curr);
 		if (!prev)
 			dup2(curr->input_fd, 0);
 		else
@@ -102,8 +104,6 @@ int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 		else
 			dup2(curr->pipe[1], 1);
 		close_fds_in_child();
-		if (curr->error)
-			die_child(*curr);
 		execve(curr->bin_path, curr->args, g_minishell.envp);
 	}
 	return (pid);

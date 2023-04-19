@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/19 18:17:15 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:39:20 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -123,6 +123,35 @@ void	loop_wait(void)
 	}
 }
 
+int		handle_exec(int idx, t_command *curr)
+{
+	int			pid;
+	t_command	prev;
+	t_command	next;
+
+	pid = -1;
+	if (idx == 0)
+	{
+		next = g_minishell.commands[idx + 1];
+		ft_exec(NULL, curr, &next);
+		close(g_minishell.commands[idx].pipe[WR_END]);
+	}
+	else if (idx == g_minishell.number_of_cmds - 1)
+	{
+		prev = g_minishell.commands[idx - 1];
+		pid = ft_exec(&prev, curr, NULL);
+		close(g_minishell.commands[idx - 1].pipe[READ_END]);
+	}
+	else
+	{
+		next = g_minishell.commands[idx + 1];
+		prev = g_minishell.commands[idx - 1];
+		ft_exec(&prev, curr, &next);
+		close_mid_pipes(idx);
+	}
+	return (pid);
+}
+
 void	executor(char **tokens)
 {
 	int	i;
@@ -141,21 +170,7 @@ void	executor(char **tokens)
 	{
 		while (i < g_minishell.number_of_cmds)
 		{
-			if (i == 0)
-			{
-				ft_exec(NULL, &g_minishell.commands[i], &g_minishell.commands[i + 1]);
-				close(g_minishell.commands[i].pipe[WR_END]);
-			}
-			else if (i == g_minishell.number_of_cmds - 1)
-			{
-				pid = ft_exec(&g_minishell.commands[i - 1], &g_minishell.commands[i], NULL);
-				close(g_minishell.commands[i - 1].pipe[READ_END]);
-			}
-			else
-			{
-				ft_exec(&g_minishell.commands[i - 1], &g_minishell.commands[i], &g_minishell.commands[i + 1]);
-				close_mid_pipes(i);
-			}
+			pid = handle_exec(i, &g_minishell.commands[i]);
 			i++;
 		}
 	}

@@ -64,6 +64,8 @@ static void	set_bin(t_command *command)
 		command->bin_path = ft_strdup(command->args[0]);
 	else
 		command->bin_path = get_bin_path(command);
+	if (is_dir(command->args[0]) && access(command->args[0], F_OK | X_OK) == 0)
+		command->error = EISDIR;
 }
 
 void	init_bin_path(void)

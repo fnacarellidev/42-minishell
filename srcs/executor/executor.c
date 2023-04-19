@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/19 17:59:44 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/19 18:11:46 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -70,7 +70,6 @@ void	init_executor(char **tokens)
 int	run_single_cmd(t_command cmd)
 {
 	int	pid;
-	int	exit_code;
 
 	pid = fork();
 	if (pid == 0)
@@ -88,7 +87,6 @@ int	run_single_cmd(t_command cmd)
 int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 {
 	int	pid;
-	int	exit_code;
 
 	if (next)
 		pipe(curr->pipe);

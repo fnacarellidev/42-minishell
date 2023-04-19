@@ -103,6 +103,7 @@ void	append(char **s1, char *s2);
 int		is_valid_var(char *str);
 void	swap_stream_fd(char *stream, t_command *command, int new_fd);
 void	close_fds(void);
+void	close_fds_in_child(void);
 void	handler(int signal);
 void	ft_free_commands(void);
 void	ft_free(void *ptr);

@@ -68,6 +68,8 @@ static void	set_bin(t_command *command)
 		command->error = EISDIR;
 	else if (ft_strchr(command->args[0], 47) && command->bin_path == NULL)
 		command->error = ENOENT;
+	else if (command->error == 0 && command->bin_path == NULL)
+		command->error = ENOCMD;
 }
 
 void	init_bin_path(void)

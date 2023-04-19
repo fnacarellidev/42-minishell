@@ -90,6 +90,34 @@ void	init_executor(char **tokens)
 	ft_free_matrix((void **)tokens);
 }
 
+int	run_single_cmd(t_command cmd)
+{
+	int	pid;
+	int	exit_code;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		if (cmd.error)
+		{
+			exit_code = cmd.error;
+			if (exit_code == 2)
+				exit_code = 127;
+			close_stuff();
+			ft_free_commands();
+			ft_free_matrix((void **)g_minishell.envp);
+			ft_free_list(&g_minishell.envp_list);
+			rl_clear_history();
+			exit(exit_code);
+		}
+		dup2(cmd.input_fd, 0);
+		dup2(cmd.output_fd, 1);
+		close_stuff();
+		execve(cmd.bin_path, cmd.args, g_minishell.envp);
+	}
+	return (pid);
+}
+
 int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 {
 	int	pid;

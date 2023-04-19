@@ -89,27 +89,28 @@ void	init_executor(char **tokens)
 	init_bin_path();
 }
 
-void	ft_exec(t_command *prev, t_command *curr, t_command *next)
+int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 {
 	int	pid;
 
-	if (next->args != NULL)
-		pipe(curr->fd);
+	if (next)
+		pipe(curr->pipe);
 	pid = fork();
 	if (pid == 0)
 	{
 		if (!prev)
 			dup2(curr->input_fd, 0);
 		else
-			dup2(prev->fd[0], 0);
-		if (!next->args)
+			dup2(prev->pipe[0], 0);
+		if (!next)
 			dup2(curr->output_fd, 1);
 		else
-			dup2(curr->fd[1], 1);
+			dup2(curr->pipe[1], 1);
+		close_stuff();
 		execve(curr->bin_path, curr->args, g_minishell.envp);
-		perror("");
 		exit(1);
 	}
+	return (pid);
 }
 
 void	executor(char **tokens)

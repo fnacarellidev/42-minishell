@@ -149,6 +149,7 @@ void	executor(char **tokens)
 	int	status;
 
 	i = 0;
+	status = -1;
 	if (validate_redirects(tokens) == 1)
 	{
 		g_minishell.status_code = 1;
@@ -186,5 +187,6 @@ void	executor(char **tokens)
 	else
 		pid = run_single_cmd(g_minishell.commands[0]);
 	waitpid(pid, &status, 0);
-	printf("cmd returned %d\n", WEXITSTATUS(status));
+	if (WIFEXITED(status))
+		printf("cmd returned %d\n", WEXITSTATUS(status));
 }

@@ -6,11 +6,33 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/17 19:38:23 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:55:03 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
+void	close_stuff(void)
+{
+	int			i;
+	int			size;
+	t_command	cmd;
+
+	i = 0;
+	size = g_minishell.number_of_cmds;
+	while (i < size)
+	{
+		cmd = g_minishell.commands[i];
+		if (cmd.input_fd != 0)
+			close(cmd.input_fd);
+		if (cmd.output_fd != 1)
+			close(cmd.output_fd);
+		if (cmd.pipe[0] != 0)
+			close(cmd.pipe[0]);
+		if (cmd.pipe[1] != 0)
+			close(cmd.pipe[1]);
+		i++;
+	}
+}
 void	print_struct(void)
 {
 	int	i;

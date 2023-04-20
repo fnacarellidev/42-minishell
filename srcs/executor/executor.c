@@ -138,11 +138,10 @@ int	handle_exec(int idx, t_command *curr)
 	t_command	prev;
 	t_command	next;
 
-	pid = -1;
 	if (idx == 0)
 	{
 		next = g_minishell.commands[idx + 1];
-		ft_exec(NULL, curr, &next);
+		pid = ft_exec(NULL, curr, &next);
 		close(g_minishell.commands[idx].pipe[WR_END]);
 	}
 	else if (idx == g_minishell.number_of_cmds - 1)
@@ -155,7 +154,7 @@ int	handle_exec(int idx, t_command *curr)
 	{
 		next = g_minishell.commands[idx + 1];
 		prev = g_minishell.commands[idx - 1];
-		ft_exec(&prev, curr, &next);
+		pid = ft_exec(&prev, curr, &next);
 		close(prev.pipe[READ_END]);
 		close(curr->pipe[WR_END]);
 	}

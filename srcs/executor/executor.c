@@ -6,24 +6,10 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/20 13:04:50 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:21:32 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
-
-void	print_struct(void)
-{
-	int	i;
-	int	args;
-
-	i = 0;
-	args = g_minishell.number_of_cmds;
-	while (i < args)
-	{
-		ft_print_matrix(g_minishell.commands[i].args);
-		i++;
-	}
-}
 
 static int	count_commands(char **tokens)
 {

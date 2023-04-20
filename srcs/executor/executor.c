@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/20 13:00:50 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:04:50 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -95,7 +95,7 @@ void	handle_dups(t_command *prev, t_command *curr, t_command *next)
 	}
 }
 
-int	ft_exec(t_command *prev, t_command *curr, t_command *next)
+int	run_n_cmds(t_command *prev, t_command *curr, t_command *next)
 {
 	int	pid;
 
@@ -141,20 +141,20 @@ int	handle_exec(int idx, t_command *curr)
 	if (idx == 0)
 	{
 		next = g_minishell.commands[idx + 1];
-		pid = ft_exec(NULL, curr, &next);
+		pid = run_n_cmds(NULL, curr, &next);
 		close(g_minishell.commands[idx].pipe[WR_END]);
 	}
 	else if (idx == g_minishell.number_of_cmds - 1)
 	{
 		prev = g_minishell.commands[idx - 1];
-		pid = ft_exec(&prev, curr, NULL);
+		pid = run_n_cmds(&prev, curr, NULL);
 		close(g_minishell.commands[idx - 1].pipe[READ_END]);
 	}
 	else
 	{
 		next = g_minishell.commands[idx + 1];
 		prev = g_minishell.commands[idx - 1];
-		pid = ft_exec(&prev, curr, &next);
+		pid = run_n_cmds(&prev, curr, &next);
 		close(prev.pipe[READ_END]);
 		close(curr->pipe[WR_END]);
 	}

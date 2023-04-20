@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_pipeline.c                                    :+:      :+:    :+:   */
+/*   init_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:14:37 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/17 15:02:19 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:21:40 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -35,12 +35,36 @@ static void	fill_args(char **tokens, int idx)
 	}
 }
 
+static int	count_commands(char **tokens)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (tokens[i])
+	{
+		if (ft_strcmp("|", tokens[i]) == 0)
+			j++;
+		i++;
+	}
+	return (j + 1);
+}
+
+
 void	init_commands(char **tokens, int idx)
 {
 	int		i;
 	int		args;
+	int		number_of_cmds;
 
 	i = 0;
+	if (idx == 0)
+	{
+		g_minishell.number_of_cmds = count_commands(tokens);
+		number_of_cmds = g_minishell.number_of_cmds;
+		g_minishell.commands = ft_calloc(sizeof(t_command), number_of_cmds + 1);
+	}
 	if (tokens[i] == NULL)
 		return ;
 	while (tokens[i] && ft_strcmp("|", tokens[i]) != 0)

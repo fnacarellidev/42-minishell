@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:18:03 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/20 13:48:47 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/20 14:04:13 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -14,22 +14,22 @@
 static void	handle_dups(t_command *prev, t_command *curr, t_command *next)
 {
 	if (!prev)
-		dup2(curr->input_fd, 0);
+		dup2(curr->input_fd, STDIN_FILENO);
 	else
 	{
-		if (curr->input_fd == 0)
-			dup2(prev->pipe[0], 0);
+		if (curr->input_fd == STDIN_FILENO)
+			dup2(prev->pipe[READ_END], STDIN_FILENO);
 		else
-			dup2(curr->input_fd, 0);
+			dup2(curr->input_fd, STDIN_FILENO);
 	}
 	if (!next)
-		dup2(curr->output_fd, 1);
+		dup2(curr->output_fd, STDOUT_FILENO);
 	else
 	{
-		if (curr->output_fd == 1)
-			dup2(curr->pipe[1], 1);
+		if (curr->output_fd == STDOUT_FILENO)
+			dup2(curr->pipe[WR_END], STDOUT_FILENO);
 		else
-			dup2(curr->output_fd, 1);
+			dup2(curr->output_fd, STDOUT_FILENO);
 	}
 }
 

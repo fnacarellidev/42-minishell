@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/19 19:48:02 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/20 11:31:52 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -119,20 +119,23 @@ int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 	return (pid);
 }
 
-int	loop_wait(int pid, int *status)
+void	loop_wait(int pid, int *status)
 {
 	int	i;
 	int	size;
 
 	i = 0;
 	size = g_minishell.number_of_cmds;
+	waitpid(pid, status, 0);
 	while (i < size - 1)
 	{
 		wait(NULL);
 		i++;
 	}
-	waitpid(pid, status, 0);
-	return (WEXITSTATUS(*status));
+	if (WIFEXITED(*status))
+		g_minishell.status_code = WEXITSTATUS(*status);
+	else if (WIFSIGNALED(*status))
+		g_minishell.status_code = 128 + WTERMSIG(*status);
 }
 
 int		handle_exec(int idx, t_command *curr)
@@ -188,5 +191,5 @@ void	executor(char **tokens)
 	}
 	else
 		pid = run_single_cmd(g_minishell.commands[0]);
-	g_minishell.status_code = loop_wait(pid, &status);
+	loop_wait(pid, &status);
 }

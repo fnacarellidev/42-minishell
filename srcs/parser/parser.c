@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:54:18 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/20 15:49:28 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/20 16:05:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -31,7 +31,6 @@ int	parser(char **tokens)
 	int		idx_err;
 
 	i = 0;
-	g_minishell.status_code = 0;
 	idx_err = get_syntax_error_idx(tokens);
 	if (idx_err != -2)
 		return (print_invalid_syntax(idx_err, tokens));

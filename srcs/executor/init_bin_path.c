@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:42:12 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/19 19:41:13 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:50:14 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -57,21 +57,21 @@ static char	*get_bin_path(t_command *command)
 	return (NULL);
 }
 
-static void	set_bin(t_command *command)
+static void	set_bin(t_command *cmd)
 {
-	command->error = 0;
-	if (command->args[0] && access(command->args[0], F_OK | X_OK) == 0)
-		command->bin_path = ft_strdup(command->args[0]);
+	cmd->error = 0;
+	if (cmd->args[0] && access(cmd->args[0], F_OK | X_OK) == 0)
+		cmd->bin_path = ft_strdup(cmd->args[0]);
 	else
-		command->bin_path = get_bin_path(command);
-	if (command->bin_path && command->args[0] == NULL)
-		command->error = 1;
-	else if (is_dir(command->args[0]) && access(command->args[0], F_OK | X_OK) == 0)
-		command->error = EISDIR;
-	else if (ft_strchr(command->args[0], 47) && command->bin_path == NULL)
-		command->error = ENOENT;
-	else if (command->error == 0 && command->bin_path == NULL)
-		command->error = ENOCMD;
+		cmd->bin_path = get_bin_path(cmd);
+	if (cmd->bin_path && cmd->args[0] == NULL)
+		cmd->error = 1;
+	else if (is_dir(cmd->args[0]) && access(cmd->args[0], F_OK | X_OK) == 0)
+		cmd->error = EISDIR;
+	else if (ft_strchr(cmd->args[0], 47) && cmd->bin_path == NULL)
+		cmd->error = ENOENT;
+	else if (cmd->error == 0 && cmd->bin_path == NULL)
+		cmd->error = ENOCMD;
 }
 
 void	init_bin_path(void)

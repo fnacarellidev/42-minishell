@@ -20,6 +20,7 @@ FILES =			minishell \
 				executor/remove_quotes \
 				executor/init_commands \
 				executor/init_bin_path \
+				executor/run_n_cmds \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \

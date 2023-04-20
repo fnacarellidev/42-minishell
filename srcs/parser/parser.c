@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:54:18 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/20 15:43:26 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/20 15:49:28 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -20,7 +20,7 @@ static int	print_invalid_syntax(int idx_err, char **tokens)
 	else
 		err_token = ft_strdup(tokens[idx_err + 1]);
 	printf("bash: syntax error near unexpected token `%s'\n", err_token);
-	g_minishell.status_code = 127;
+	g_minishell.status_code = 2;
 	free(err_token);
 	return (1);
 }

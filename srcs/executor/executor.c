@@ -86,11 +86,6 @@ void	executor(char **tokens)
 
 	i = 0;
 	status = -1;
-	if (validate_redirects(tokens) == 1)
-	{
-		g_minishell.status_code = 1;
-		return ;
-	}
 	init_executor(tokens);
 	if (g_minishell.number_of_cmds > 1)
 	{

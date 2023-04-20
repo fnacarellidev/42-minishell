@@ -40,5 +40,10 @@ int	parser(char **tokens)
 		i++;
 	}
 	g_minishell.status_code = 0;
+	if (validate_redirects(tokens) == 1)
+	{
+		g_minishell.status_code = 1;
+		return (1);
+	}
 	return (0);
 }

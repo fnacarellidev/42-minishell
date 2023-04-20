@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/20 11:31:52 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/20 12:49:15 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -84,6 +84,28 @@ int	run_single_cmd(t_command cmd)
 	return (pid);
 }
 
+void	handle_dups(t_command *prev, t_command *curr, t_command *next)
+{
+	if (!prev)
+		dup2(curr->input_fd, 0);
+	else
+	{
+		if (curr->input_fd == 0)
+			dup2(prev->pipe[0], 0);
+		else
+			dup2(curr->input_fd, 0);
+	}
+	if (!next)
+		dup2(curr->output_fd, 1);
+	else
+	{
+		if (curr->output_fd == 1)
+			dup2(curr->pipe[1], 1);
+		else
+			dup2(curr->output_fd, 1);
+	}
+}
+
 int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 {
 	int	pid;
@@ -95,24 +117,7 @@ int	ft_exec(t_command *prev, t_command *curr, t_command *next)
 	{
 		if (curr->error)
 			die_child(*curr);
-		if (!prev)
-			dup2(curr->input_fd, 0);
-		else
-		{
-			if (curr->input_fd == 0)
-				dup2(prev->pipe[0], 0);
-			else
-				dup2(curr->input_fd, 0);
-		}
-		if (!next)
-			dup2(curr->output_fd, 1);
-		else
-		{
-			if (curr->output_fd == 1)
-				dup2(curr->pipe[1], 1);
-			else
-				dup2(curr->output_fd, 1);
-		}
+		handle_dups(prev, curr, next);
 		close_fds_in_child();
 		execve(curr->bin_path, curr->args, g_minishell.envp);
 	}
@@ -138,7 +143,7 @@ void	loop_wait(int pid, int *status)
 		g_minishell.status_code = 128 + WTERMSIG(*status);
 }
 
-int		handle_exec(int idx, t_command *curr)
+int	handle_exec(int idx, t_command *curr)
 {
 	int			pid;
 	t_command	prev;

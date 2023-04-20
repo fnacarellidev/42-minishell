@@ -6,21 +6,10 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/20 12:49:15 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:00:50 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
-
-void	close_mid_pipes(int idx)
-{
-	t_command	prev_cmd;
-	t_command	curr_cmd;
-
-	prev_cmd = g_minishell.commands[idx - 1];
-	curr_cmd = g_minishell.commands[idx];
-	close(prev_cmd.pipe[READ_END]);
-	close(curr_cmd.pipe[WR_END]);
-}
 
 void	print_struct(void)
 {
@@ -167,7 +156,8 @@ int	handle_exec(int idx, t_command *curr)
 		next = g_minishell.commands[idx + 1];
 		prev = g_minishell.commands[idx - 1];
 		ft_exec(&prev, curr, &next);
-		close_mid_pipes(idx);
+		close(prev.pipe[READ_END]);
+		close(curr->pipe[WR_END]);
 	}
 	return (pid);
 }

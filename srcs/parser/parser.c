@@ -31,6 +31,7 @@ int	parser(char **tokens)
 	int		idx_err;
 
 	i = 0;
+	g_minishell.status_code = 0;
 	idx_err = get_syntax_error_idx(tokens);
 	if (idx_err != -2)
 		return (print_invalid_syntax(idx_err, tokens));
@@ -39,7 +40,6 @@ int	parser(char **tokens)
 		expand_token(tokens + i);
 		i++;
 	}
-	g_minishell.status_code = 0;
 	if (validate_redirects(tokens) == 1)
 	{
 		g_minishell.status_code = 1;

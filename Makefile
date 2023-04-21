@@ -37,6 +37,7 @@ FILES =			minishell \
 				aux_funcs/ft_free \
 				aux_funcs/is_executable \
 				aux_funcs/is_dir \
+				aux_funcs/test_filename \
 				manipulate_envp \
 				get_envp_list
 

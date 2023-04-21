@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/21 17:01:01 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:15:59 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -119,6 +119,7 @@ void	ft_free_commands(void);
 void	ft_free(void *ptr);
 int		is_executable(char *cmd);
 void	die_child(int heredoc, int exit_code);
+int		test_filename(char *filename, char *redirect);
 
 void	ft_print_stack(t_node *stack);
 void	ft_print_matrix(char **matrix);

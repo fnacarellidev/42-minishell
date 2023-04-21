@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:18:06 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 16:59:13 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:15:49 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -31,21 +31,6 @@ static void	err_on_output(char *filename)
 	else
 		error = EACCES;
 	ft_printf(STDERR_FILENO, "bash: %s: %s\n", filename, strerror(error));
-}
-
-static int	test_filename(char *filename, char *redirect)
-{
-	int	fd;
-
-	if (ft_strcmp(redirect, ">") == 0)
-		fd = open(filename, O_RDONLY);
-	else if (ft_strcmp(redirect, ">>") == 0)
-		fd = open(filename, O_CREAT | O_WRONLY | O_APPEND, 0644);
-	else
-		fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (fd != -1)
-		close(fd);
-	return (fd);
 }
 
 void	print_possible_redirect_error(char **tokens)

@@ -22,33 +22,36 @@ static char	*validate_line(void)
 	return (line);
 }
 
-int	get_heredoc_fd(char *arg)
 {
-	int		fd;
-	char	*delimiter;
-	char	*line;
 
-	fd = open(TMPFILE, O_CREAT | O_WRONLY, 0644);
-	delimiter = ft_strjoin(arg, "\n");
+
+static void	get_heredoc_fd(int fd, char *arg)
+{
+	int	size;
+
+	signal(SIGINT, handler_heredoc);
 	while (1)
 	{
 		write(1, "> ", 2);
-		line = validate_line();
-		if (!line || !ft_strcmp(line, delimiter))
+		g_minishell.heredoc.line = validate_line();
+		if (!g_minishell.heredoc.line || !ft_strcmpl(g_minishell.heredoc.line, arg))
 		{
-			if (line)
-				free(line);
+			if (g_minishell.heredoc.line)
+				ft_free(g_minishell.heredoc.line);
 			else
-				here_doc_err(arg);
-			free(delimiter);
+			{
+				printf("bash: warning: here-document delimited by end of file" \
+						" (wanted `%s`)\n", arg);
+			}
 			break ;
 		}
-		write(fd, line, ft_strlen(line));
-		free(line);
+		size = ft_strlen(g_minishell.heredoc.line);
+		write(fd, g_minishell.heredoc.line, size);
+		ft_free(g_minishell.heredoc.line);
 	}
 	close(fd);
-	fd = open(TMPFILE, O_RDWR);
-	return (fd);
+	die_child(1, 0);
+}
 
 int	heredoc(t_command *cmd, char *arg)
 {

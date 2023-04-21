@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:18:03 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/21 11:44:08 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:34:28 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -40,8 +40,10 @@ static int	run_n_cmds(t_command *prev, t_command *curr, t_command *next)
 	if (next)
 		pipe(curr->pipe);
 	pid = fork();
+	g_minishell.on_fork = 1;
 	if (pid == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
 		if (curr->error)
 			die_child(0, curr->error);
 		handle_dups(prev, curr, next);

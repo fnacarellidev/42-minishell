@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 13:01:45 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:34:36 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -26,8 +26,10 @@ static int	run_single_cmd(t_command cmd)
 	int	pid;
 
 	pid = fork();
+	g_minishell.on_fork = 1;
 	if (pid == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
 		if (cmd.error)
 			die_child(0, cmd.error);
 		dup2(cmd.input_fd, 0);
@@ -83,4 +85,5 @@ void	executor(char **tokens)
 	else
 		pid = run_single_cmd(g_minishell.commands[0]);
 	loop_wait(pid, &status);
+	g_minishell.on_fork = 0;
 }

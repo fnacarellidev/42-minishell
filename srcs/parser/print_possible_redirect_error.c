@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:18:06 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 17:15:49 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:37:35 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -42,13 +42,22 @@ void	print_possible_redirect_error(char **tokens)
 	{
 		if (ft_strcmp(tokens[i], "<") == 0 \
 				&& test_filename(tokens[i + 1], "<") == -1)
+		{
 			err_on_input_redirect(tokens[i + 1]);
+			break ;
+		}
 		else if (ft_strcmp(tokens[i], ">") == 0 \
 				&& test_filename(tokens[i + 1], ">") == -1)
+		{
 			err_on_output(tokens[i + 1]);
+			break ;
+		}
 		else if (ft_strcmp(tokens[i], ">>") == 0 \
 				&& test_filename(tokens[i + 1], ">>") == -1)
+		{
 			err_on_output(tokens[i + 1]);
+			break ;
+		}
 		i++;
 	}
 }

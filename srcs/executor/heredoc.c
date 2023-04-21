@@ -22,7 +22,14 @@ static char	*validate_line(void)
 	return (line);
 }
 
+void	handler_heredoc(int signal)
 {
+	if (signal == SIGINT)
+	{
+		write(1, "\n", 1);
+		die_child(1, 130);
+	}
+}
 
 
 static void	get_heredoc_fd(int fd, char *arg)

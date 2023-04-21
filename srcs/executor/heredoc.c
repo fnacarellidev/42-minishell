@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:08:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 13:37:51 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:13:50 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -76,13 +76,13 @@ int	heredoc(t_command *cmd, char *arg)
 	int		pid;
 	int		status;
 
-	g_minishell.heredoc.on_heredoc = 1;
+	g_minishell.on_fork = 1;
 	g_minishell.heredoc.fd = open(TMPFILE, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	pid = fork();
 	if (pid == 0)
 		get_heredoc_fd(g_minishell.heredoc.fd, arg);
 	waitpid(pid, &status, 0);
-	g_minishell.heredoc.on_heredoc = 0;
+	g_minishell.on_fork = 0;
 	close(g_minishell.heredoc.fd);
 	if (status != 0)
 		return (-1);

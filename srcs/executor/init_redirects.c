@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:06:37 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/20 19:19:02 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:35:20 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -31,11 +31,10 @@ static void	fill_fds(t_command *cmd)
 		else if (ft_strcmp(">>", cmd->args[i]) == 0)
 			swap_stream_fd("output", cmd, open(cmd->args[++i], \
 				O_WRONLY | O_APPEND));
-		if (heredoc_status != 0)
-		{
-			g_minishell.heredoc.heredoc_exited = 1;
+		if (g_minishell.heredoc.heredoc_exited != 0)
 			return ;
-		}
+		else if (cmd->input_fd == -1 || cmd->output_fd == -1)
+			return ;
 		i++;
 	}
 }

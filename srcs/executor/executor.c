@@ -66,6 +66,12 @@ void	executor(char **tokens)
 	i = 0;
 	status = -1;
 	init_executor(tokens);
+	if (g_minishell.heredoc.heredoc_exited == 1)
+	{
+		g_minishell.status_code = 130;
+		g_minishell.heredoc.heredoc_exited = 0;
+		return ;
+	}
 	if (g_minishell.number_of_cmds > 1)
 	{
 		while (i < g_minishell.number_of_cmds)

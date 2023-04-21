@@ -118,7 +118,7 @@ void	handler(int signal);
 void	ft_free_commands(void);
 void	ft_free(void *ptr);
 int		is_executable(char *cmd);
-void	die_child(t_command cmd);
+void	die_child(int heredoc, int exit_code);
 
 void	ft_print_stack(t_node *stack);
 void	ft_print_matrix(char **matrix);

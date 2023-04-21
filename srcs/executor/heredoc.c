@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:08:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 14:13:50 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:19:35 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -52,14 +52,15 @@ static void	get_heredoc_fd(int fd, char *arg)
 	{
 		write(1, "> ", 2);
 		g_minishell.heredoc.line = validate_line();
-		if (!g_minishell.heredoc.line || !ft_strcmpl(g_minishell.heredoc.line, arg))
+		if (!g_minishell.heredoc.line \
+			|| !ft_strcmpl(g_minishell.heredoc.line, arg))
 		{
 			if (g_minishell.heredoc.line)
 				ft_free(g_minishell.heredoc.line);
 			else
 			{
-				printf("bash: warning: here-document delimited by end of file" \
-						" (wanted `%s`)\n", arg);
+				ft_printf(2, "bash: warning: here-document delimited by end " \
+						"of file (wanted `%s`)\n", arg);
 			}
 			break ;
 		}

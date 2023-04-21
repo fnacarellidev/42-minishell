@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:08:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 16:19:35 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:26:46 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -26,7 +26,7 @@ void	handler_heredoc(int signal)
 {
 	if (signal == SIGINT)
 	{
-		write(1, "\n", 1);
+		write(STDIN_FILENO, "\n", 1);
 		die_child(1, 130);
 	}
 }
@@ -50,7 +50,7 @@ static void	get_heredoc_fd(int fd, char *arg)
 	signal(SIGINT, handler_heredoc);
 	while (1)
 	{
-		write(1, "> ", 2);
+		write(STDIN_FILENO, "> ", 2);
 		g_minishell.heredoc.line = validate_line();
 		if (!g_minishell.heredoc.line \
 			|| !ft_strcmpl(g_minishell.heredoc.line, arg))
@@ -59,8 +59,8 @@ static void	get_heredoc_fd(int fd, char *arg)
 				ft_free(g_minishell.heredoc.line);
 			else
 			{
-				ft_printf(2, "bash: warning: here-document delimited by end " \
-						"of file (wanted `%s`)\n", arg);
+				ft_printf(STDERR_FILENO, "bash: warning: here-document "\
+						"delimited by end of file (wanted `%s`)\n", arg);
 			}
 			break ;
 		}

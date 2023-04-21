@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:18:03 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/20 14:04:13 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:44:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -43,7 +43,7 @@ static int	run_n_cmds(t_command *prev, t_command *curr, t_command *next)
 	if (pid == 0)
 	{
 		if (curr->error)
-			die_child(*curr);
+			die_child(0, curr->error);
 		handle_dups(prev, curr, next);
 		close_fds_in_child();
 		execve(curr->bin_path, curr->args, g_minishell.envp);

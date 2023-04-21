@@ -29,7 +29,7 @@ static int	run_single_cmd(t_command cmd)
 	if (pid == 0)
 	{
 		if (cmd.error)
-			die_child(cmd);
+			die_child(0, cmd.error);
 		dup2(cmd.input_fd, 0);
 		dup2(cmd.output_fd, 1);
 		close_fds_in_child();

@@ -100,6 +100,7 @@ void	remove_redirects(void);
 void	remove_quotes(void);
 void	init_bin_path(void);
 int		handle_exec(int idx, t_command *curr);
+int		heredoc(t_command *cmd, char *arg);
 
 // Utils
 int		is_quote(char c);

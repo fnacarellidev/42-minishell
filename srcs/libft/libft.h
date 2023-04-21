@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:02:44 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/21 11:28:50 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/21 15:35:14 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -32,12 +32,12 @@ char		*get_next_line(int fd);
 char		*ft_strjoin_gnl(char *s1, char *s2);
 
 // ft_printf stuff
-int			ft_printf(const char *str, ...);
-int			ft_putstr_printf(char *str);
-int			put_base_printf(long long nbr, char *base);
-int			puthex_printf(unsigned long long nbr, int use_uppercase);
-int			ft_put_address(unsigned long long nbr);
-int			putchar_printf(char c);
+int			ft_printf(int fd, const char *str, ...);
+int			ft_putstr_printf(int fd, char *str);
+int			put_base_printf(int fd, long long nbr, char *base);
+int			puthex_printf(int fd, unsigned long long nbr, int use_uppercase);
+int			ft_put_address(int fd, unsigned long long nbr);
+int			putchar_printf(int fd, char c);
 size_t		ft_strlen_printf(char *str);
 
 typedef struct s_node

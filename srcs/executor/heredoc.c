@@ -6,16 +6,10 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:08:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/12 17:49:53 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:37:51 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
-
-static void	here_doc_err(char *arg)
-{
-	printf("bash: warning: here-document delimited by end of file" \
-			" (wanted `%s`)\n", arg);
-}
 
 static char	*validate_line(void)
 {

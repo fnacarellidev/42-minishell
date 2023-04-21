@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:02:44 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/13 15:22:08 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:28:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -21,7 +21,7 @@
 #  define NULLABLE "0x0"
 # endif
 
-# define BUFFER_SIZE 10000
+# define BUFFER_SIZE 1
 
 # define HEX_LWCASE "0123456789abcdef"
 # define HEX_UPCASE "0123456789ABCDEF"

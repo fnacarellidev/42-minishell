@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/20 13:46:44 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/21 11:43:37 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -49,11 +49,20 @@ typedef struct s_command
 	char	**args;
 }	t_command;
 
+typedef struct s_heredoc
+{
+	int			fd;
+	int			on_heredoc;
+	int			heredoc_exited;
+	char		*line;
+}	t_heredoc;
+
 typedef struct s_minishell
 {
 	int			status_code;
 	int			number_of_cmds;
 	char		**envp;
+	t_heredoc	heredoc;
 	t_node		*envp_list;
 	t_command	*commands;
 }	t_minishell;

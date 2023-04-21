@@ -96,7 +96,6 @@ void	executor(char **tokens);
 int		validate_redirects(char **tokens);
 void	init_redirects(void);
 void	init_commands(char **tokens, int idx);
-int		get_heredoc_fd(char *arg);
 void	remove_redirects(void);
 void	remove_quotes(void);
 void	init_bin_path(void);

@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:08:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 16:26:46 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/21 17:28:05 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -86,7 +86,7 @@ int	heredoc(t_command *cmd, char *arg)
 	g_minishell.on_fork = 0;
 	close(g_minishell.heredoc.fd);
 	if (status != 0)
-		return (-1);
+		return (1);
 	swap_stream_fd("input", cmd, open(TMPFILE, O_RDWR));
 	return (0);
 }

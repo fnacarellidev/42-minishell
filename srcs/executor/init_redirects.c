@@ -14,16 +14,14 @@
 static void	fill_fds(t_command *cmd)
 {
 	int		i;
-	int		heredoc_status;
 
 	i = 0;
-	heredoc_status = 0;
 	cmd->input_fd = 0;
 	cmd->output_fd = 1;
 	while (cmd->args[i])
 	{
 		if (ft_strcmp("<<", cmd->args[i]) == 0)
-			heredoc_status = heredoc(cmd, cmd->args[++i]);
+			g_minishell.heredoc.heredoc_exited = heredoc(cmd, cmd->args[++i]);
 		else if (ft_strcmp("<", cmd->args[i]) == 0)
 			swap_stream_fd("input", cmd, open(cmd->args[++i], O_RDONLY));
 		else if (ft_strcmp(">", cmd->args[i]) == 0)

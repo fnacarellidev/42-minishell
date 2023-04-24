@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/24 16:31:00 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:46:19 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -69,7 +69,7 @@ void	executor(char **tokens)
 	int	pid;
 	int	status;
 
-	i = 0;
+	i = -1;
 	status = -1;
 	init_executor(tokens);
 	if (g_minishell.heredoc.heredoc_exited == 1)
@@ -79,13 +79,8 @@ void	executor(char **tokens)
 		return ;
 	}
 	if (g_minishell.number_of_cmds > 1)
-	{
-		while (i < g_minishell.number_of_cmds)
-		{
+		while (++i < g_minishell.number_of_cmds)
 			pid = handle_exec(i, &g_minishell.commands[i]);
-			i++;
-		}
-	}
 	else
 		pid = run_single_cmd(g_minishell.commands[0]);
 	loop_wait(pid, &status);

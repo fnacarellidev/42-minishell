@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:16:32 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/05 16:10:36 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:41:18 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -32,7 +32,10 @@ void	change_value_from_key(t_node **envp_list, char *key, char *new_data)
 		tmp = tmp->next;
 	if (tmp->value)
 		free(tmp->value);
+	ft_free(tmp->env_line);
 	tmp->value = ft_strdup(new_data);
+	tmp->env_line = ft_strjoin(tmp->key, "=");
+	append(&tmp->env_line, ft_strdup(tmp->value));
 }
 
 int	key_exists(t_node *envp_list, char *key)

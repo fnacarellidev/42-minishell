@@ -8,6 +8,7 @@ FILES =			minishell \
 				builtins/get_builtin_pos \
 				builtins/ft_echo \
 				builtins/ft_pwd \
+				builtins/ft_cd \
 				lexer/lexer \
 				lexer/space_cmd \
 				lexer/human_readable_cmd \

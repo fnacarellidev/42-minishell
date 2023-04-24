@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:06:37 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/24 13:09:25 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:36:49 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -45,6 +45,35 @@ int	is_input_redirect(char *redirect)
 	if (ft_strcmp(redirect, "<") == 0 || ft_strcmp(redirect, "<<") == 0)
 		return (1);
 	return (0);
+}
+
+void	set_output_fd(t_command *cmd, char *redirect, char *filename)
+{
+	int	flags;
+
+	if (ft_strcmp(">", redirect) == 0)
+	{
+		flags = O_CREAT | O_WRONLY | O_TRUNC;
+		swap_stream_fd("output", cmd, open(filename, flags, 0644));
+	}
+	else
+	{
+		flags = O_CREAT | O_WRONLY | O_APPEND;
+		swap_stream_fd("output", cmd, open(filename, flags, 0644));
+	}
+}
+
+void	set_input_fd(t_command *cmd, char *redirect, char *filename)
+{
+	char	*delim;
+
+	if (ft_strcmp("<", redirect) == 0)
+		swap_stream_fd("input", cmd, open(filename, O_RDONLY));
+	else
+	{
+		delim = filename;
+		g_minishell.heredoc.heredoc_exited = heredoc(cmd, delim);
+	}
 }
 
 static void	fill_fds(t_command *cmd)

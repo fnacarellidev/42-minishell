@@ -39,6 +39,5 @@ int	parser(char **tokens)
 		expand_token(tokens + i);
 		i++;
 	}
-	print_possible_redirect_error(tokens);
 	return (0);
 }

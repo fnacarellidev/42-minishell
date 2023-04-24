@@ -33,6 +33,20 @@ static void	err_on_output_redirect(char *filename)
 	ft_printf(STDERR_FILENO, "bash: %s: %s\n", filename, strerror(error));
 }
 
+int	is_output_redirect(char *redirect)
+{
+	if (ft_strcmp(redirect, ">") == 0 || ft_strcmp(redirect, ">>") == 0)
+		return (1);
+	return (0);
+}
+
+int	is_input_redirect(char *redirect)
+{
+	if (ft_strcmp(redirect, "<") == 0 || ft_strcmp(redirect, "<<") == 0)
+		return (1);
+	return (0);
+}
+
 static void	fill_fds(t_command *cmd)
 {
 	int		i;

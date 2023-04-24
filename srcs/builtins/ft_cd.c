@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:21:33 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 19:47:46 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:57:40 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -45,7 +45,7 @@ int	change_home(void)
 
 int	type_of_file(char *file)
 {
-	struct stat file_status;
+	struct stat	file_status;
 
 	if (!file)
 		return (NO_SUCH_FILE);
@@ -61,7 +61,7 @@ int	type_of_file(char *file)
 int	ft_cd(t_command cmd)
 {
 	int	status;
-	int filetype;
+	int	filetype;
 
 	status = 1;
 	if (cmd.number_of_args == 1)

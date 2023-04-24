@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 13:46:44 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/24 14:35:37 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -100,6 +100,10 @@ void	remove_quotes(void);
 void	init_bin_path(void);
 int		handle_exec(int idx, t_command *curr);
 int		heredoc(t_command *cmd, char *arg);
+
+// Redirect
+int		has_error(t_command *cmd);
+void	handle_error(t_command *cmd, char *filename);
 
 // Utils
 int		is_quote(char c);

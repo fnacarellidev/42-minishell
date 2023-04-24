@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 18:26:15 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/24 12:24:29 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -15,9 +15,9 @@ static void	init_executor(char **tokens)
 {
 	init_commands(tokens, 0);
 	ft_free_matrix((void **)tokens);
+	remove_quotes();
 	init_redirects();
 	remove_redirects();
-	remove_quotes();
 	init_bin_path();
 }
 

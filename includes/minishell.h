@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 16:38:15 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:48:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -81,6 +81,7 @@ char	**get_envp(void);
 // Builtins
 int		get_builtin_pos(char *str);
 int		ft_pwd(t_command cmd);
+int		ft_echo(t_command cmd);
 
 // Lexer
 int		put_spaces(char *str, int pos);

@@ -86,6 +86,7 @@ int		get_builtin_pos(char *str);
 int		ft_pwd(t_command cmd);
 int		ft_echo(t_command cmd);
 int		ft_cd(t_command cmd);
+int		ft_env(t_command cmd);
 
 // Lexer
 int		put_spaces(char *str, int pos);

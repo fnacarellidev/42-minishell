@@ -22,6 +22,7 @@ void	init_minishell(char **envp)
 	g_minishell.builtins[0] = ft_echo;
 	g_minishell.builtins[1] = ft_cd;
 	g_minishell.builtins[2] = ft_pwd;
+	g_minishell.builtins[5] = ft_env;
 }
 
 void	die(void)

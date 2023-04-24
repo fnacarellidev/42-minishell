@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_builtin.c                                       :+:      :+:    :+:   */
+/*   get_builtin_pos.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 15:27:02 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 16:33:33 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:47:08 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
 int	get_builtin_pos(char *str)
 {
-	/* if (ft_strcmp(str, "echo") == 0) */
-	/* 	return (0); */
-	if (ft_strcmp(str, "cd") == 0)
+	if (ft_strcmp(str, "echo") == 0)
+		return (0);
+	else if (ft_strcmp(str, "cd") == 0)
 		return (1);
 	else if (ft_strcmp(str, "pwd") == 0)
 		return (2);

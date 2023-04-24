@@ -5,7 +5,7 @@ OBJS_PATH =		./objs
 LIBFT_PATH =	./srcs/libft
 
 FILES =			minishell \
-				builtins/is_builtin \
+				builtins/get_builtin_pos \
 				builtins/ft_pwd \
 				lexer/lexer \
 				lexer/space_cmd \

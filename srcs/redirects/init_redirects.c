@@ -6,48 +6,12 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:06:37 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/24 13:36:49 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/24 14:34:10 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
-static void	err_on_input_redirect(char *filename)
-{
-	int	error;
-
-	if (access(filename, F_OK) == -1)
-		error = ENOENT;
-	else
-		error = EACCES;
-	ft_printf(STDERR_FILENO, "bash: %s: %s\n", filename, strerror(error));
-}
-
-static void	err_on_output_redirect(char *filename)
-{
-	int	error;
-
-	if (ft_strlen(filename) > 255)
-		error = ENAMETOOLONG;
-	else
-		error = EACCES;
-	ft_printf(STDERR_FILENO, "bash: %s: %s\n", filename, strerror(error));
-}
-
-int	is_output_redirect(char *redirect)
-{
-	if (ft_strcmp(redirect, ">") == 0 || ft_strcmp(redirect, ">>") == 0)
-		return (1);
-	return (0);
-}
-
-int	is_input_redirect(char *redirect)
-{
-	if (ft_strcmp(redirect, "<") == 0 || ft_strcmp(redirect, "<<") == 0)
-		return (1);
-	return (0);
-}
-
-void	set_output_fd(t_command *cmd, char *redirect, char *filename)
+static void	set_output_fd(t_command *cmd, char *redirect, char *filename)
 {
 	int	flags;
 
@@ -63,7 +27,7 @@ void	set_output_fd(t_command *cmd, char *redirect, char *filename)
 	}
 }
 
-void	set_input_fd(t_command *cmd, char *redirect, char *filename)
+static void	set_input_fd(t_command *cmd, char *redirect, char *filename)
 {
 	char	*delim;
 
@@ -74,22 +38,6 @@ void	set_input_fd(t_command *cmd, char *redirect, char *filename)
 		delim = filename;
 		g_minishell.heredoc.heredoc_exited = heredoc(cmd, delim);
 	}
-}
-
-int	has_error(t_command *cmd)
-{
-	if (g_minishell.heredoc.heredoc_exited != 0 \
-		|| cmd->input_fd == -1 || cmd->output_fd == -1)
-		return (1);
-	return (0);
-}
-
-void	handle_error(t_command *cmd, char *filename)
-{
-	if (cmd->input_fd == -1)
-		err_on_input_redirect(filename);
-	else if (cmd->output_fd == -1)
-		err_on_output_redirect(filename);
 }
 
 static void	fill_fds(t_command *cmd)

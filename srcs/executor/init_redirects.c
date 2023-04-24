@@ -76,6 +76,14 @@ void	set_input_fd(t_command *cmd, char *redirect, char *filename)
 	}
 }
 
+int	has_error(t_command *cmd)
+{
+	if (g_minishell.heredoc.heredoc_exited != 0 \
+		|| cmd->input_fd == -1 || cmd->output_fd == -1)
+		return (1);
+	return (0);
+}
+
 static void	fill_fds(t_command *cmd)
 {
 	int		i;

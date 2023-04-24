@@ -134,6 +134,7 @@ void	ft_free(void *ptr);
 int		is_executable(char *cmd);
 void	die_child(int heredoc, int exit_code);
 int		test_filename(char *filename, char *redirect);
+void	update_env(void);
 
 void	ft_print_stack(t_node *stack);
 void	ft_print_matrix(char **matrix);

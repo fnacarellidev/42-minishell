@@ -41,6 +41,7 @@ FILES =			minishell \
 				aux_funcs/is_executable \
 				aux_funcs/is_dir \
 				aux_funcs/test_filename \
+				aux_funcs/update_env \
 				manipulate_envp \
 				get_envp_list
 

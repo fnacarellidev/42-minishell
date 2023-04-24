@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 17:48:10 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:25:08 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -18,6 +18,9 @@
 # define TMPFILE ".tmpheredoc"
 # define READ_END 0
 # define WR_END 1
+# define NO_SUCH_FILE -1
+# define DIR_FILE 0
+# define REG_FILE 1
 
 # include <term.h>
 # include <stdio.h>

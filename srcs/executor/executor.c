@@ -25,6 +25,12 @@ static int	run_single_cmd(t_command cmd)
 {
 	int	pid;
 
+	if (get_builtin_pos(cmd.args[0]) != -1)
+	{
+		g_minishell.status_code
+			= g_minishell.builtins[get_builtin_pos(cmd.args[0])](cmd);
+		return (-1);
+	}
 	pid = fork();
 	g_minishell.on_fork = 1;
 	if (pid == 0)
@@ -37,8 +43,6 @@ static int	run_single_cmd(t_command cmd)
 		dup2(cmd.input_fd, 0);
 		dup2(cmd.output_fd, 1);
 		close_fds_in_child();
-		if (get_builtin_pos(cmd.args[0]) != -1)
-			g_minishell.builtins[get_builtin_pos(cmd.args[0])](cmd);
 		execve(cmd.bin_path, cmd.args, g_minishell.envp);
 	}
 	return (pid);
@@ -83,6 +87,7 @@ void	executor(char **tokens)
 			pid = handle_exec(i, &g_minishell.commands[i]);
 	else
 		pid = run_single_cmd(g_minishell.commands[0]);
-	loop_wait(pid, &status);
+	if (pid != -1)
+		loop_wait(pid, &status);
 	g_minishell.on_fork = 0;
 }

@@ -94,26 +94,22 @@ void	handle_error(t_command *cmd, char *filename)
 
 static void	fill_fds(t_command *cmd)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	cmd->input_fd = 0;
 	cmd->output_fd = 1;
 	while (cmd->args[i])
 	{
-		if (ft_strcmp("<<", cmd->args[i]) == 0)
-			g_minishell.heredoc.heredoc_exited = heredoc(cmd, cmd->args[++i]);
-		else if (ft_strcmp("<", cmd->args[i]) == 0)
-			swap_stream_fd("input", cmd, open(cmd->args[++i], O_RDONLY));
-		else if (ft_strcmp(">", cmd->args[i]) == 0)
-			swap_stream_fd("output", cmd, open(cmd->args[++i], O_WRONLY));
-		else if (ft_strcmp(">>", cmd->args[i]) == 0)
-			swap_stream_fd("output", cmd, open(cmd->args[++i], \
-				O_WRONLY | O_APPEND));
-		if (g_minishell.heredoc.heredoc_exited != 0)
+		if (is_input_redirect(cmd->args[i]))
+			set_input_fd(cmd, cmd->args[i], cmd->args[i + 1]);
+		else if (is_output_redirect(cmd->args[i]))
+			set_output_fd(cmd, cmd->args[i], cmd->args[i + 1]);
+		if (has_error(cmd))
+		{
+			handle_error(cmd, cmd->args[i + 1]);
 			return ;
-		else if (cmd->input_fd == -1 || cmd->output_fd == -1)
-			return ;
+		}
 		i++;
 	}
 }

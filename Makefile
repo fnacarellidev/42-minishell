@@ -12,14 +12,14 @@ FILES =			minishell \
 				parser/parser \
 				parser/get_syntax_error_idx \
 				parser/expand_vars \
-				executor/init_redirects \
 				executor/executor \
-				executor/heredoc \
 				executor/remove_redirects \
 				executor/remove_quotes \
 				executor/init_commands \
 				executor/init_bin_path \
 				executor/run_n_cmds \
+				redirects/heredoc \
+				redirects/init_redirects \
 				aux_funcs/is_quote \
 				aux_funcs/is_metachar \
 				aux_funcs/is_bash_word \

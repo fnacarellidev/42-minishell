@@ -111,6 +111,8 @@ int		is_meta_char(char c);
 int		is_bash_word(char *str);
 int		is_bash_char(char c);
 int		is_redirect(char *str);
+int		is_input_redirect(char *redirect);
+int		is_output_redirect(char *redirect);
 int		is_dir(const char *path);
 void	append(char **s1, char *s2);
 int		is_valid_var(char *str);

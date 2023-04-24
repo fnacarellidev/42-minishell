@@ -84,6 +84,14 @@ int	has_error(t_command *cmd)
 	return (0);
 }
 
+void	handle_error(t_command *cmd, char *filename)
+{
+	if (cmd->input_fd == -1)
+		err_on_input_redirect(filename);
+	else if (cmd->output_fd == -1)
+		err_on_output_redirect(filename);
+}
+
 static void	fill_fds(t_command *cmd)
 {
 	int		i;

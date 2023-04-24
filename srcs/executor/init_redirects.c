@@ -6,10 +6,32 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:06:37 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 17:35:20 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:09:25 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
+
+static void	err_on_input_redirect(char *filename)
+{
+	int	error;
+
+	if (access(filename, F_OK) == -1)
+		error = ENOENT;
+	else
+		error = EACCES;
+	ft_printf(STDERR_FILENO, "bash: %s: %s\n", filename, strerror(error));
+}
+
+static void	err_on_output_redirect(char *filename)
+{
+	int	error;
+
+	if (ft_strlen(filename) > 255)
+		error = ENAMETOOLONG;
+	else
+		error = EACCES;
+	ft_printf(STDERR_FILENO, "bash: %s: %s\n", filename, strerror(error));
+}
 
 static void	fill_fds(t_command *cmd)
 {

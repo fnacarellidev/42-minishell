@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 14:35:37 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:38:15 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -62,6 +62,7 @@ typedef struct s_minishell
 	int			number_of_cmds;
 	char		**envp;
 	int			on_fork;
+	int			(*builtins[7])(t_command cmd);
 	t_heredoc	heredoc;
 	t_node		*envp_list;
 	t_command	*commands;

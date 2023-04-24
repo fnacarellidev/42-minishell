@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/21 14:25:39 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:39:07 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -19,6 +19,7 @@ void	init_minishell(char **envp)
 	g_minishell.on_fork = 0;
 	g_minishell.envp_list = get_envp_list(envp);
 	g_minishell.envp = get_envp();
+	g_minishell.builtins[2] = ft_pwd;
 }
 
 void	die(void)

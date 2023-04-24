@@ -78,6 +78,10 @@ char	**lexer(char *cmd);
 t_node	*get_envp_list(char **envp);
 char	**get_envp(void);
 
+// Builtins
+int		get_builtin_pos(char *str);
+int		ft_pwd(t_command cmd);
+
 // Lexer
 int		put_spaces(char *str, int pos);
 int		space_duplicate_metachars(char *str, int pos);

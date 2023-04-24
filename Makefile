@@ -12,7 +12,6 @@ FILES =			minishell \
 				parser/parser \
 				parser/get_syntax_error_idx \
 				parser/expand_vars \
-				parser/print_possible_redirect_error \
 				executor/init_redirects \
 				executor/executor \
 				executor/heredoc \

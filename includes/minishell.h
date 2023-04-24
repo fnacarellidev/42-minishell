@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/21 17:15:59 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:46:44 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -90,7 +90,6 @@ void	expand_token(char **token);
 char	**get_subtokens(char *token, int idx);
 char	*concat_subtokens(char **subtokens);
 void	expand_vars(char **token);
-void	print_possible_redirect_error(char **tokens);
 
 // Executor
 void	executor(char **tokens);

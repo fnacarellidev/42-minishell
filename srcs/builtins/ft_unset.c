@@ -28,6 +28,30 @@ static int	is_valid_identifier(char *var)
 	return (1);
 }
 
+void	delet_specific_node(t_node **envp_list, char *key)
+{
+	t_node	*curr;
+	t_node	*prev;
+
+	curr = *envp_list;
+	prev = *envp_list;
+	if (ft_strcmp(curr->key, key) == 0)
+	{
+		*envp_list = (*envp_list)->next;
+		ft_lstdelone(curr, &free);
+		return ;
+	}
+	while (ft_strcmp(curr->key, key) != 0 && curr)
+	{
+		prev = curr;
+		curr = curr->next;
+	}
+	if (!curr)
+		return ;
+	prev->next = curr->next;
+	ft_lstdelone(curr, &free);
+}
+
 static int	exec_unset(char *delet_var)
 {
 	if (!is_valid_identifier(delet_var))

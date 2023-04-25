@@ -6,12 +6,12 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:50:30 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/19 17:49:09 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:13:00 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
 
-static char	**get_matrix_with_key_value(char *env_variable)
+char	**get_matrix_with_key_value(char *env_variable)
 {
 	long int	adresses_diff;
 	char		**key_and_value;
@@ -22,7 +22,10 @@ static char	**get_matrix_with_key_value(char *env_variable)
 	key_and_value = ft_calloc(sizeof(char *), 3);
 	key_and_value[0] = ft_calloc(sizeof(char), adresses_diff + 1);
 	ft_strlcpy(key_and_value[0], env_variable, adresses_diff + 1);
-	key_and_value[1] = ft_strdup(++equal_occurence);
+	if (equal_occurence)
+		key_and_value[1] = ft_strdup(++equal_occurence);
+	else
+		key_and_value[1] = NULL;
 	return (key_and_value);
 }
 

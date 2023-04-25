@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:21:33 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 19:57:40 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:53:24 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -58,6 +58,16 @@ int	type_of_file(char *file)
 	return (NO_SUCH_FILE);
 }
 
+static void	print_error(t_command cmd, int filetype)
+{
+	if (filetype == REG_FILE)
+		ft_printf(STDERR_FILENO, \
+		"bash: cd: %s: Not a directory\n", cmd.args[1]);
+	else
+		ft_printf(STDERR_FILENO, \
+		"bash: cd: %s: No such file or directory\n", cmd.args[1]);
+}
+
 int	ft_cd(t_command cmd)
 {
 	int	status;
@@ -71,10 +81,8 @@ int	ft_cd(t_command cmd)
 	else
 	{
 		filetype = type_of_file(cmd.args[1]);
-		if (filetype == REG_FILE)
-			ft_printf(STDERR_FILENO, "bash: cd: %s: Not a directory\n", cmd.args[1]);
-		else if (filetype == NO_SUCH_FILE)
-			ft_printf(STDERR_FILENO, "bash: cd: %s: No such file or directory\n", cmd.args[1]);
+		if (filetype == REG_FILE || filetype == NO_SUCH_FILE)
+			print_error(cmd, filetype);
 		else
 		{
 			status = 0;

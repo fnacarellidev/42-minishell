@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:08:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/25 13:51:34 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:06:34 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -27,7 +27,7 @@ void	handler_heredoc(int signal)
 {
 	if (signal == SIGINT)
 	{
-		write(STDIN_FILENO, "\n", 1);
+		write(STDOUT_FILENO, "\n", 1);
 		die_child(1, 130);
 	}
 }

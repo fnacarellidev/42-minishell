@@ -11,6 +11,23 @@
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
+static int	is_valid_identifier(char *var)
+{
+	int	i;
+
+	i = 0;
+	if (!ft_isalpha(var[i]) && var[i] != '_')
+		return (0);
+	i++;
+	while (var[i] && var[i] != '=')
+	{
+		if (!is_bash_char(var[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	exec_export(char *new_var)
 {
 	char	**key_and_value;

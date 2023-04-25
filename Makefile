@@ -9,6 +9,7 @@ FILES =			minishell \
 				builtins/ft_echo \
 				builtins/ft_pwd \
 				builtins/ft_cd \
+				builtins/ft_export \
 				builtins/ft_unset \
 				builtins/ft_env \
 				builtins/ft_exit \

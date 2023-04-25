@@ -22,6 +22,7 @@ void	init_minishell(char **envp)
 	g_minishell.builtins[0] = ft_echo;
 	g_minishell.builtins[1] = ft_cd;
 	g_minishell.builtins[2] = ft_pwd;
+	g_minishell.builtins[3] = ft_export;
 	g_minishell.builtins[4] = ft_unset;
 	g_minishell.builtins[5] = ft_env;
 	g_minishell.builtins[6] = ft_exit;

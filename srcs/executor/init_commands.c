@@ -6,20 +6,10 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 13:14:37 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/21 16:20:16 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 19:49:16 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
-
-static int	count_args(char **tokens)
-{
-	int	i;
-
-	i = 0;
-	while (tokens[i] && ft_strcmp("|", tokens[i]) != 0)
-		i++;
-	return (i);
-}
 
 static void	fill_args(char **tokens, int idx)
 {

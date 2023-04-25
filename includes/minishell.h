@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 22:15:01 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:56:50 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -79,6 +79,7 @@ int		key_exists(t_node *envp_list, char *key);
 char	**lexer(char *cmd);
 
 t_node	*get_envp_list(char **envp);
+char	**get_matrix_with_key_value(char *env_variable);
 char	**get_envp(void);
 
 // Builtins

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 22:15:46 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:25:41 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -60,6 +60,36 @@ char	**pipeline_validation(char *cmd)
 	return (tokens);
 }
 
+static void	print_possible_errors(void)
+{
+	int			i;
+	int			size;
+	t_command	cmd;
+
+	i = 0;
+	size = g_minishell.number_of_cmds;
+	while (i < size && get_builtin_pos(g_minishell.commands[i].args[0]) == -1)
+	{
+		cmd = g_minishell.commands[i];
+		if (is_dir(cmd.args[0]) && access(cmd.args[0], F_OK | X_OK) == 0 && ft_strchr(cmd.args[0], 47))
+		{
+			ft_printf(STDERR_FILENO, "bash: %s: Is a directory\n", g_minishell.commands[i].args[0]);
+			g_minishell.status_code = 126;
+		}
+		else if (ft_strchr(cmd.args[0], 47) && cmd.bin_path == NULL && access(cmd.args[0], F_OK) == -1)
+		{
+			ft_printf(STDERR_FILENO, "bash: %s: No such file or directory\n", g_minishell.commands[i].args[0]);
+			g_minishell.status_code = 127;
+		}
+		else if (cmd.bin_path == NULL && cmd.args[0])
+		{
+			ft_printf(STDERR_FILENO, "%s: command not found\n", g_minishell.commands[i].args[0]);
+			g_minishell.status_code = 127;
+		}
+		i++;
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*cmd;
@@ -77,6 +107,7 @@ int	main(int argc, char **argv, char **envp)
 		if (tokens)
 		{
 			executor(tokens);
+			print_possible_errors();
 			ft_free_commands();
 		}
 	}

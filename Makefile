@@ -24,6 +24,7 @@ FILES =			minishell \
 				executor/init_commands \
 				executor/init_bin_path \
 				executor/run_n_cmds \
+				executor/update_number_of_args \
 				redirects/handle_redirect_errors \
 				redirects/heredoc \
 				redirects/init_redirects \

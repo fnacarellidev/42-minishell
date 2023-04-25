@@ -110,6 +110,7 @@ void	init_commands(char **tokens, int idx);
 void	remove_redirects(void);
 void	remove_quotes(void);
 void	init_bin_path(void);
+void	update_number_of_args(void);
 int		handle_exec(int idx, t_command *curr);
 int		heredoc(t_command *cmd, char *arg);
 

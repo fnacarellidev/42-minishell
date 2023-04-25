@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:08:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/21 17:28:05 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:08:05 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -15,23 +15,24 @@ static char	*validate_line(void)
 {
 	char	*line;
 
-	line = get_next_line(0);
+	line = readline("> ");
 	if (!line)
 		return (NULL);
+	append(&line, ft_strdup("\n"));
 	expand_vars(&line);
 	return (line);
 }
 
-void	handler_heredoc(int signal)
+static void	handler_heredoc(int signal)
 {
 	if (signal == SIGINT)
 	{
-		write(STDIN_FILENO, "\n", 1);
+		write(STDOUT_FILENO, "\n", 1);
 		die_child(1, 130);
 	}
 }
 
-int	ft_strcmpl(char *s1, char *s2)
+static int	ft_strcmpl(char *s1, char *s2)
 {
 	int	i;
 
@@ -50,7 +51,6 @@ static void	get_heredoc_fd(int fd, char *arg)
 	signal(SIGINT, handler_heredoc);
 	while (1)
 	{
-		write(STDIN_FILENO, "> ", 2);
 		g_minishell.heredoc.line = validate_line();
 		if (!g_minishell.heredoc.line \
 			|| !ft_strcmpl(g_minishell.heredoc.line, arg))
@@ -77,7 +77,7 @@ int	heredoc(t_command *cmd, char *arg)
 	int		pid;
 	int		status;
 
-	g_minishell.on_fork = 1;
+	g_minishell.on_fork = 2;
 	g_minishell.heredoc.fd = open(TMPFILE, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	pid = fork();
 	if (pid == 0)

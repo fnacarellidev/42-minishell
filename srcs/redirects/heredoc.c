@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:08:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/25 14:06:34 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:08:05 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -23,7 +23,7 @@ static char	*validate_line(void)
 	return (line);
 }
 
-void	handler_heredoc(int signal)
+static void	handler_heredoc(int signal)
 {
 	if (signal == SIGINT)
 	{
@@ -32,7 +32,7 @@ void	handler_heredoc(int signal)
 	}
 }
 
-int	ft_strcmpl(char *s1, char *s2)
+static int	ft_strcmpl(char *s1, char *s2)
 {
 	int	i;
 

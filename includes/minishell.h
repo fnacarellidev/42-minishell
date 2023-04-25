@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/25 20:10:52 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:26:39 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -79,6 +79,7 @@ int		key_exists(t_node *envp_list, char *key);
 char	**lexer(char *cmd);
 
 t_node	*get_envp_list(char **envp);
+char	**get_matrix_with_key_value(char *env_variable);
 char	**get_envp(void);
 
 // Builtins
@@ -86,6 +87,8 @@ int		get_builtin_pos(char *str);
 int		ft_pwd(t_command cmd);
 int		ft_echo(t_command cmd);
 int		ft_cd(t_command cmd);
+int		ft_export(t_command cmd);
+int		ft_unset(t_command cmd);
 int		ft_env(t_command cmd);
 int		ft_exit(t_command cmd);
 

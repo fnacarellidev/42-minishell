@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 19:02:44 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/21 15:35:14 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 14:59:30 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -105,5 +105,6 @@ t_node		*ft_lstlast(t_node *lst);
 t_node		*ft_lstmap(t_node *lst, void *(*f)(void *), void (*del)(void *));
 int			ft_strcmp(const char *s1, const char *s2);
 long int	ft_labs(long int i);
+long int	ft_latoi(const char *nptr);
 
 #endif

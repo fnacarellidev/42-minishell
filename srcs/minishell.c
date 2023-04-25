@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 19:28:26 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/24 22:15:46 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -23,6 +23,7 @@ void	init_minishell(char **envp)
 	g_minishell.builtins[1] = ft_cd;
 	g_minishell.builtins[2] = ft_pwd;
 	g_minishell.builtins[5] = ft_env;
+	g_minishell.builtins[6] = ft_exit;
 }
 
 void	die(void)

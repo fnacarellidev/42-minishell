@@ -10,6 +10,7 @@ FILES =			minishell \
 				builtins/ft_pwd \
 				builtins/ft_cd \
 				builtins/ft_env \
+				builtins/ft_exit \
 				lexer/lexer \
 				lexer/space_cmd \
 				lexer/human_readable_cmd \

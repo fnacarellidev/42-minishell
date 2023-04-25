@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:08:24 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/25 13:36:54 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/25 13:51:34 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -15,9 +15,10 @@ static char	*validate_line(void)
 {
 	char	*line;
 
-	line = get_next_line(0);
+	line = readline("> ");
 	if (!line)
 		return (NULL);
+	append(&line, ft_strdup("\n"));
 	expand_vars(&line);
 	return (line);
 }
@@ -50,7 +51,6 @@ static void	get_heredoc_fd(int fd, char *arg)
 	signal(SIGINT, handler_heredoc);
 	while (1)
 	{
-		write(STDIN_FILENO, "> ", 2);
 		g_minishell.heredoc.line = validate_line();
 		if (!g_minishell.heredoc.line \
 			|| !ft_strcmpl(g_minishell.heredoc.line, arg))

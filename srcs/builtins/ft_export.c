@@ -28,6 +28,25 @@ static int	is_valid_identifier(char *var)
 	return (1);
 }
 
+static void	print_export(void)
+{
+	char	*key;
+	char	*value;
+	t_node	*tmp;
+
+	tmp = g_minishell.envp_list;
+	while (tmp)
+	{
+		key = tmp->key;
+		value = tmp->value;
+		if (key && value)
+			printf("declare -x %s=\"%s\"\n", key, value);
+		else
+			printf("declare -x %s\n", key);
+		tmp = tmp->next;
+	}
+}
+
 void	exec_export(char *new_var)
 {
 	char	**key_and_value;

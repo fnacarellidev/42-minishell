@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:21:33 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/25 15:53:24 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:50:51 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -91,6 +91,6 @@ int	ft_cd(t_command cmd)
 	}
 	update_env();
 	if (g_minishell.on_fork)
-		exit(status);
+		die_child(0, status);
 	return (status);
 }

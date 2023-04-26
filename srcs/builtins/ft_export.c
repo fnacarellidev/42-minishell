@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:56:21 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 13:34:00 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:13:31 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -97,6 +97,6 @@ int	ft_export(t_command cmd)
 		i++;
 	}
 	if (g_minishell.on_fork)
-		exit(status);
+		die_child(0, status);
 	return (status);
 }

@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:56:21 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 12:46:50 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:34:00 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -40,9 +40,9 @@ static void	print_export(void)
 		key = tmp->key;
 		value = tmp->value;
 		if (key && value)
-			printf("declare -x %s=\"%s\"\n", key, value);
+			ft_printf(1, "declare -x %s=\"%s\"\n", key, value);
 		else
-			printf("declare -x %s\n", key);
+			ft_printf(1, "declare -x %s\n", key);
 		tmp = tmp->next;
 	}
 }

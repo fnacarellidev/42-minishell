@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:16:32 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/25 18:32:26 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:24:48 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -22,7 +22,6 @@ char	*get_key_value(t_node *envp_list, char *key)
 	return (envp_list->value);
 }
 
-// TODO Be careful with null values at key or value
 void	change_value_from_key(t_node **envp_list, char *key, char *new_data)
 {
 	t_node	*tmp;

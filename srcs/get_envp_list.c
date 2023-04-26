@@ -74,7 +74,7 @@ char	**get_envp(void)
 
 	i = 0;
 	tmp = g_minishell.envp_list;
-	size = ft_lstsize(g_minishell.envp_list);
+	size = amount_of_valid_keys(&g_minishell.envp_list);
 	envp = ft_calloc(sizeof(char *), size + 1);
 	while (tmp)
 	{

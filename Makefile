@@ -5,6 +5,7 @@ OBJS_PATH =		./objs
 LIBFT_PATH =	./srcs/libft
 
 FILES =			minishell \
+				builtins/run_builtin \
 				builtins/get_builtin_pos \
 				builtins/ft_echo \
 				builtins/ft_pwd \

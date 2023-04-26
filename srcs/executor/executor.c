@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/25 20:10:41 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:06:23 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -20,22 +20,6 @@ static void	init_executor(char **tokens)
 	remove_redirects();
 	update_number_of_args();
 	init_bin_path();
-}
-
-static void	run_builtin(t_command cmd, int (*builtin)(t_command cmd))
-{
-	int	stdin_backup;
-	int	stdout_backup;
-
-	stdin_backup = dup(STDIN_FILENO);
-	stdout_backup = dup(STDOUT_FILENO);
-	if (cmd.input_fd != STDIN_FILENO)
-		dup2(cmd.input_fd, STDIN_FILENO);
-	if (cmd.output_fd != STDOUT_FILENO)
-		dup2(cmd.output_fd, STDOUT_FILENO);
-	g_minishell.status_code = builtin(cmd);
-	dup2(stdin_backup, STDIN_FILENO);
-	dup2(stdout_backup, STDOUT_FILENO);
 }
 
 static int	run_single_cmd(t_command cmd)

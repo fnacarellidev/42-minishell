@@ -6,18 +6,47 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 13:56:29 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:52:13 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
+
+void	remove_filename_quotes(void)
+{
+	int			i;
+	int			j;
+	t_command	*cmd;
+	char		**subtokens;
+
+	i = 0;
+	while (i < g_minishell.number_of_cmds)
+	{
+		j = 0;
+		cmd = &g_minishell.commands[i];
+		while (cmd->args[j])
+		{
+			if (is_redirect(cmd->args[j]))
+			{
+				subtokens = get_subtokens(cmd->args[j + 1], 0);
+				clear_subtokens(subtokens);
+				free(cmd->args[j + 1]);
+				cmd->args[j + 1] = concat_subtokens(subtokens);
+				free(subtokens);
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 static void	init_executor(char **tokens)
 {
 	init_commands(tokens, 0);
 	ft_free_matrix((void **)tokens);
-	remove_quotes();
+	remove_filename_quotes();
 	init_redirects();
 	remove_redirects();
+	remove_quotes();
 	update_number_of_args();
 	init_bin_path();
 }

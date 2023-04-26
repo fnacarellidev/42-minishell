@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/26 11:56:22 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:49:11 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -117,6 +117,7 @@ void	init_bin_path(void);
 void	update_number_of_args(void);
 int		handle_exec(int idx, t_command *curr);
 int		heredoc(t_command *cmd, char *arg);
+void	clear_subtokens(char **subtokens);
 
 // Redirect
 int		has_error(t_command *cmd);

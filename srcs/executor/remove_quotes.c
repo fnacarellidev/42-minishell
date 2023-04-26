@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 14:39:44 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/13 18:37:49 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:48:37 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -29,7 +29,7 @@ static void	erase_external_quotes(char *str)
 	ft_memset(str + last_pos, 0, 1);
 }
 
-static void	clear_subtokens(char **subtokens)
+void	clear_subtokens(char **subtokens)
 {
 	int	i;
 

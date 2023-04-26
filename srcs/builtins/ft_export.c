@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:56:21 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 14:13:31 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:39:27 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -47,27 +47,31 @@ static void	print_export(void)
 	}
 }
 
-void	exec_export(char *new_var)
+static void	exec_export(char *new_var)
 {
 	char	**key_and_value;
+	char	*key;
+	char	*value;
 	t_node	*new_node;
 
 	if (!ft_strchr(new_var, '=') && key_exists(g_minishell.envp_list, new_var))
 		return ;
-	else if (!ft_strchr(new_var, '=') && !key_exists(g_minishell.envp_list, new_var))
+	if (!ft_strchr(new_var, '=') && !key_exists(g_minishell.envp_list, new_var))
 	{
 		new_node = ft_lstnew(new_var, NULL, NULL);
 		ft_lstadd_back(&g_minishell.envp_list, new_node);
 		return ;
 	}
 	key_and_value = get_matrix_with_key_value(new_var);
-	if (!key_exists(g_minishell.envp_list, key_and_value[0]))
+	key = key_and_value[0];
+	value = key_and_value[1];
+	if (!key_exists(g_minishell.envp_list, key))
 	{
-		new_node = ft_lstnew(key_and_value[0], key_and_value[1], new_var);
+		new_node = ft_lstnew(key, value, new_var);
 		ft_lstadd_back(&g_minishell.envp_list, new_node);
 	}
 	else
-		change_value_from_key(&g_minishell.envp_list, key_and_value[0], key_and_value[1]);
+		change_value_from_key(&g_minishell.envp_list, key, value);
 	ft_free_matrix((void **)key_and_value);
 	update_env();
 }

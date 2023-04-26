@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:20:08 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 10:57:35 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:38:23 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -24,7 +24,8 @@ static void	print_args(int size, char **args)
 		ft_putstr(" ");
 		i++;
 	}
-	ft_putstr(args[i]);
+	if (args[i])
+		ft_putstr(args[i]);
 }
 
 int	ft_echo(t_command cmd)

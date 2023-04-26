@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:56:43 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 15:09:49 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:54:23 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -45,6 +45,12 @@ void	run_builtin(t_command cmd, int (*builtin)(t_command cmd))
 	}
 	else
 	{
+		if (ft_strcmp(cmd.args[0], "exit") == 0)
+		{
+			close(stdin_backup);
+			close(stdout_backup);
+			g_minishell.status_code = builtin(cmd);
+		}
 		g_minishell.status_code = builtin(cmd);
 		dup2(stdin_backup, STDIN_FILENO);
 		dup2(stdout_backup, STDOUT_FILENO);

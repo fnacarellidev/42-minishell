@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 22:09:36 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/25 15:38:42 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:50:48 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -61,6 +61,8 @@ int	ft_exit(t_command cmd)
 	long int	exit_code;
 
 	exit_code = 0;
+	if (cmd.args[1] == NULL)
+		die_child(0, exit_code);
 	if (has_non_numeric_char(cmd.args[1]))
 	{
 		ft_printf(STDERR_FILENO, \
@@ -75,5 +77,6 @@ int	ft_exit(t_command cmd)
 	else
 		exit_code = get_exit_code(cmd);
 	free_and_print();
-	exit(exit_code);
+	die_child(0, exit_code);
+	return (0);
 }

@@ -78,10 +78,12 @@ char	**get_envp(void)
 	envp = ft_calloc(sizeof(char *), size + 1);
 	while (tmp)
 	{
-		if (tmp->value)
+		if (tmp->value && tmp->env_line)
+		{
 			envp[i] = ft_strdup(tmp->env_line);
+			i++;
+		}
 		tmp = tmp->next;
-		i++;
 	}
 	return (envp);
 }

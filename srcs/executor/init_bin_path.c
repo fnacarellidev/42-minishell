@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:42:12 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/20 12:50:14 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 20:17:44 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -39,7 +39,7 @@ static char	*get_bin_path(t_command *command)
 	while (path_dirs[i] && command->args[0] && ft_strlen(command->args[0]) > 0)
 	{
 		bin = ft_strjoin(path_dirs[i], command->args[0]);
-		if (access(bin, F_OK | X_OK) == 0)
+		if (!is_dir(bin) && access(bin, F_OK | X_OK) == 0)
 		{
 			ft_free_matrix((void **)path_dirs);
 			return (bin);
@@ -60,7 +60,8 @@ static char	*get_bin_path(t_command *command)
 static void	set_bin(t_command *cmd)
 {
 	cmd->error = 0;
-	if (cmd->args[0] && access(cmd->args[0], F_OK | X_OK) == 0)
+	if (cmd->args[0] && access(cmd->args[0], F_OK | X_OK) == 0 \
+			&& !is_dir(cmd->args[0]))
 		cmd->bin_path = ft_strdup(cmd->args[0]);
 	else
 		cmd->bin_path = get_bin_path(cmd);

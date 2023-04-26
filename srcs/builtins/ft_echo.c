@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:20:08 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 13:51:15 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:58:03 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -33,6 +33,10 @@ int	ft_echo(t_command cmd)
 	int	comparison;
 
 	comparison = 1;
+	if (g_minishell.on_fork && (cmd.input_fd == -1 || cmd.output_fd == -1))
+		die_child(0, 1);
+	if (!g_minishell.on_fork && (cmd.input_fd == -1 || cmd.output_fd == -1))
+		return (1);
 	if (cmd.number_of_args < 2)
 		printf("\n");
 	else

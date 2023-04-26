@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:18:03 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/25 17:12:10 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/26 12:45:39 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -44,6 +44,8 @@ static int	run_n_cmds(t_command *prev, t_command *curr, t_command *next)
 	if (pid == 0)
 	{
 		signal(SIGQUIT, SIG_DFL);
+		if (get_builtin_pos(curr->args[0]) != -1)
+			run_builtin(*curr, g_minishell.builtins[get_builtin_pos(curr->args[0])]);
 		if (curr->input_fd == -1 || curr->output_fd == -1)
 			die_child(0, 1);
 		if (curr->bin_path && curr->args[0])

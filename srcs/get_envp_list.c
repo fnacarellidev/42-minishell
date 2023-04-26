@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:50:30 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/25 17:13:00 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/26 17:38:44 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -47,6 +47,22 @@ t_node	*get_envp_list(char **envp)
 		i++;
 	}
 	return (envp_list);
+}
+
+static int	amount_of_valid_keys(t_node **envp)
+{
+	int		size;
+	t_node *tmp;
+
+	size = 0;
+	tmp = *envp;
+	while (tmp)
+	{
+		if (tmp->value && tmp->env_line)
+			size++;
+		tmp = tmp->next;
+	}
+	return (size);
 }
 
 char	**get_envp(void)

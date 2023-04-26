@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:20:08 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/25 23:40:28 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 23:53:52 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -20,10 +20,10 @@ static void	print_args(int size, char **args)
 		i++;
 	while (i < size - 1)
 	{
-		printf("%s ", args[i]);
+		ft_printf(1, "%s ", args[i]);
 		i++;
 	}
-	printf("%s", args[i]);
+	ft_printf(1, "%s", args[i]);
 }
 
 int	ft_echo(t_command cmd)

@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 17:20:08 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/25 23:27:51 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/25 23:40:28 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -31,6 +31,7 @@ int	ft_echo(t_command cmd)
 	int	comparison;
 
 	comparison = 1;
+	// Fix if -n shouldnt print \n
 	if (cmd.number_of_args < 2)
 		printf("\n");
 	else

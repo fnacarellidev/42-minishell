@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/25 20:26:39 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:56:22 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -83,6 +83,7 @@ char	**get_matrix_with_key_value(char *env_variable);
 char	**get_envp(void);
 
 // Builtins
+void	run_builtin(t_command cmd, int (*builtin)(t_command cmd));
 int		get_builtin_pos(char *str);
 int		ft_pwd(t_command cmd);
 int		ft_echo(t_command cmd);

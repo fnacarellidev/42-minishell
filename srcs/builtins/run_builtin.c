@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 11:56:43 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 20:54:23 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:49:11 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -27,6 +27,12 @@ static void	handle_output(t_command cmd)
 		dup2(cmd.pipe[1], STDOUT_FILENO);
 }
 
+static void	close_backups(int stdin_backup, int stdout_backup)
+{
+	close(stdin_backup);
+	close(stdout_backup);
+}
+
 void	run_builtin(t_command cmd, int (*builtin)(t_command cmd))
 {
 	int	stdin_backup;
@@ -39,22 +45,19 @@ void	run_builtin(t_command cmd, int (*builtin)(t_command cmd))
 	if (g_minishell.on_fork)
 	{
 		close_fds_in_child();
-		close(stdin_backup);
-		close(stdout_backup);
+		close_backups(stdin_backup, stdout_backup);
 		builtin(cmd);
 	}
 	else
 	{
 		if (ft_strcmp(cmd.args[0], "exit") == 0)
 		{
-			close(stdin_backup);
-			close(stdout_backup);
+			close_backups(stdin_backup, stdout_backup);
 			g_minishell.status_code = builtin(cmd);
 		}
 		g_minishell.status_code = builtin(cmd);
 		dup2(stdin_backup, STDIN_FILENO);
 		dup2(stdout_backup, STDOUT_FILENO);
-		close(stdin_backup);
-		close(stdout_backup);
+		close_backups(stdin_backup, stdout_backup);
 	}
 }

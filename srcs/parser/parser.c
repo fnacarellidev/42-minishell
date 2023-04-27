@@ -25,6 +25,22 @@ static int	print_invalid_syntax(int idx_err, char **tokens)
 	return (1);
 }
 
+static int	count_null(int size, char **tokens)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (i < size)
+	{
+		if (tokens[i] == NULL)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 int	parser(char ***tokens)
 {
 	int		i;

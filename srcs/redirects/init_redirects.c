@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 15:06:37 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/24 14:34:10 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:00:30 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -50,9 +50,15 @@ static void	fill_fds(t_command *cmd)
 	while (cmd->args[i])
 	{
 		if (is_input_redirect(cmd->args[i]))
+		{
 			set_input_fd(cmd, cmd->args[i], cmd->args[i + 1]);
+			i++;
+		}
 		else if (is_output_redirect(cmd->args[i]))
+		{
 			set_output_fd(cmd, cmd->args[i], cmd->args[i + 1]);
+			i++;
+		}
 		if (has_error(cmd))
 		{
 			handle_error(cmd, cmd->args[i + 1]);

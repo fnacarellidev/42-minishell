@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 22:09:36 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/27 13:33:38 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:56:55 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"

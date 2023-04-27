@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 15:52:13 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:15:53 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -30,7 +30,7 @@ void	remove_filename_quotes(void)
 				subtokens = get_subtokens(cmd->args[j + 1], 0);
 				clear_subtokens(subtokens);
 				free(cmd->args[j + 1]);
-				cmd->args[j + 1] = concat_subtokens(subtokens);
+				cmd->args[++j] = concat_subtokens(subtokens);
 				free(subtokens);
 			}
 			j++;
@@ -73,6 +73,7 @@ static int	run_single_cmd(t_command cmd)
 		dup2(cmd.output_fd, 1);
 		close_fds_in_child();
 		execve(cmd.bin_path, cmd.args, g_minishell.envp);
+		die_child(0, 0);
 	}
 	return (pid);
 }

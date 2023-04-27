@@ -6,14 +6,15 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:07:54 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/27 14:32:27 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:57:54 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
 
 static int	syntax_error_on_redirect(char *next_token)
 {
-	if ((next_token == NULL || is_meta_char(*next_token)))
+	if (next_token == NULL || is_redirect(next_token) \
+			|| ft_strcmp(next_token, "|") == 0)
 	{
 		g_minishell.status_code = 2;
 		return (1);
@@ -66,7 +67,7 @@ int	get_syntax_error_idx(char **tokens)
 				return (-1);
 			return (i);
 		}
-		else if (*tokens[i] == '>'
+		else if (is_redirect(tokens[i])
 			&& syntax_error_on_redirect(tokens[i + 1]))
 			return (i);
 		else if (has_unclosed_quote(tokens[i]))

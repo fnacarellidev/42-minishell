@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:54:18 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/24 13:24:56 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:56:53 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -25,19 +25,23 @@ static int	print_invalid_syntax(int idx_err, char **tokens)
 	return (1);
 }
 
-int	parser(char **tokens)
+int	parser(char ***tokens)
 {
 	int		i;
 	int		idx_err;
+	int		size;
 
 	i = 0;
-	idx_err = get_syntax_error_idx(tokens);
+	idx_err = get_syntax_error_idx(*tokens);
 	if (idx_err != -2)
-		return (print_invalid_syntax(idx_err, tokens));
-	while (tokens[i])
+		return (print_invalid_syntax(idx_err, *tokens));
+	size = ft_count_matrix((void **)*tokens);
+	while ((*tokens)[i])
 	{
-		expand_token(tokens + i);
+		expand_token((*tokens) + i);
 		i++;
 	}
+	if (count_null(size, *tokens) != 0)
+		*tokens = remove_null(size, *tokens);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 16:50:30 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/26 17:38:44 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:45:35 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -52,7 +52,7 @@ t_node	*get_envp_list(char **envp)
 static int	amount_of_valid_keys(t_node **envp)
 {
 	int		size;
-	t_node *tmp;
+	t_node	*tmp;
 
 	size = 0;
 	tmp = *envp;

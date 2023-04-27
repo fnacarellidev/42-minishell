@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:07:54 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/21 19:10:24 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:32:27 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -25,7 +25,7 @@ static int	syntax_error_on_pipe(char **tokens, int pos)
 {
 	if (pos == 0)
 		return (-2);
-	if (tokens[pos + 1] == NULL)
+	if (tokens[pos + 1] == NULL || ft_strcmp(tokens[pos + 1], "|") == 0)
 	{
 		g_minishell.status_code = 2;
 		return (1);

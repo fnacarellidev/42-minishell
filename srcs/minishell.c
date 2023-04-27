@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/27 16:15:05 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:36:20 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -54,7 +54,7 @@ char	**pipeline_validation(char *cmd)
 		add_history(cmd);
 		tokens = lexer(cmd);
 		ft_free(cmd);
-		if (parser(tokens) == 1 || *tokens == NULL)
+		if (parser(&tokens) == 1 || *tokens == NULL)
 		{
 			ft_free_matrix((void **)tokens);
 			return (NULL);

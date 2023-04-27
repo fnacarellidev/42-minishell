@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:24:12 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/17 14:32:12 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/27 19:16:48 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -105,5 +105,10 @@ void	expand_token(char **token)
 	}
 	free(*token);
 	*token = concat_subtokens(subtokens);
+	if (!ft_strlen(*token))
+	{
+		free(*token);
+		*token = NULL;
+	}
 	free(subtokens);
 }

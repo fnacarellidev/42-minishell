@@ -6,20 +6,10 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 22:09:36 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/26 20:50:48 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:33:38 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
-
-static void	free_and_print(void)
-{
-	close_fds();
-	ft_free_commands();
-	ft_free_matrix((void **)g_minishell.envp);
-	ft_free_list(&g_minishell.envp_list);
-	rl_clear_history();
-	printf("exit\n");
-}
 
 static int	has_non_numeric_char(char *first_arg)
 {
@@ -76,7 +66,7 @@ int	ft_exit(t_command cmd)
 	}
 	else
 		exit_code = get_exit_code(cmd);
-	free_and_print();
+	ft_putstr_fd("exit\n", STDIN_FILENO);
 	die_child(0, exit_code);
 	return (0);
 }

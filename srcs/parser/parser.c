@@ -41,6 +41,31 @@ static int	count_null(int size, char **tokens)
 	return (count);
 }
 
+static char	**remove_null(int size, char **tokens)
+{
+	int		i;
+	int		j;
+	int		null_pos;
+	char	**new_tokens;
+
+	i = 0;
+	j = 0;
+	null_pos = count_null(size, tokens);
+	new_tokens = ft_calloc(sizeof(char *), size - null_pos + 1);
+	while (i < size)
+	{
+		if (tokens[i])
+		{
+			new_tokens[j] = ft_strdup(tokens[i]);
+			j++;
+		}
+		i++;
+	}
+	ft_free_matrix_size_n((void **)tokens, size);
+	/* ft_free_matrix((void **)tokens); */
+	return (new_tokens);
+}
+
 int	parser(char ***tokens)
 {
 	int		i;

@@ -6,10 +6,11 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/26 20:37:52 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/27 16:15:05 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
+#include "libft/libft.h"
 
 t_minishell	g_minishell;
 
@@ -82,6 +83,11 @@ static void	print_possible_errors(void)
 		{
 			ft_printf(STDERR_FILENO, "bash: %s: No such file or directory\n", g_minishell.commands[i].args[0]);
 			g_minishell.status_code = 127;
+		}
+		else if (cmd.bin_path == NULL && access(cmd.args[0], X_OK) == -1 && ft_strchr(cmd.args[0], 47))
+		{
+			ft_printf(STDERR_FILENO, "bash: %s: Permission denied\n", g_minishell.commands[i].args[0]);
+			g_minishell.status_code = 126;
 		}
 		else if (cmd.bin_path == NULL && cmd.args[0])
 		{

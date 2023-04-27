@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 16:38:16 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/27 13:15:53 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/27 16:19:47 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -69,10 +69,13 @@ static int	run_single_cmd(t_command cmd)
 			die_child(0, 1);
 		if (cmd.error && get_builtin_pos(cmd.args[0]) == -1)
 			die_child(0, cmd.error);
-		dup2(cmd.input_fd, 0);
-		dup2(cmd.output_fd, 1);
-		close_fds_in_child();
-		execve(cmd.bin_path, cmd.args, g_minishell.envp);
+		if (cmd.bin_path && cmd.args[0])
+		{
+			dup2(cmd.input_fd, 0);
+			dup2(cmd.output_fd, 1);
+			close_fds_in_child();
+			execve(cmd.bin_path, cmd.args, g_minishell.envp);
+		}
 		die_child(0, 0);
 	}
 	return (pid);

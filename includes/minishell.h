@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/27 19:37:29 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/28 10:38:18 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -92,6 +92,8 @@ int		ft_export(t_command cmd);
 int		ft_unset(t_command cmd);
 int		ft_env(t_command cmd);
 int		ft_exit(t_command cmd);
+void	handle_input(t_command cmd, int *fd);
+void	handle_output(t_command cmd, int *fd);
 
 // Lexer
 int		put_spaces(char *str, int pos);

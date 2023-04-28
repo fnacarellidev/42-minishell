@@ -149,6 +149,6 @@ void	update_env(void);
 int		count_args(char **tokens);
 
 void	ft_print_stack(t_node *stack);
-void	ft_print_matrix(char **matrix);
+void	ft_print_matrix_fd(char **matrix, int fd);
 
 #endif

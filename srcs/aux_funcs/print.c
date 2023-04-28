@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:06:47 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/12 17:08:55 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/28 10:40:11 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -24,14 +24,15 @@ void	ft_print_stack(t_node *stack)
 	}
 }
 
-void	ft_print_matrix(char **matrix)
+void	ft_print_matrix_fd(char **matrix, int fd)
 {
 	int	i;
 
 	i = 0;
 	while (matrix[i])
 	{
-		printf("%s\n", matrix[i]);
+		ft_putstr_fd(matrix[i], fd);
+		ft_putchar_fd('\n', fd);
 		i++;
 	}
 }

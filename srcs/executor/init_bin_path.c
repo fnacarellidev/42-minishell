@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 18:42:12 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/27 16:25:34 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/27 18:20:28 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -71,6 +71,8 @@ static void	set_bin(t_command *cmd)
 		cmd->error = EISDIR;
 	else if (ft_strchr(cmd->args[0], 47) && cmd->bin_path == NULL)
 		cmd->error = ENOENT;
+	else if (cmd->error == 0 && cmd->bin_path == NULL)
+		cmd->error = ENOCMD;
 }
 
 void	init_bin_path(void)

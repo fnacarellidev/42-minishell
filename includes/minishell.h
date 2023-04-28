@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:17:56 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/28 11:40:19 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:13:42 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINISHELL_H
@@ -76,7 +76,6 @@ extern t_minishell	g_minishell;
 char	*get_key_value(t_node *envp_list, char *key);
 void	change_value_from_key(t_node **envp_list, char *key, char *new_data);
 int		key_exists(t_node *envp_list, char *key);
-char	**lexer(char *cmd);
 
 t_node	*get_envp_list(char **envp);
 char	**get_matrix_with_key_value(char *env_variable);
@@ -96,6 +95,7 @@ void	handle_input(t_command cmd, int *fd);
 void	handle_output(t_command cmd, int *fd);
 
 // Lexer
+char	**lexer(char *cmd);
 int		put_spaces(char *str, int pos);
 int		space_duplicate_metachars(char *str, int pos);
 char	*human_readable_cmd(char *cmd);

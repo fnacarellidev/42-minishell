@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:54:34 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 14:07:56 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:13:53 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -56,7 +56,7 @@ static int	exec_unset(char *delet_var)
 {
 	if (!is_valid_identifier(delet_var))
 	{
-		printf("bash: unset: `%s': not a valid identifier\n", delet_var);
+		ft_printf(2, "bash: unset: `%s': not a valid identifier\n", delet_var);
 		return (1);
 	}
 	if (key_exists(g_minishell.envp_list, delet_var))

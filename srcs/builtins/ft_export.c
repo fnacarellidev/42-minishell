@@ -6,7 +6,7 @@
 /*   By: revieira <revieira@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:56:21 by revieira          #+#    #+#             */
-/*   Updated: 2023/04/26 15:39:27 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:16:13 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -28,21 +28,24 @@ static int	is_valid_identifier(char *var)
 	return (1);
 }
 
-static void	print_export(void)
+static void	print_export(t_command cmd)
 {
 	char	*key;
 	char	*value;
 	t_node	*tmp;
+	int		out;
 
+	out = 1;
+	handle_output(cmd, &out);
 	tmp = g_minishell.envp_list;
 	while (tmp)
 	{
 		key = tmp->key;
 		value = tmp->value;
 		if (key && value)
-			ft_printf(1, "declare -x %s=\"%s\"\n", key, value);
+			ft_printf(out, "declare -x %s=\"%s\"\n", key, value);
 		else
-			ft_printf(1, "declare -x %s\n", key);
+			ft_printf(out, "declare -x %s\n", key);
 		tmp = tmp->next;
 	}
 }
@@ -85,7 +88,7 @@ int	ft_export(t_command cmd)
 	status = 0;
 	if (cmd.number_of_args == 1)
 	{
-		print_export();
+		print_export(cmd);
 		return (status);
 	}
 	while (cmd.args[i])

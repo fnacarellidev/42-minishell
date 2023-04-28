@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 12:18:03 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/26 16:08:18 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/28 12:10:33 by revieira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -56,7 +56,7 @@ static int	run_n_cmds(t_command *prev, t_command *curr, t_command *next)
 			close_fds_in_child();
 			execve(curr->bin_path, curr->args, g_minishell.envp);
 		}
-		die_child(0, 0);
+		die_child(0, curr->error);
 	}
 	return (pid);
 }

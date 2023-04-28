@@ -45,7 +45,6 @@ FILES =			minishell \
 				aux_funcs/handler \
 				aux_funcs/print \
 				aux_funcs/ft_free \
-				aux_funcs/is_executable \
 				aux_funcs/is_dir \
 				aux_funcs/test_filename \
 				aux_funcs/update_env \

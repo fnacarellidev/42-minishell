@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 15:54:18 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/27 19:56:53 by revieira         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:22:07 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../includes/minishell.h"
@@ -62,7 +62,6 @@ static char	**remove_null(int size, char **tokens)
 		i++;
 	}
 	ft_free_matrix_size_n((void **)tokens, size);
-	/* ft_free_matrix((void **)tokens); */
 	return (new_tokens);
 }
 

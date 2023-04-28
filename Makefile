@@ -83,15 +83,6 @@ clean:
 	rm -rf $(OBJS_PATH)
 	make -C $(LIBFT_PATH) clean --no-print-directory
 
-valg: $(NAME)
-	valgrind --suppressions=ignorelibs.txt --leak-check=full --show-leak-kinds=all ./$(NAME)
-
-valg2: $(NAME)
-	valgrind -q --leak-check=full --show-leak-kinds=all --trace-children=yes \
-	--suppressions=ignorelibs.txt --track-fds=yes --track-origins=yes \
-	--trace-children-skip='*/bin/*,*/sbin/*' \
-    ./minishell
-
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_PATH) fclean --no-print-directory

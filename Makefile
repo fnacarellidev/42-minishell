@@ -51,6 +51,7 @@ FILES =			minishell \
 				aux_funcs/update_env \
 				aux_funcs/count_args \
 				aux_funcs/make_dups \
+				aux_funcs/print_curr_err \
 				manipulate_envp \
 				get_envp_list
 

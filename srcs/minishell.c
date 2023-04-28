@@ -6,7 +6,7 @@
 /*   By: fnacarel <fnacarel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:12:01 by fnacarel          #+#    #+#             */
-/*   Updated: 2023/04/28 11:10:56 by fnacarel         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:40:00 by fnacarel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/minishell.h"
@@ -74,26 +74,7 @@ static void	print_possible_errors(void)
 	while (i < size && get_builtin_pos(g_minishell.commands[i].args[0]) == -1)
 	{
 		cmd = g_minishell.commands[i];
-		if (is_dir(cmd.args[0]) && access(cmd.args[0], F_OK | X_OK) == 0 && ft_strchr(cmd.args[0], 47))
-		{
-			ft_printf(STDERR_FILENO, "bash: %s: Is a directory\n", g_minishell.commands[i].args[0]);
-			g_minishell.status_code = 126;
-		}
-		else if (ft_strchr(cmd.args[0], 47) && cmd.bin_path == NULL && access(cmd.args[0], F_OK) == -1)
-		{
-			ft_printf(STDERR_FILENO, "bash: %s: No such file or directory\n", g_minishell.commands[i].args[0]);
-			g_minishell.status_code = 127;
-		}
-		else if (cmd.bin_path == NULL && cmd.args[0] && access(cmd.args[0], X_OK) == -1 && ft_strchr(cmd.args[0], 47))
-		{
-			ft_printf(STDERR_FILENO, "bash: %s: Permission denied\n", g_minishell.commands[i].args[0]);
-			g_minishell.status_code = 126;
-		}
-		else if (cmd.bin_path == NULL && cmd.args[0])
-		{
-			ft_printf(STDERR_FILENO, "%s: command not found\n", g_minishell.commands[i].args[0]);
-			g_minishell.status_code = 127;
-		}
+		print_curr_err(cmd);
 		i++;
 	}
 }
